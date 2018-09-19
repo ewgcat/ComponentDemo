@@ -22,11 +22,10 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.face.BitmapFaceUtils;
-import com.yijian.workspace.static_assessment.DragPointViewActivity;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.utils.StreamUtils;
-import com.yijian.staff.util.DensityUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.commonlib.util.DensityUtil;
+import com.yijian.commonlib.widget.NavigationBar2;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -39,19 +38,19 @@ public class DynamicPhotoActivity extends MvcBaseActivity {
     private Camera mCamera;
     private SurfaceHolder mHolder;
     private static final int REQUEST_CAMERA_CODE = 0x100;
-    @BindView(R.id.fl_surfaceView)
+    @BindView(R. id.fl_surfaceView)
     FrameLayout fl_surfaceView;
-    @BindView(R.id.iv_take)
+    @BindView(R. id.iv_take)
     ImageView iv_take;
-    @BindView(R.id.iv_cancel)
+    @BindView(R. id.iv_cancel)
     ImageView iv_cancel;
-    @BindView(R.id.iv_sure)
+    @BindView(R. id.iv_sure)
     ImageView iv_sure;
-    @BindView(R.id.space_view)
+    @BindView(R. id.space_view)
     Space space_view;
-    @BindView(R.id.fl_start)
+    @BindView(R. id.fl_start)
     LinearLayout fl_start;
-    @BindView(R.id.tv_desc)
+    @BindView(R. id.tv_desc)
     TextView tv_desc;
     private byte[] imgData = null;
     private int surfaceWidth,surfaceHeight,fl_surfaceViewWidth, fl_surfaceViewHeight,screenWidth,screenHeight;

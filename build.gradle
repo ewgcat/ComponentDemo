@@ -4,10 +4,10 @@
 buildscript {
     ext.kotlin_version = '1.2.70'
     repositories {
+        mavenCentral()
 
         jcenter()
         google()
-
         maven { url 'https://jitpack.io' }
 
         flatDir {
@@ -22,14 +22,13 @@ buildscript {
         classpath "com.tencent.bugly:tinker-support:1.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
 allprojects {
     repositories {
 
+        mavenCentral()
         jcenter()
         google()
 
@@ -47,11 +46,11 @@ ext {
     compileSdkVersion = 27
     buildToolsVersion = '27.0.3'
     applicationId = "com.yijian.staff"
-    versionCode = 3
+    versionCode = 25
     versionName = "1.4.0"
     supportLibVersion = "27.1.1"
     designVersion = "27.1.1"
-    dbVersion = 6
+    dbVersion = 7
 
 }
 

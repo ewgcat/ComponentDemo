@@ -1,4 +1,4 @@
-package com.yijian.commonlib.mvp.base.mvc
+package com.yijian.commonlib.base.mvc
 
 import android.app.Activity
 import android.content.Context
@@ -14,12 +14,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 
 import com.tencent.bugly.beta.Beta
-import com.tencent.bugly.beta.UpgradeInfo
 import com.yijian.commonlib.BuildConfig
 import com.yijian.commonlib.R
 import com.yijian.commonlib.widget.LoadingDialog
 
-import butterknife.ButterKnife
 
 /**
  * 无MVP的activity基类
@@ -85,7 +83,6 @@ abstract class MvcBaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setStatusBarColor(DEFAULT_STATUS_BAR_COLOR)
         setContentView(getLayoutID())
-        ButterKnife.bind(this)
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         mContext = this
         initView(savedInstanceState)

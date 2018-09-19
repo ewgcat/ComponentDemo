@@ -18,7 +18,7 @@ import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.commonlib.widget.NavigationBar2;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,15 +34,15 @@ public class  SportTestActivity extends MvcBaseActivity {
     private int currentIndex = 0;
 
     private TextView rightTv;
-    @BindView(R.id.btn_next)
+    @BindView(R. id.btn_next)
     Button btn_next;
-    @BindView(R.id.view_mingjie_sel)
+    @BindView(R. id.view_mingjie_sel)
     View view_mingjie_sel;
-    @BindView(R.id.view_rouren_sel)
+    @BindView(R. id.view_rouren_sel)
     View view_rouren_sel;
-    @BindView(R.id.iv_mingjie_sel)
+    @BindView(R. id.iv_mingjie_sel)
     ImageView iv_mingjie_sel;
-    @BindView(R.id.iv_rouren_sel)
+    @BindView(R. id.iv_rouren_sel)
     ImageView iv_rouren_sel;
     private EditActionObservable editActionObservable = new EditActionObservable();
     private Map<String, String> observerMap = new HashMap<>();

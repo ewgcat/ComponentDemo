@@ -73,7 +73,7 @@ public abstract class Response2Observer implements Observer<JSONObject>, ResultC
                     break;
                 case ResponseCode.TOKEN_TIME_OUT:
                     onFail(responseBean.getMsg());
-                    ARouter.getInstance().build("/test/login").navigation();
+                    ARouter.getInstance().build("/app/login").navigation();
                     break;
                 default:
                      onFail(responseBean.getMsg());

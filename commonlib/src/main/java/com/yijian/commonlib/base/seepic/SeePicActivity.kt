@@ -9,8 +9,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.github.chrisbanes.photoview.PhotoView
 import com.yijian.commonlib.R
+import com.yijian.commonlib.base.mvc.MvcBaseActivity
 import com.yijian.commonlib.constant.Constant
-import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity
 import com.yijian.commonlib.widget.NavigationBar
 
 

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background_color"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/add_potential_activity_navigation_bar"
+        layout="@layout/view_navigation_bar"/>
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/white_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="@drawable/white_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:text="姓名"/>
+
+                <com.yijian.commonlib.widget.LastInputEditText
+                    android:id="@+id/et_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:gravity="center_vertical|right"
+                    android:hint="请输入姓名"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:text="性别"/>
+
+
+                <TextView
+                    android:id="@+id/tv_sex"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/wt_jiantou"
+                    android:gravity="center_vertical|right"
+                    android:drawablePadding="10dp"
+                    android:hint="男"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:text="手机"/>
+
+                <com.yijian.commonlib.widget.LastInputEditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="请输入手机号码"
+                    android:singleLine="true"
+                    android:inputType="phone"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:text="身体状态"/>
+
+
+                <TextView
+                    android:id="@+id/tv_body_status"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/wt_jiantou"
+                    android:gravity="center_vertical|right"
+                    android:drawablePadding="10dp"
+                    android:hint="请选择"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:text="健身目的"/>
+
+
+                <TextView
+                    android:id="@+id/tv_fitness_goal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/wt_jiantou"
+                    android:gravity="center_vertical|right"
+                    android:drawablePadding="10dp"
+                    android:hint="请选择"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:text="健身爱好"/>
+
+                <TextView
+                    android:id="@+id/tv_fithobby"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/wt_jiantou"
+                    android:gravity="center_vertical|right"
+                    android:drawablePadding="10dp"
+                    android:hint="请选择"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:text="兴趣爱好"/>
+
+
+                <TextView
+                    android:id="@+id/tv_hobby"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/wt_jiantou"
+                    android:gravity="center_vertical|right"
+                    android:drawablePadding="10dp"
+                    android:hint="请选择"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@color/gray"/>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/white_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:text="用车品牌"/>
+
+
+                <TextView
+                    android:id="@+id/tv_car_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/wt_jiantou"
+                    android:gravity="center_vertical|right"
+                    android:drawablePadding="10dp"
+                    android:hint="请选择"
+                    android:textColor="#333333"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+    <com.yijian.commonlib.widget.EmptyView
+        android:id="@+id/empty_view"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
+</LinearLayout>

@@ -6,28 +6,24 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.widget.NavigationBar;
-import com.yijian.staff.R;
-import com.yijian.workspace.static_assessment.StaticAssessmentActivity;
-import com.yijian.workspace.static_assessment.StaticPhotoActivity;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.widget.CommenPopupWindow;
 import com.yijian.workspace.commen.WorkSpaceSearchActivity;
-import com.yijian.staff.widget.NavigationBar2;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-@Route(path = "/test/workspace")
-public class WorkSpaceActivity extends AppCompatActivity {
+@Route(path = "/workspace/workspace")
+public class WorkSpaceActivity extends MvcBaseActivity {
 
     private CommenPopupWindow popupWindow;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workspace);
-        ButterKnife.bind(this);
+    protected void initView(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         initTitle();
+
     }
 
     private void initTitle(){
@@ -80,4 +76,8 @@ public class WorkSpaceActivity extends AppCompatActivity {
         popupWindow.showAtBottom(getWindow().getDecorView());
     }
 
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_workspace;
+    }
 }

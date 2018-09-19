@@ -1,4 +1,4 @@
-package com.yijian.commonlib.mvp.base.mvc
+package com.yijian.commonlib.base.mvc
 
 import android.app.Activity
 import android.os.Bundle
@@ -8,8 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import butterknife.ButterKnife
-import butterknife.Unbinder
+
 import com.yijian.commonlib.widget.LoadingDialog
 
 
@@ -19,7 +18,6 @@ import com.yijian.commonlib.widget.LoadingDialog
 
 abstract class MvcBaseFragment : Fragment() {
 
-    private var mUnBinder: Unbinder? = null
     protected var mContext: Activity? = null
     protected var rootView: View? = null
 
@@ -32,7 +30,6 @@ abstract class MvcBaseFragment : Fragment() {
         if (rootView == null) {
             rootView = inflater.inflate(getLayoutId(), null)
             mContext = activity
-            mUnBinder = ButterKnife.bind(this, rootView!!)
 
         }else{
             val parent = rootView?.parent as ViewGroup?
@@ -95,9 +92,5 @@ abstract class MvcBaseFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mUnBinder!!.unbind()
-    }
 
 }

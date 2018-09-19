@@ -18,15 +18,15 @@ import butterknife.OnClick;
 public class WorkSpaceSearchActivity extends MvcBaseActivity {
 
     android.support.v4.app.FragmentManager fm;
-    @BindView(R.id.tv_cancel)
+    @BindView(R. id.tv_cancel)
     TextView tv_cancel;
-    @BindView(R.id.et_search)
+    @BindView(R. id.et_search)
     EditText et_search;
-    @BindView(R.id.ll_back)
+    @BindView(R. id.ll_back)
     LinearLayout ll_back;
-    @BindView(R.id.lin_search_et)
+    @BindView(R. id.lin_search_et)
     LinearLayout lin_search_et;
-    @BindView(R.id.lin_search_bt)
+    @BindView(R. id.lin_search_bt)
     LinearLayout lin_search_bt;
 
     private final String tag1 = "com.yijian.workspace.commen.SearchFragment1";

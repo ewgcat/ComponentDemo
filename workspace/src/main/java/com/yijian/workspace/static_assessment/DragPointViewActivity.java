@@ -20,7 +20,7 @@ import com.yijian.workspace.utils.StreamUtils;
 import com.yijian.workspace.widget.ControlView;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.commonlib.widget.NavigationBar2;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -31,19 +31,19 @@ import butterknife.OnClick;
 
 public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop {
 
-    @BindView(R.id.iv_pendding)
+    @BindView(R. id.iv_pendding)
     ImageView iv_pendding;
-    @BindView(R.id.iv_sample)
+    @BindView(R. id.iv_sample)
     ImageView iv_sample;
-    @BindView(R.id.iv_crop)
+    @BindView(R. id.iv_crop)
     ImageView iv_crop;
-    @BindView(R.id.rel_container)
+    @BindView(R. id.rel_container)
     RelativeLayout rel_container;
-    @BindView(R.id.pointView_positive)
+    @BindView(R. id.pointView_positive)
     DragPointView pointView_positive;
-    @BindView(R.id.pointView_side)
+    @BindView(R. id.pointView_side)
     SideDragPointView pointView_side;
-    @BindView(R.id.controlview)
+    @BindView(R. id.controlview)
     ControlView controlview;
     private int type;
     private int maxWidth, maxHeight; //最大宽高

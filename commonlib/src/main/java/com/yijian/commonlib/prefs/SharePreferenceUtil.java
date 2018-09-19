@@ -341,15 +341,15 @@ public class SharePreferenceUtil {
 
 
     public static String getHostUrl() {
-        return getString(KEY_HOST, "");
+        return getString(KEY_HOST, "https://bwebapp.ejoyst.com/");
     }
 
     public static String getImageUrl() {
-        return getString(KEY_FILE_HOST, "");
+        return getString(KEY_FILE_HOST, "http://img.ejoyst.com/");
     }
 
     public static String getH5Url() {
-        return getString(KEY_H5_HOST, "");
+        return getString(KEY_H5_HOST, "https://h5app.ejoyst.com/");
     }
 
     public static void setHostUrl(String url) {

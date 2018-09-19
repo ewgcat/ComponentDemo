@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray_background_color">
+
+    <include
+        android:id="@+id/navigation_bar"
+        layout="@layout/view_navigation_bar"/>
+
+    <LinearLayout
+        android:id="@+id/lin_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/navigation_bar"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/rl_address"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:background="@color/white"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_weight_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:text="所在城市:"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_weight_label"
+                android:gravity="center_vertical|right"
+                android:singleLine="false"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawablePadding="5dp"
+                android:drawableRight="@mipmap/lg_xiala"
+                android:text="暂未录入"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/gray"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/rl_address">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/text_size_15"
+                android:text="详细地址:"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black_text_title"
+                android:layout_marginLeft="20dp"
+                />
+
+            <EditText
+                android:id="@+id/et_detail"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text=""
+                android:gravity="top|left"
+                android:padding="8dp"
+                android:textSize="@dimen/text_size_15"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

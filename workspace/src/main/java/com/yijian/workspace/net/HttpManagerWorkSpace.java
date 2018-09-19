@@ -82,7 +82,7 @@ public class HttpManagerWorkSpace {
         User user = DBManager.getInstance().queryUser();
 
         if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
+            ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.getHasHeaderHasParam(HOST + url, headers, param);
@@ -95,7 +95,7 @@ public class HttpManagerWorkSpace {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
+            ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.postPerfectInfo(HOST + WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
@@ -108,7 +108,7 @@ public class HttpManagerWorkSpace {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
+            ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.postSportInfo(HOST + WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
@@ -121,7 +121,7 @@ public class HttpManagerWorkSpace {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
+            ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.postStaticInfo(HOST + WORKSPACE_SAVE_STATIC_URL, headers, staticRequestBody);
@@ -134,7 +134,7 @@ public class HttpManagerWorkSpace {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
+            ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
             Observable<JSONObject> observable = apiService.postDynamicInfo(HOST + WORKSPACE_SAVE_DYNAMIC_URL, headers, dynamicRequestBody);
@@ -154,7 +154,7 @@ public class HttpManagerWorkSpace {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
+            ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
 
@@ -183,7 +183,7 @@ public class HttpManagerWorkSpace {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
+            ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
             List<MultipartBody.Part> parts = new ArrayList<>();

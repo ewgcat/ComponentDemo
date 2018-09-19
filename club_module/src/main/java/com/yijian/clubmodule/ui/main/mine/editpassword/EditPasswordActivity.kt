@@ -1,0 +1,87 @@
+package com.yijian.clubmodule.ui.main.mine.editpassword
+
+import android.os.Bundle
+import android.text.TextUtils
+import android.view.View
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver
+
+import com.yijian.clubmodule.R
+import com.yijian.commonlib.base.mvc.MvcBaseActivity
+import com.yijian.clubmodule.net.httpmanager.HttpManager
+import com.yijian.commonlib.prefs.SharePreferenceUtil
+import com.yijian.commonlib.util.CommonUtil
+
+import org.json.JSONObject
+
+import java.util.HashMap
+
+import kotlinx.android.synthetic.main.activity_edit_password.*
+import kotlinx.android.synthetic.main.view_navigation_bar.*
+
+class EditPasswordActivity : MvcBaseActivity(), View.OnClickListener {
+
+
+    override fun getLayoutID(): Int {
+        return R.layout.activity_edit_password
+    }
+
+    override fun initView(savedInstanceState: Bundle?) {
+
+        navigationBar.setTitle("修改密码")
+        navigationBar.hideLeftSecondIv()
+        navigationBar.setBackClickListener(this)
+
+        val name = SharePreferenceUtil.getUserName()
+        if (!TextUtils.isEmpty(name)) {
+            tv_user_name.text = name
+        }
+        btn_send.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        val username = tv_user_name.text.toString()
+        val password = et_password.text.toString()
+        if (TextUtils.isEmpty(password)) {
+            showToast("原密码不能为空！")
+            return
+        }
+        val psd = et_passwd.text.toString()
+        if (TextUtils.isEmpty(psd)) {
+            showToast("新密码不能为空！")
+            return
+        }
+        val psd2 = et_re_passwd.text.toString()
+        if (TextUtils.isEmpty(psd2)) {
+            showToast("确认密码不能为空！")
+            return
+        }
+        if (psd != psd2) {
+            showToast("2次输入的密码不同")
+            return
+        }
+        if (!CommonUtil.isPassWordFormat(psd)) {
+            showToast("新密码格式不正确,密码是数字和字母的6-20位组合！")
+            return
+        }
+        if (!CommonUtil.isPassWordFormat(psd2)) {
+            showToast("确认密码格式不正确,密码是数字和字母的6-20位组合！")
+            return
+        }
+
+        val params = HashMap<String, String>()
+        params["newPwd"] = psd
+        params["confirmPwd"] = psd2
+        params["originalPwd"] = password
+        params["username"] = username
+        HttpManager.postHasHeaderHasParam(HttpManager.EDIT_PASSWORD_URL, params, object : ResultJSONObjectObserver(lifecycle) {
+            override fun onSuccess(result: JSONObject) {
+                setResult(4567)
+                finish()
+            }
+
+            override fun onFail(msg: String) {
+                showToast(msg)
+            }
+        })
+    }
+}

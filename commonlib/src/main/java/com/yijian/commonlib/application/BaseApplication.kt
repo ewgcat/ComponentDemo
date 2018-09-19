@@ -11,10 +11,10 @@ import com.tencent.tinker.loader.shareutil.ShareConstants
 import java.util.HashMap
 
 import cn.jpush.android.api.JPushInterface
-import com.umeng.socialize.net.dplus.db.DBManager
 import com.yijian.commonlib.BuildConfig
-import com.yijian.commonlib.net.httpmanager.RetrofitClient
+import com.yijian.commonlib.db.DBManager
 import com.yijian.commonlib.umeng.UmengUtils
+import com.yijian.commonlib.util.ApplicationHolder
 
 
 open class BaseApplication : TinkerApplication(ShareConstants.TINKER_ENABLE_ALL, "com.yijian.commonlib.application.BaseApplicationLike", "com.tencent.tinker.loader.TinkerLoader", false), Application.ActivityLifecycleCallbacks {
@@ -27,9 +27,8 @@ open class BaseApplication : TinkerApplication(ShareConstants.TINKER_ENABLE_ALL,
         super.onCreate()
 
         instance = this
-        RetrofitClient.init(this)
 
-
+        DBManager.init(this);
         //极光推送
         JPushInterface.setDebugMode(BuildConfig.DEBUG)
         // 初始化 JPush
@@ -45,10 +44,9 @@ open class BaseApplication : TinkerApplication(ShareConstants.TINKER_ENABLE_ALL,
         registerActivityLifecycleCallbacks(this)
 
         UmengUtils.init(this)
-
+        ApplicationHolder.setmApplication(this);
 
     }
-
 
 
     override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle?) {}

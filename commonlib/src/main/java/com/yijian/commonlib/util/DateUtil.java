@@ -44,6 +44,15 @@ public class DateUtil {
         SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日");
         return df.format(new Date());
     }
+    /**
+     * 获取当前日期字符串
+     *
+     * @return
+     */
+    public static String getCurrentTimeString() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return df.format(new Date());
+    }
 
     /**
      * 获取当前年

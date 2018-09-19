@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.util.ImageLoader;
+import com.yijian.commonlib.util.ImageLoader;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

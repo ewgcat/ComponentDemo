@@ -1,0 +1,413 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yijian.clubmodule">
+    <uses-sdk tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Required -->
+    <permission
+        android:name="com.yijian.staff.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="com.yijian.staff.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <application
+        android:allowBackup="true"
+        android:name=".application.ClubModuleApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+
+
+    
+       
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".ui.forgetpassword.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".ui.reception.ReceptionActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.huifang.student.tianxieresult.TianXieHuiFangResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.huifang.student.history.HuiFangHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.huifang.student.task.HuiFangTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.huifang.vip.tianxieresult.TianXieHuiFangResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.huifang.vip.history.HuiFangHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.huifang.search.SearchHuiFangHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.huifang.vip.task.HuiFangTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.vipermanage.viper.edit.HuiJiVipInfoEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.vipermanage.viper.potential.PotentialViperListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 会籍 会员信息 -->
+        <activity
+            android:name=".ui.vipermanage.viper.viperlist.HuijiViperListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 会籍 意向会员 -->
+        <activity
+            android:name=".ui.vipermanage.viper.intent.HuijiIntentViperListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 会籍 意向会员详情 -->
+        <activity
+            android:name=".ui.vipermanage.viper.detail.protentialorintent.ProtentialOrIntentViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 会籍 过期会员 -->
+        <activity
+            android:name=".ui.vipermanage.viper.outdate.HuijiOutdateViperListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.vipermanage.search.HuiJiSearchActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 会员信息 -->
+        <activity
+            android:name=".ui.vipermanage.student.viperlist.CoachViperListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.course.recordchart.RecordChartActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!-- 教练 过期会员 -->
+        <activity
+            android:name=".ui.vipermanage.student.outdate.CoachOutdateViperListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 潜在会员 -->
+        <activity
+            android:name=".ui.vipermanage.student.potential.CoachPotentialViperListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 意向会员 -->
+        <activity
+            android:name=".ui.vipermanage.student.intent.CoachIntentViperListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 教练 会员详情 -->
+        <activity
+            android:name=".ui.vipermanage.student.detail.CoachViperDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 教练 报价完成 -->
+        <activity
+            android:name=".ui.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.main.mine.setting.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.mine.qrcode.MyQRCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.mine.qualification.MyQualificationActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.main.mine.selectheadicon.ClipActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.mine.club.ClubActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.vipermanage.viper.potential.AddPotentialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.mine.editpassword.EditPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.advice.AdviceListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.mine.addadvice.AddAdviceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.invate.InvateActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.invate.InvateDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 会籍 产品报价 -->
+        <activity
+            android:name=".ui.price.cardprice.CardPriceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.price.cardprice.SearchCardPriceActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 教练 课程报价 -->
+        <activity
+            android:name=".ui.price.courseprice.CoachClassBaoJiaActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.course.punch.CoursePunchActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- arouter 路由过滤 -->
+        <activity android:name="com.yijian.commonlib.schamefilter.SchameFilterActivity">
+
+            <!-- Schame -->
+            <intent-filter>
+                <data
+                    android:host="m.aliyun.com"
+                    android:scheme="arouter" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- User defined.  For test only  用户自定义的广播接收器 -->
+        <receiver
+            android:name="com.yijian.clubmodule.jpush.JpushMessageReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /> <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+        <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调 -->
+        <receiver android:name="com.yijian.clubmodule.jpush.JPushOperatorResultReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Rich push 核心功能 since 2.0.6 -->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:exported="false"
+            android:theme="@style/MyDialogStyle" />
+
+        <!-- Required SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK 核心功能 -->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:exported="false"
+            android:process=":mult"
+            tools:replace="android:process">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </service>
+
+        <!-- &lt;!&ndash; Required SDK核心功能&ndash;&gt; -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" /> <!-- Required  显示通知栏 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+        <!-- Required SDK 核心功能 -->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:exported="false"
+            android:process=":mult">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <!-- since 3.0.9 Required SDK 核心功能 -->
+        <provider
+            android:name="cn.jpush.android.service.DataProvider"
+            android:authorities="${applicationId}.DataProvider"
+            android:exported="false" />
+
+        <!-- since 3.1.0 Required SDK 核心功能 -->
+        <provider
+            android:name="cn.jpush.android.service.DownloadProvider"
+            android:authorities="${applicationId}.DownloadProvider"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.main.mine.aboutus.AboutUsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.course.recordchart.detail.ClassRecordDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".ui.contract.ContractActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.face.FaceDetectorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.vipermanage.viper.edit.SelectAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.course.cunke.CunkeNewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.taskcenter.TaskCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.taskcenter.list.RankListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.course.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.course.schedule.week.edit.list.addstudent.step2.AddStudentCourseStepTwoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.course.schedule.week.edit.list.edit.EditCourseTimeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.course.schedule.week.edit.EditCourseTableActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.course.schedule.ScheduleCourseActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.main.mine.userinfo.UserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.invate.InvateListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.course.appointcourse.AppointCourseTableActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+
+    </application>
+</manifest>

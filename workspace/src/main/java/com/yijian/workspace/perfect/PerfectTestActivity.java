@@ -18,7 +18,7 @@ import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.commonlib.widget.NavigationBar2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,21 +28,21 @@ import butterknife.OnClick;
 
 public class PerfectTestActivity extends MvcBaseActivity {
 
-    @BindView(R.id.tv_sex)
+    @BindView(R. id.tv_sex)
     TextView tv_sex;
-    @BindView(R.id.tv_height)
+    @BindView(R. id.tv_height)
     TextView tv_height;
-    @BindView(R.id.et_jianwei)
+    @BindView(R. id.et_jianwei)
     TextView et_jianwei;
-    @BindView(R.id.et_xiongwei)
+    @BindView(R. id.et_xiongwei)
     TextView et_xiongwei;
-    @BindView(R.id.et_biwei)
+    @BindView(R. id.et_biwei)
     TextView et_biwei;
-    @BindView(R.id.et_yaowei)
+    @BindView(R. id.et_yaowei)
     TextView et_yaowei;
-    @BindView(R.id.et_tunwei)
+    @BindView(R. id.et_tunwei)
     TextView et_tunwei;
-    @BindView(R.id.et_tuiwei)
+    @BindView(R. id.et_tuiwei)
     TextView et_tuiwei;
 
     private EditActionObservable editActionObservable = new EditActionObservable();

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yijian.commonlib.widget.WeekLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="40dp"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/left_board"
+        android:gravity="center"
+        android:text="周日" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/left_board"
+        android:gravity="center"
+        android:text="周一" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/left_board"
+        android:gravity="center"
+        android:text="周二" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_line_board"
+        android:gravity="center"
+        android:text="周三" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/left_board"
+        android:gravity="center"
+        android:text="周四" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/left_board"
+        android:gravity="center"
+        android:text="周五" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/left_board"
+        android:gravity="center"
+        android:text="周六" />
+
+
+</com.yijian.commonlib.widget.WeekLayout>

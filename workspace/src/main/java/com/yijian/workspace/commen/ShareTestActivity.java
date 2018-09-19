@@ -33,9 +33,9 @@ public class ShareTestActivity extends MvcBaseActivity {
 
     private SharePopupWindow sharePopupWindow;
     private CommenPopupWindow testPopupWindow;
-    @BindView(R.id.web_view)
+    @BindView(R. id.web_view)
     BaseWebView web_view;
-    @BindView(R.id.emptyView)
+    @BindView(R. id.emptyView)
     EmptyView emptyView;
     Toast toast;
     String recordId;

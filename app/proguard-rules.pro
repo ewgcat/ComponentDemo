@@ -66,8 +66,8 @@ public static java.lang.String TABLENAME;
 -verbose
 
 -keep public class com.yijian.staff.net.**{*;}
--keep public class com.yijan.workspace.workspace.**{*;}
--keep public class com.yijian.staff.bean.**{*;}
+-keep public class com.yijian.workspace.workspace.**{*;}
+-keep public class com.yijian.clubmodule.bean.**{*;}
 -keep public class com.yijian.staff.net.requestbody.*.**{*;}
 -keep public class * extends android.app.Activity
 -keep public class * extends android.support.v4.app.Fragment

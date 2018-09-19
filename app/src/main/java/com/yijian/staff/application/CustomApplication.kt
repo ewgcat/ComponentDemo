@@ -4,10 +4,10 @@ import android.content.Context
 import android.util.DisplayMetrics
 import android.view.WindowManager
 
-import com.yijian.commonlib.prefs.SharePreferenceUtil
 
 import com.yijian.commonlib.application.BaseApplication
-import com.yijian.commonlib.db.DBManager
+import com.yijian.clubmodule.db.ClubDBManager
+import com.yijian.commonlib.net.retrofit.RetrofitClient
 
 
 class CustomApplication : BaseApplication() {
@@ -15,7 +15,9 @@ class CustomApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        DBManager.init(this)
+        RetrofitClient.init(this)
+
+        ClubDBManager.init(this)
         //初始化屏幕宽高
         getScreenSize()
     }

@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/paike_button_bg"
+        android:orientation="vertical" />
+    <LinearLayout
+        android:layout_above="@id/ll_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/week_layout"
+            layout="@layout/layout_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <com.yijian.commonlib.widget.MyScollView
+            android:id="@+id/scoll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.yijian.staff.mvp.course.schedule.week.WeekCourseView
+                android:id="@+id/week_course_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingLeft="40dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="20dp" />
+        </com.yijian.commonlib.widget.MyScollView>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

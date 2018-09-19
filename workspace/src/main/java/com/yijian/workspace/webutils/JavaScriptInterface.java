@@ -3,8 +3,8 @@ package com.yijian.workspace.webutils;
 import android.os.Handler;
 import android.webkit.JavascriptInterface;
 
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
+import com.yijian.clubmodule.db.DBManager;
+import com.yijian.clubmodule.db.bean.User;
 
 public final class JavaScriptInterface {
 

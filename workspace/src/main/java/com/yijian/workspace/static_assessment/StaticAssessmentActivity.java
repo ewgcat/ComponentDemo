@@ -16,7 +16,7 @@ import com.yijian.workspace.utils.GlideApp;
 import com.yijian.workspace.utils.StreamUtils;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.commonlib.widget.NavigationBar2;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,9 +29,9 @@ import butterknife.OnClick;
 
 public class StaticAssessmentActivity extends MvcBaseActivity {
 
-    @BindView(R.id.iv_positive)
+    @BindView(R. id.iv_positive)
     ImageView iv_positive;
-    @BindView(R.id.iv_side)
+    @BindView(R. id.iv_side)
     ImageView iv_side;
     int type = 0;
     private static StaticAssessmentActivity activity;

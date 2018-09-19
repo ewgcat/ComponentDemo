@@ -26,8 +26,7 @@ import com.yijian.workspace.utils.GlideApp;
 import com.yijian.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.util.DensityUtil;
-import com.yijian.staff.widget.NavigationBar2;
+import com.yijian.commonlib.widget.NavigationBar2;
 import com.yijian.workspace.R;
 import com.yijian.workspace.observe.EditActionObservable;
 
@@ -67,43 +66,43 @@ public class DynamicAssessmentActivity extends MvcBaseActivity {
     private String[] tags = new String[]{tag1, tag2, tag3, tag4, tag5, tag6, tag7};
     private DynamicRequestBody dynamicRequestBody;
 
-    @BindView(R.id.btn_next)
+    @BindView(R. id.btn_next)
     Button btn_next;
-    @BindView(R.id.lin_next)
+    @BindView(R. id.lin_next)
     LinearLayout lin_next;
-    @BindView(R.id.progress_bar)
+    @BindView(R. id.progress_bar)
     ProgressBar progress_bar;
-    @BindView(R.id.line_progress)
+    @BindView(R. id.line_progress)
     LinearLayout line_progress;
-    @BindView(R.id.iv_1)
+    @BindView(R. id.iv_1)
     ImageView iv_1;
-    @BindView(R.id.iv_2)
+    @BindView(R. id.iv_2)
     ImageView iv_2;
-    @BindView(R.id.iv_3)
+    @BindView(R. id.iv_3)
     ImageView iv_3;
-    @BindView(R.id.iv_4)
+    @BindView(R. id.iv_4)
     ImageView iv_4;
-    @BindView(R.id.iv_5)
+    @BindView(R. id.iv_5)
     ImageView iv_5;
-    @BindView(R.id.iv_6)
+    @BindView(R. id.iv_6)
     ImageView iv_6;
-    @BindView(R.id.iv_7)
+    @BindView(R. id.iv_7)
     ImageView iv_7;
-    @BindView(R.id.lin_step1)
+    @BindView(R. id.lin_step1)
     LinearLayout lin_step1;
-    @BindView(R.id.lin_step2)
+    @BindView(R. id.lin_step2)
     LinearLayout lin_step2;
-    @BindView(R.id.lin_step3)
+    @BindView(R. id.lin_step3)
     LinearLayout lin_step3;
-    @BindView(R.id.lin_step4)
+    @BindView(R. id.lin_step4)
     LinearLayout lin_step4;
-    @BindView(R.id.lin_step5)
+    @BindView(R. id.lin_step5)
     LinearLayout lin_step5;
-    @BindView(R.id.lin_step6)
+    @BindView(R. id.lin_step6)
     LinearLayout lin_step6;
-    @BindView(R.id.lin_step7)
+    @BindView(R. id.lin_step7)
     LinearLayout lin_step7;
-    @BindView(R.id.dynamic_top_step)
+    @BindView(R. id.dynamic_top_step)
     HorizontalScrollView dynamic_top_step;
     private int progresBase;
     private int ivWidth;

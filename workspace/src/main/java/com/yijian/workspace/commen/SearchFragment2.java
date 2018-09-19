@@ -20,8 +20,8 @@ import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.bean.WorkSpaceVipBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.util.JsonUtil;
-import com.yijian.staff.widget.EmptyView;
+import com.yijian.commonlib.util.JsonUtil;
+import com.yijian.commonlib.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONException;

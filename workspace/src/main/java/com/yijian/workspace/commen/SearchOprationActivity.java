@@ -19,15 +19,15 @@ import butterknife.OnClick;
 
 public class SearchOprationActivity extends MvcBaseActivity {
 
-    @BindView(R.id.iv_header)
+    @BindView(R. id.iv_header)
     ImageView iv_header;
-    @BindView(R.id.iv_gender)
+    @BindView(R. id.iv_gender)
     ImageView iv_gender;
-    @BindView(R.id.tv_name)
+    @BindView(R. id.tv_name)
     TextView tv_name;
-    @BindView(R.id.tv_age)
+    @BindView(R. id.tv_age)
     TextView tv_age;
-    @BindView(R.id.tv_role)
+    @BindView(R. id.tv_role)
     TextView tv_role;
 
     WorkSpaceVipBean workSpaceVipBean;

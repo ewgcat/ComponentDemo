@@ -18,11 +18,11 @@ import butterknife.OnClick;
 
 public class DynamicDragPointActivity extends MvcBaseActivity {
 
-    @BindView(R.id.iv_pendding)
+    @BindView(R. id.iv_pendding)
     ImageView iv_pendding;
-    @BindView(R.id.rel_container)
+    @BindView(R. id.rel_container)
     RelativeLayout rel_container;
-    @BindView(R.id.pointView)
+    @BindView(R. id.pointView)
     com.yijian.workspace.dynamic_assessment.DynamicPointView pointView;
 
     @Override

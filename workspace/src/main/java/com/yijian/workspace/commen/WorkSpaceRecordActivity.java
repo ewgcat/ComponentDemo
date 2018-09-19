@@ -29,11 +29,11 @@ import butterknife.BindView;
 
 public class WorkSpaceRecordActivity extends MvcBaseActivity {
 
-    @BindView(R.id.refreshLayout)
+    @BindView(R. id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    @BindView(R.id.rv)
+    @BindView(R. id.rv)
     RecyclerView rv;
-    @BindView(R.id.empty_view)
+    @BindView(R. id.empty_view)
     EmptyView empty_view;
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量

@@ -2,6 +2,7 @@ if (isModule.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
+
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -48,6 +49,5 @@ android {
 dependencies {
     api project(':commonlib')
 
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    kapt "com.jakewharton:butterknife-compiler:8.8.1"
+
 }

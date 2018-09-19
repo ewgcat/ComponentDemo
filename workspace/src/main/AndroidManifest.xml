@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yijan.workspace">
+    package="com.yijian.workspace">
     <application>
         <activity
             android:name=".static_assessment.StaticPhotoActivity"

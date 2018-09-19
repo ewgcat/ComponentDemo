@@ -3,14 +3,12 @@ package com.yijian.staff.mvp.main.mine.editpassword
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import com.yijan.commonlib.net.response.ResultJSONObjectObserver
 
 import com.yijian.staff.R
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
 import com.yijian.staff.net.httpmanager.HttpManager
-import com.yijian.staff.prefs.SharePreferenceUtil
+import com.yijian.commonlib.prefs.SharePreferenceUtil
 import com.yijian.staff.util.CommonUtil
 
 import org.json.JSONObject

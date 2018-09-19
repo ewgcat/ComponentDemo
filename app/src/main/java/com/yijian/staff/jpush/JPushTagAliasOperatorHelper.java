@@ -6,7 +6,7 @@ import android.os.Message;
 import android.text.TextUtils;
 
 
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.Logger;
 
 import java.util.HashMap;

@@ -23,7 +23,7 @@ import com.yijian.staff.bean.ClubDetailBean;
 import com.yijian.staff.mvp.main.mine.qualification.GlideImageLoader;
 import com.yijian.staff.mvp.webview.BaseWebViewActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.GlideCircleTransform;
 import com.youth.banner.Banner;

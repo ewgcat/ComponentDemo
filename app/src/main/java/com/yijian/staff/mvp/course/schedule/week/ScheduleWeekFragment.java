@@ -18,7 +18,7 @@ import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.requestbody.course.SaveCourseRequestBody;
 import com.yijan.commonlib.net.response.Response2Observer;
 import com.yijan.commonlib.net.response.ResultJSONArrayObserver;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;

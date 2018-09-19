@@ -23,7 +23,7 @@ import com.yijian.staff.mvp.main.work.WorkFragment;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijan.commonlib.net.response.ResultJSONArrayObserver;
 import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.JsonUtil;

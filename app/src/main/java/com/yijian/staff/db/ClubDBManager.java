@@ -25,7 +25,7 @@ import com.yijian.staff.greendao.gen.PrivateCoachCurriculumArrangementPlanModelD
 import com.yijian.staff.greendao.gen.PrivateCourseMemberModelDao;
 import com.yijian.staff.greendao.gen.RoleVoBeanDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 
 import java.util.ArrayList;
 import java.util.List;

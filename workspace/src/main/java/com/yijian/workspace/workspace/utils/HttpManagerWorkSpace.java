@@ -9,7 +9,7 @@ import com.yijian.workspace.workspace.bean.PerfectRequestBody;
 import com.yijian.workspace.workspace.bean.SportStepRequedtBody;
 import com.yijian.workspace.workspace.bean.StaticRequestBody;
 import com.yijian.staff.net.api.ApiService;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 
 import org.json.JSONObject;
 

@@ -18,11 +18,15 @@ import android.widget.RelativeLayout;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSONArray;
 import com.jaeger.library.StatusBarUtil;
+import com.yijian.commonlib.db.DBManager;
+import com.yijian.commonlib.db.bean.User;
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijan.commonlib.db.ClubDBManager;
-import com.yijan.commonlib.db.bean.OthermodelVo;
-import com.yijan.commonlib.db.bean.RoleVoBean;
-import com.yijan.commonlib.db.bean.User;
+
+import com.yijian.staff.db.ClubDBManager;
+import com.yijian.staff.db.bean.OthermodelVo;
+import com.yijian.staff.db.bean.RoleVoBean;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
@@ -30,8 +34,7 @@ import com.yijian.staff.bean.PermissionBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.AndroidAdjustResizeBugFix;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
@@ -107,10 +110,15 @@ public class LoginActivity extends MvcBaseActivity implements AndroidAdjustResiz
             public void callExchangeBack(int index) {
                 switch (index) {
                     case 0: //俱乐部
-                        SharePreferenceUtil.setWorkSpaceHost(false);
+                        SharePreferenceUtil.setHostUrl(BuildConfig.HOST);
+                        SharePreferenceUtil.setImageUrl(BuildConfig.FILE_HOST);
+                        SharePreferenceUtil.setH5Url(BuildConfig.H5_HOST);
                         break;
                     case 1: //工作室
-                        SharePreferenceUtil.setWorkSpaceHost(true);
+                        SharePreferenceUtil.setWorkSpaceHost(false);
+                        SharePreferenceUtil.setHostUrl(BuildConfig.WORKSPACE_HOST);
+                        SharePreferenceUtil.setImageUrl(BuildConfig.WORKSPACE_FILE_HOST);
+                        SharePreferenceUtil.setH5Url(BuildConfig.H5_HOST);
                         break;
                     default:
                 }
@@ -145,7 +153,7 @@ public class LoginActivity extends MvcBaseActivity implements AndroidAdjustResiz
                         SharePreferenceUtil.setUserName(account);
                         SharePreferenceUtil.setUserId(user.getUserId());
                         SharePreferenceUtil.setUserRole(user.getRole());
-                        ClubDBManager.getInstance().insertOrReplaceUser(user);
+                      DBManager.getInstance().insertOrReplaceUser(user);
                         JSONObject roleVo = JsonUtil.getJsonObject(result, "roleVo");
                         ClubDBManager.getInstance().insertOrReplaceRoleVoBean(new RoleVoBean(roleVo));
                         JSONObject homePageModelVO = JsonUtil.getJsonObject(result, "homePageModelVO");

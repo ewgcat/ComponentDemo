@@ -1,6 +1,6 @@
 package com.yijian.staff.net.requestbody;
 
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 
 /**
  * author：李帅华

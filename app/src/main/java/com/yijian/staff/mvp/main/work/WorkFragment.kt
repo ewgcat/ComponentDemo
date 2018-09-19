@@ -17,7 +17,7 @@ import com.yijian.staff.mvp.reception.ReceptionActivity
 import com.yijian.staff.mvp.vipermanage.search.HuiJiSearchActivity
 import com.yijian.staff.net.httpmanager.HttpManager
 import com.yijan.commonlib.net.response.ResponseObserver
-import com.yijian.staff.prefs.SharePreferenceUtil
+import com.yijian.commonlib.prefs.SharePreferenceUtil
 import com.yijian.staff.util.Logger
 
 import org.json.JSONException

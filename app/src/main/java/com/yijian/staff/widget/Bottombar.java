@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.yijian.staff.R;
 import com.yijian.staff.jpush.ClearRedPointUtil;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 
 
 public class Bottombar extends LinearLayout implements View.OnClickListener {

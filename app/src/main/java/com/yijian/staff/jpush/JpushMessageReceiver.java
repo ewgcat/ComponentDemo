@@ -11,7 +11,7 @@ import com.yijian.staff.jpush.bean.PushInfoBean;
 import com.yijian.staff.mvp.course.appointcourse.AppointCourseTableActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.mvp.reception.ReceptionActivity;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.staff.rx.RxBus;
 import com.yijian.staff.util.Logger;
 

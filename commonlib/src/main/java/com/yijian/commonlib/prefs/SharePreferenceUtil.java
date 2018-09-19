@@ -1,10 +1,10 @@
-package com.yijian.staff.prefs;
+package com.yijian.commonlib.prefs;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.yijian.staff.BuildConfig;
-import com.yijian.staff.util.ApplicationHolder;
+import com.yijian.commonlib.BuildConfig;
+import com.yijian.commonlib.util.ApplicationHolder;
 
 
 public class SharePreferenceUtil {
@@ -25,6 +25,9 @@ public class SharePreferenceUtil {
     private static final String KEY_HAS_NEW_SELL_BUSINESS_PUSH = "has_new_sell_business_push";
     private static final String KEY_HAS_NEW_COURSE_BUSINESS_PUSH = "has_new_course_business_push";
     private static final String KEY_IS_WORKSPACE_VERSION = "is_workspace_version";
+    private static final String KEY_HOST = "host";
+    private static final String KEY_FILE_HOST = "file_host";
+    private static final String KEY_H5_HOST = "h5_host";
 
 
     public static void setShowEditIcon(boolean b) {
@@ -326,34 +329,40 @@ public class SharePreferenceUtil {
 
     }
 
-    public static boolean getAppSellerBuiness(){
-        return getBoolean(KEY_SELLER_BUSINESS, false);
-
-    }
 
     public static void setWorkSpaceHost(boolean b) {
-         setBoolean(KEY_IS_WORKSPACE_VERSION, b);
+        setBoolean(KEY_IS_WORKSPACE_VERSION, b);
     }
 
-    public static boolean getAppCourseBuiness(){
-        return getBoolean(KEY_COURSE_BUSINESS, false);
-
-    }
 
     public static boolean isWorkSpaceVersion() {
         return getBoolean(KEY_IS_WORKSPACE_VERSION, false);
     }
 
+
     public static String getHostUrl() {
-        return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_HOST : BuildConfig.HOST;
+        return getString(KEY_HOST, "");
     }
 
     public static String getImageUrl() {
-        return SharePreferenceUtil.isWorkSpaceVersion() ? BuildConfig.WORKSPACE_FILE_HOST : BuildConfig.FILE_HOST;
+        return getString(KEY_FILE_HOST, "");
     }
 
-    public static String getH5Url(){
-        return BuildConfig.WORKSPACE_H5_HOST;
+    public static String getH5Url() {
+        return getString(KEY_H5_HOST, "");
     }
+
+    public static void setHostUrl(String url) {
+        setString(KEY_HOST, url);
+    }
+
+    public static void setH5Url(String url) {
+        setString(KEY_H5_HOST, url);
+    }
+
+    public static void setImageUrl(String url) {
+        setString(KEY_FILE_HOST, url);
+    }
+
 
 }

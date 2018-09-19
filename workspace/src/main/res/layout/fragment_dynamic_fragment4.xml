@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.workspace.dynamic_assessment.DynamicFragment3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="1.双脚开立，脚间距与肩同宽，双脚内侧平行"
+            android:textStyle="bold"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"/>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="正面观"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="足部 扁平足"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_positive1_footer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="足部 拇指外翻"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_positive1_knee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="背面观"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="足部-左脚跟"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_bg1_leftfooter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="足部-右脚跟"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_bg1_rightfooter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2.双脚开立，与髋同宽，双脚内侧平行，看髌骨垂线是否在二三四脚趾范围内，以此判断膝盖是内扣还是外翻"
+            android:padding="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"/>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="正面观"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="膝盖-左膝"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_positive2_leftknee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="膝盖-右膝"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_positive2_rightknee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3.左右反手，尽量往隆椎方向伸"
+            android:padding="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"/>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="背面观"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="肩   肩胛骨外翻"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_bg3_jjg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="肩   食指与隆锥距离远"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_bg3_jiansz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="4.面向墙站立，两手上举，身体贴墙"
+            android:textStyle="bold"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"/>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="背面观"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="肩部  手臂不受控制外展"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_bg4_jsb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="肩部  肩胛上提"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_bg4_jj"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

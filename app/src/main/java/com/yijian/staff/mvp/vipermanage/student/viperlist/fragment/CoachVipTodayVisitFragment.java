@@ -16,8 +16,8 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.TodayVisitStudentBean;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
+import com.yijan.commonlib.db.ClubDBManager;
+import com.yijan.commonlib.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.vipermanage.student.viperlist.adpater.CoachTodayViperListAdapter;
 import com.yijian.staff.mvp.vipermanage.student.viperlist.filter.CoachViperFilterBean;
@@ -108,7 +108,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
         pageSize = 10;
         this.coachViperFilterBean = coachViperFilterBean;
         HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
+        User user = ClubDBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
         HashMap<String, Object> map = new HashMap<>();
@@ -190,7 +190,7 @@ public class CoachVipTodayVisitFragment extends MvcBaseFragment {
         empty_view.setVisibility(View.GONE);
         showLoading();
         HashMap<String, String> header = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
+        User user = ClubDBManager.getInstance().queryUser();
         header.put("token", user.getToken());
 
         HashMap<String, Object> map = new HashMap<>();

@@ -4,10 +4,10 @@ import android.content.Context
 import android.util.DisplayMetrics
 import android.view.WindowManager
 
-import com.yijian.staff.db.DBManager
 import com.yijian.staff.prefs.SharePreferenceUtil
 
-import com.yijan.commonlib.application.BaseApplication
+import com.yijian.commonlib.application.BaseApplication
+import com.yijian.commonlib.db.DBManager
 
 
 class CustomApplication : BaseApplication() {

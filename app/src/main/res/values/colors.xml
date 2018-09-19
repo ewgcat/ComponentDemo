@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--#0398db-->
-    <color name="colorPrimary">#1997f8</color>
-    <color name="colorPrimaryDark">#565656</color>
     <color name="colorAccent">#1997f8</color>
     <color name="gray">#eaeaea</color>
     <color name="blue">#1997f8</color>
@@ -16,11 +14,8 @@
     <color name="activity_background">#eff0f4</color>
     <color name="red">#FF0000</color>
 
-    <color name="gray_text_desc">#808080</color>
     <color name="gray_switch_track">#66999999</color>
     <color name="black_text_title">#222222</color>
-    <color name="gray_divide_line">#e5e5e5</color>
-    <color name="gray_bg">#f1f3f5</color>
 
     <color name="transparent">#00000000</color>
     <color name="black333333">#333333</color>

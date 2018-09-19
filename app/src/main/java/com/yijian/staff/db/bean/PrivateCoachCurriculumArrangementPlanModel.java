@@ -1,7 +1,6 @@
 package com.yijian.staff.db.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
-
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 

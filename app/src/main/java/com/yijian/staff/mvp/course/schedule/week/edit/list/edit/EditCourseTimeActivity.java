@@ -13,7 +13,7 @@ import com.contrarywind.view.WheelView;
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
-import com.yijian.staff.db.DBManager;
+import com.yijan.commonlib.db.ClubDBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
@@ -241,7 +241,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
 
                         List<CourseStudentBean> list = com.alibaba.fastjson.JSONArray.parseArray(data.toString(), CourseStudentBean.class);
 
-                        DBManager.getInstance().insertCourseStudentBeans(list);
+                        ClubDBManager.getInstance().insertCourseStudentBeans(list);
                         finish();
                     }
 
@@ -285,7 +285,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity {
         int iendTime = Integer.parseInt(endTime.replace(":", ""));
 
 
-        List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
+        List<CourseStudentBean> courseStudentBeans = ClubDBManager.getInstance().queryCourseStudentBeans();
         if (courseStudentBeans != null && courseStudentBeans.size() > 0) {
             for (int i = 0; i < courseStudentBeans.size(); i++) {
                 CourseStudentBean courseStudentBean = courseStudentBeans.get(i);

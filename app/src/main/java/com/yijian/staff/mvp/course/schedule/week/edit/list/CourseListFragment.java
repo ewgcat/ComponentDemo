@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.yijian.staff.R;
 import com.yijian.staff.bean.CourseStudentBean;
-import com.yijian.staff.db.DBManager;
+import com.yijan.commonlib.db.ClubDBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.schedule.week.edit.list.addstudent.step1.AddStudentCourseStepOneActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -66,7 +66,7 @@ public class CourseListFragment extends MvcBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
+        List<CourseStudentBean> courseStudentBeans = ClubDBManager.getInstance().queryCourseStudentBeans();
         updateUi(courseStudentBeans);
     }
 
@@ -79,7 +79,7 @@ public class CourseListFragment extends MvcBaseFragment {
             @Override
             public void onSuccess(JSONObject result) {
                 String id = mDataAdapter.getDataList().get(pos).getId();
-                DBManager.getInstance().deletePrivateCoachCurriculumArrangementPlanVOSBeanById(id);
+                ClubDBManager.getInstance().deletePrivateCoachCurriculumArrangementPlanVOSBeanById(id);
                 mDataAdapter.getDataList().remove(pos);
                 mDataAdapter.notifyItemRemoved(pos);//推荐用这个
                 if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略 注意：这里的mDataAdapter.getDataList()不需要-1，因为上面已经-1了

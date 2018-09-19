@@ -3,18 +3,18 @@ package com.yijian.staff.net.httpmanager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
-import com.yijan.commonlib.net.httpmanager.RetrofitClient;
+import com.yijian.commonlib.net.httpmanager.RetrofitClient;
 import com.yijian.staff.net.requestbody.AbortFuFangBody;
 import com.yijian.staff.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody;
 import com.yijian.staff.net.requestbody.HuifangRecordRequestBody;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
+import com.yijian.commonlib.db.DBManager ;
+import com.yijian.commonlib.db.bean.User ;
 import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.net.requestbody.EditHuiJiVipBody;
 import com.yijian.staff.net.requestbody.CardRequestBody;
-import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
-import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
+//import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
+//import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
 import com.yijian.staff.net.api.ApiService;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
 import com.yijian.staff.net.httpmanager.url.HuiFangUrls;
@@ -896,34 +896,34 @@ public class HttpManager {
         }
     }
 
-
-    //保存完美围度
-    public static void postPerfectInfo(PerfectRequestBody perfectRequestBody, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postPerfectInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
-            execute(observable, observer);
-        }
-    }
-
-    //保存运动表现
-    public static void postSportInfo(SportStepRequedtBody sportStepRequedtBody, Observer<JSONObject> observer) {
-        HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
-        if (user == null || TextUtils.isEmpty(user.getToken())) {
-            ARouter.getInstance().build("/test/login").navigation();
-        } else {
-            headers.put("token", user.getToken());
-            headers.put("version", "1.3");
-
-            Observable<JSONObject> observable = apiService.postSportInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
-            execute(observable, observer);
-        }
-    }
+//
+//    //保存完美围度
+//    public static void postPerfectInfo(PerfectRequestBody perfectRequestBody, Observer<JSONObject> observer) {
+//        HashMap<String, String> headers = new HashMap<>();
+//        User user = ClubClubDBManager.getInstance().queryUser();
+//        if (user == null || TextUtils.isEmpty(user.getToken())) {
+//            ARouter.getInstance().build("/test/login").navigation();
+//        } else {
+//            headers.put("token", user.getToken());
+//            Observable<JSONObject> observable = apiService.postPerfectInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
+//            execute(observable, observer);
+//        }
+//    }
+//
+//    //保存运动表现
+//    public static void postSportInfo(SportStepRequedtBody sportStepRequedtBody, Observer<JSONObject> observer) {
+//        HashMap<String, String> headers = new HashMap<>();
+//        User user = ClubClubDBManager.getInstance().queryUser();
+//        if (user == null || TextUtils.isEmpty(user.getToken())) {
+//            ARouter.getInstance().build("/test/login").navigation();
+//        } else {
+//            headers.put("token", user.getToken());
+//            headers.put("version", "1.3");
+//
+//            Observable<JSONObject> observable = apiService.postSportInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
+//            execute(observable, observer);
+//        }
+//    }
 
     public static void postInvateContent(String indexHuiJiInvitationSaveUrl, SaveInviteBody saveInviteBody, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();

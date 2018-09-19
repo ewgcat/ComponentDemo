@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.CourseStudentBean;
-import com.yijian.staff.db.DBManager;
+import com.yijan.commonlib.db.ClubDBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.course.schedule.week.edit.EditCourseTableActivity;
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -110,7 +110,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
             int iendTime = Integer.parseInt(courseBean.getETime().replace(":", ""));
 
 
-            List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
+            List<CourseStudentBean> courseStudentBeans = ClubDBManager.getInstance().queryCourseStudentBeans();
             if (courseStudentBeans != null && courseStudentBeans.size() > 0) {
                 for (int i = 0; i < courseStudentBeans.size(); i++) {
                     CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
@@ -209,7 +209,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                             List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(data.toString(), CourseStudentBean.class);
 
                             if (courseStudentBeanList != null) {
-                                DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
+                                ClubDBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
                                 for (int i = 0; i < courseStudentBeanList.size(); i++) {
                                     CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);
                                     List<CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean> list = courseStudentBean.getPrivateCoachCurriculumArrangementPlanVOS();
@@ -256,7 +256,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            List<CourseStudentBean> courseStudentBeanList = DBManager.getInstance().queryCourseStudentBeans();
+            List<CourseStudentBean> courseStudentBeanList = ClubDBManager.getInstance().queryCourseStudentBeans();
             if (courseStudentBeanList != null) {
                 weekCourseView.clearView();
                 for (int i = 0; i < courseStudentBeanList.size(); i++) {
@@ -277,7 +277,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        List<CourseStudentBean> courseStudentBeanList = DBManager.getInstance().queryCourseStudentBeans();
+        List<CourseStudentBean> courseStudentBeanList = ClubDBManager.getInstance().queryCourseStudentBeans();
         if (courseStudentBeanList != null) {
             weekCourseView.clearView();
             for (int i = 0; i < courseStudentBeanList.size(); i++) {
@@ -317,7 +317,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment {
                 List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(result.toString(), CourseStudentBean.class);
 
                 if (courseStudentBeanList != null) {
-                    DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
+                    ClubDBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
 
                     for (int i = 0; i < courseStudentBeanList.size(); i++) {
                         CourseStudentBean courseStudentBean = courseStudentBeanList.get(i);

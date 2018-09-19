@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_background_color"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#1996f8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="基本信息"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="(测试结果与您的基本信息有关，请如实填写）"
+                        android:textColor="@color/textColor999999"
+                        android:textSize="@dimen/text_size_13" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View style="@style/SplitLineStyle" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15" />
+
+                <Space
+                    android:id="@+id/spce_sex"
+                    android:layout_width="18dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentRight="true"/>
+
+                <TextView
+                    android:id="@+id/tv_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/spce_sex"
+                    android:hint="选择性别"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="@color/text_black1"
+                    android:textColorHint="#cccccc"
+                    android:textSize="@dimen/text_size_15" />
+
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+
+            <RelativeLayout
+                android:id="@+id/rel_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="生日"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@mipmap/icon_black_right_arrow"
+                    android:hint="选择生日"
+                    android:gravity="right"
+                    android:textColor="@color/text_black1"
+                    android:textColorHint="#cccccc"
+                    android:textSize="@dimen/text_size_15" />
+
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+
+            <RelativeLayout
+                android:id="@+id/rel_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身高(cm)"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@mipmap/icon_black_right_arrow"
+                    android:hint="选择身高"
+                    android:gravity="right"
+                    android:textColor="@color/text_black1"
+                    android:textColorHint="#cccccc"
+                    android:textSize="@dimen/text_size_15" />
+
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="体重(kg)"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15" />
+
+                <EditText
+                    android:id="@+id/et_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="10dp"
+                    android:hint="请输入体重"
+                    android:gravity="right"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"
+                    android:textColor="@color/text_black1"
+                    android:textColorHint="#cccccc"
+                    android:textSize="@dimen/text_size_15"
+                    android:inputType="number"/>
+
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#1996f8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="肌耐力测试"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卷腹(次)"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15" />
+
+                <EditText
+                    android:id="@+id/et_juanfu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="10dp"
+                    android:hint="1分钟内做的次数"
+                    android:gravity="right"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"
+                    android:textColor="@color/text_black1"
+                    android:textColorHint="#cccccc"
+                    android:textSize="@dimen/text_size_15"
+                    android:inputType="number"/>
+
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#1996f8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="最大肌力测试"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="记录举起的重量及最大反复次数，不可超过10次）"
+                        android:textColor="@color/textColor999999"
+                        android:textSize="@dimen/text_size_13" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View style="@style/SplitLineStyle" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/tv_xiongdaji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="肩"
+                    android:textColor="@color/textColor999999"
+                    android:textSize="@dimen/text_size_13" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_xiongdaji"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="肩上推举"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/et_jian_weight"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="举起重量"
+                            android:gravity="right"
+                            android:textCursorDrawable="@null"
+                            android:background="@null"
+                            android:layout_marginRight="5dp"
+                            android:inputType="numberDecimal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="KG"/>
+
+
+                        <EditText
+                            android:id="@+id/et_jian_weight_num"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="次数"
+                            android:gravity="right"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:layout_marginRight="5dp"
+                            android:textCursorDrawable="@null"
+                            android:singleLine="true"
+                            android:inputType="number"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="次"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/tv_jian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="胸大肌"
+                    android:textColor="@color/textColor999999"
+                    android:textSize="@dimen/text_size_13" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_jian"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="平板卧推"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/et_jian_xiongdaji"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="举起重量"
+                            android:gravity="right"
+                            android:background="@null"
+                            android:textCursorDrawable="@null"
+                            android:layout_marginRight="5dp"
+                            android:inputType="numberDecimal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="KG"/>
+
+
+                        <EditText
+                            android:id="@+id/et_xiongdaji_num"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="次数"
+                            android:gravity="right"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:layout_marginRight="5dp"
+                            android:textCursorDrawable="@null"
+                            android:singleLine="true"
+                            android:inputType="number"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="次"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/tv_gong2ji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="肱二头肌"
+                    android:textColor="@color/textColor999999"
+                    android:textSize="@dimen/text_size_13" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_gong2ji"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="手臂向心收缩"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/et_jian_gong2ji"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="举起重量"
+                            android:gravity="right"
+                            android:background="@null"
+                            android:textCursorDrawable="@null"
+                            android:layout_marginRight="5dp"
+                            android:singleLine="true"
+                            android:inputType="numberDecimal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="KG"/>
+
+
+                        <EditText
+                            android:id="@+id/et_gong2ji_num"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="次数"
+                            android:gravity="right"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:layout_marginRight="5dp"
+                            android:textCursorDrawable="@null"
+                            android:singleLine="true"
+                            android:inputType="number"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="次"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/tv_gong3ji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="肱三头肌"
+                    android:textColor="@color/textColor999999"
+                    android:textSize="@dimen/text_size_13" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_gong3ji"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="手臂向心收缩"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/et_gong3ji"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="举起重量"
+                            android:gravity="right"
+                            android:background="@null"
+                            android:textCursorDrawable="@null"
+                            android:layout_marginRight="5dp"
+                            android:singleLine="true"
+                            android:inputType="numberDecimal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="KG"/>
+
+
+                        <EditText
+                            android:id="@+id/et_gong3ji_num"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="次数"
+                            android:gravity="right"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:layout_marginRight="5dp"
+                            android:textCursorDrawable="@null"
+                            android:singleLine="true"
+                            android:inputType="number"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="次"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/tv_yaobeijiqun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="腰背肌群"
+                    android:textColor="@color/textColor999999"
+                    android:textSize="@dimen/text_size_13" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_yaobeijiqun"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="直体负重硬拉"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/et_yaobeijiqun"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="举起重量"
+                            android:gravity="right"
+                            android:background="@null"
+                            android:textCursorDrawable="@null"
+                            android:layout_marginRight="5dp"
+                            android:singleLine="true"
+                            android:inputType="numberDecimal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="KG"/>
+
+
+                        <EditText
+                            android:id="@+id/et_yaobeijiqun_num"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="次数"
+                            android:gravity="right"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:layout_marginRight="5dp"
+                            android:textCursorDrawable="@null"
+                            android:singleLine="true"
+                            android:inputType="number"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="次"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:id="@+id/tv_datuijiqun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="大腿肌群"
+                    android:textColor="@color/textColor999999"
+                    android:textSize="@dimen/text_size_13" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_datuijiqun"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="负重深蹲"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/et_datuijiqun"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="举起重量"
+                            android:gravity="right"
+                            android:background="@null"
+                            android:textCursorDrawable="@null"
+                            android:layout_marginRight="5dp"
+                            android:singleLine="true"
+                            android:inputType="numberDecimal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="KG"/>
+
+
+                        <EditText
+                            android:id="@+id/et_datuijiqun_num"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_15"
+                            android:hint="次数"
+                            android:gravity="right"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:layout_marginRight="5dp"
+                            android:textCursorDrawable="@null"
+                            android:singleLine="true"
+                            android:inputType="number"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawablePadding="6dp"
+                            android:textColor="@color/text_black1"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="次"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <View
+            style="@style/SplitLineStyle"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#1996f8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="爆发力测试"
+                        android:textColor="@color/text_black1"
+                        android:textSize="@dimen/text_size_15"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                style="@style/SplitLineStyle"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="18dp"
+                android:paddingTop="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="立定跳远"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_label_tiaoyuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="6dp"
+                    android:textColor="@color/text_black1"
+                    android:textSize="@dimen/text_size_15"
+                    android:text="cm"/>
+
+                <EditText
+                    android:id="@+id/et_tiaoyuan"
+                    android:layout_width="186dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_15"
+                    android:hint="起始线到落地点脚跟的距离"
+                    android:gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:layout_marginRight="5dp"
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:inputType="numberDecimal"
+                    android:layout_toLeftOf="@id/tv_label_tiaoyuan"
+                    />
+
+            </RelativeLayout>
+
+            <View style="@style/SplitLineStyle" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

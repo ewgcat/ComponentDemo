@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'org.greenrobot.greendao'
-apply from: 'tinker-support.gradle'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.greenrobot.greendao'
+apply from: 'tinker-support.gradle'
 
 
 repositories {
@@ -144,9 +144,7 @@ greendao {
 dependencies {
 
     //network
-    api project(':retrofit2')
-    api project(':PhotoPicker')
-    api project(':photoview')
+
     api project(':indicatorseekbar')
     api project(':commonlib')
 
@@ -155,6 +153,8 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     kapt "com.jakewharton:butterknife-compiler:8.8.1"
+    //kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     api 'io.fotoapparat:facedetector:1.0.0'
     api 'io.fotoapparat.fotoapparat:library:1.2.0'

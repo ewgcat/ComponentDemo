@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/lin_sub_container"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_big_corner_white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="该工具未开放"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_20"
+            />
+
+        <View
+            style="@style/SplitLineStyle"
+            />
+
+        <TextView
+            android:id="@+id/tv_sure"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="知道了"
+            android:textColor="@color/blue1997f8"
+            android:textSize="@dimen/text_size_20"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

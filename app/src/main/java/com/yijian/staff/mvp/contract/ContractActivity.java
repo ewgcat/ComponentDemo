@@ -9,7 +9,7 @@ import android.webkit.WebViewClient;
 
 import com.yijian.staff.BuildConfig;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
+import com.yijan.commonlib.db.ClubDBManager;
 import com.yijian.staff.mvp.webview.BaseWebViewActivity;
 
 import com.yijian.staff.net.httpmanager.HttpManager;
@@ -79,7 +79,7 @@ public class ContractActivity extends BaseWebViewActivity {
         });
         JSONObject jsonObject = new JSONObject();
         webView.loadUrl("http://192.168.2.209:8080/#/contract");
-        String token = DBManager.getInstance().queryUser().getToken();
+        String token = ClubDBManager.getInstance().queryUser().getToken();
         try {
             jsonObject.put("token", token);
             jsonObject.put("memberId", memberId);

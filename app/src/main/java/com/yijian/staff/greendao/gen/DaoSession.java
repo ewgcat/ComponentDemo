@@ -12,7 +12,6 @@ import com.yijian.staff.bean.HuiFangTypeBean;
 import com.yijian.staff.db.bean.PrivateCourseMemberModel;
 import com.yijian.staff.db.bean.OthermodelVo;
 import com.yijian.staff.db.bean.RoleVoBean;
-import com.yijian.staff.db.bean.User;
 import com.yijian.staff.db.bean.PrivateCoachCourseModel;
 import com.yijian.staff.db.bean.PrivateCoachCurriculumArrangementPlanModel;
 import com.yijian.staff.db.bean.SearchKey;
@@ -22,7 +21,6 @@ import com.yijian.staff.greendao.gen.HuiFangTypeBeanDao;
 import com.yijian.staff.greendao.gen.PrivateCourseMemberModelDao;
 import com.yijian.staff.greendao.gen.OthermodelVoDao;
 import com.yijian.staff.greendao.gen.RoleVoBeanDao;
-import com.yijian.staff.greendao.gen.UserDao;
 import com.yijian.staff.greendao.gen.PrivateCoachCourseModelDao;
 import com.yijian.staff.greendao.gen.PrivateCoachCurriculumArrangementPlanModelDao;
 import com.yijian.staff.greendao.gen.SearchKeyDao;
@@ -41,7 +39,6 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig privateCourseMemberModelDaoConfig;
     private final DaoConfig othermodelVoDaoConfig;
     private final DaoConfig roleVoBeanDaoConfig;
-    private final DaoConfig userDaoConfig;
     private final DaoConfig privateCoachCourseModelDaoConfig;
     private final DaoConfig privateCoachCurriculumArrangementPlanModelDaoConfig;
     private final DaoConfig searchKeyDaoConfig;
@@ -51,7 +48,6 @@ public class DaoSession extends AbstractDaoSession {
     private final PrivateCourseMemberModelDao privateCourseMemberModelDao;
     private final OthermodelVoDao othermodelVoDao;
     private final RoleVoBeanDao roleVoBeanDao;
-    private final UserDao userDao;
     private final PrivateCoachCourseModelDao privateCoachCourseModelDao;
     private final PrivateCoachCurriculumArrangementPlanModelDao privateCoachCurriculumArrangementPlanModelDao;
     private final SearchKeyDao searchKeyDao;
@@ -73,9 +69,6 @@ public class DaoSession extends AbstractDaoSession {
         roleVoBeanDaoConfig = daoConfigMap.get(RoleVoBeanDao.class).clone();
         roleVoBeanDaoConfig.initIdentityScope(type);
 
-        userDaoConfig = daoConfigMap.get(UserDao.class).clone();
-        userDaoConfig.initIdentityScope(type);
-
         privateCoachCourseModelDaoConfig = daoConfigMap.get(PrivateCoachCourseModelDao.class).clone();
         privateCoachCourseModelDaoConfig.initIdentityScope(type);
 
@@ -92,7 +85,6 @@ public class DaoSession extends AbstractDaoSession {
         privateCourseMemberModelDao = new PrivateCourseMemberModelDao(privateCourseMemberModelDaoConfig, this);
         othermodelVoDao = new OthermodelVoDao(othermodelVoDaoConfig, this);
         roleVoBeanDao = new RoleVoBeanDao(roleVoBeanDaoConfig, this);
-        userDao = new UserDao(userDaoConfig, this);
         privateCoachCourseModelDao = new PrivateCoachCourseModelDao(privateCoachCourseModelDaoConfig, this);
         privateCoachCurriculumArrangementPlanModelDao = new PrivateCoachCurriculumArrangementPlanModelDao(privateCoachCurriculumArrangementPlanModelDaoConfig, this);
         searchKeyDao = new SearchKeyDao(searchKeyDaoConfig, this);
@@ -102,7 +94,6 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(PrivateCourseMemberModel.class, privateCourseMemberModelDao);
         registerDao(OthermodelVo.class, othermodelVoDao);
         registerDao(RoleVoBean.class, roleVoBeanDao);
-        registerDao(User.class, userDao);
         registerDao(PrivateCoachCourseModel.class, privateCoachCourseModelDao);
         registerDao(PrivateCoachCurriculumArrangementPlanModel.class, privateCoachCurriculumArrangementPlanModelDao);
         registerDao(SearchKey.class, searchKeyDao);
@@ -114,7 +105,6 @@ public class DaoSession extends AbstractDaoSession {
         privateCourseMemberModelDaoConfig.clearIdentityScope();
         othermodelVoDaoConfig.clearIdentityScope();
         roleVoBeanDaoConfig.clearIdentityScope();
-        userDaoConfig.clearIdentityScope();
         privateCoachCourseModelDaoConfig.clearIdentityScope();
         privateCoachCurriculumArrangementPlanModelDaoConfig.clearIdentityScope();
         searchKeyDaoConfig.clearIdentityScope();
@@ -135,10 +125,6 @@ public class DaoSession extends AbstractDaoSession {
 
     public RoleVoBeanDao getRoleVoBeanDao() {
         return roleVoBeanDao;
-    }
-
-    public UserDao getUserDao() {
-        return userDao;
     }
 
     public PrivateCoachCourseModelDao getPrivateCoachCourseModelDao() {

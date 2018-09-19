@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.workspace.dynamic_assessment.DynamicFragment3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="15dp"
+            android:text="臀部坐在A4纸中央，脚板相对。在耻骨联合处（前点）、尾骨（后点）、臀部两侧的坐骨（左点、右点）的垂直纸面上点四个点，并标注前后左右。将各点相连线"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_result"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="15dp"
+                android:src="@mipmap/bg_7"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_take_picture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_blue_harlf_stroke"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:text="拍照"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_size_17" />
+
+            <TextView
+                android:id="@+id/tv_take_finish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_blue_half"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:text="完成"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_17" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

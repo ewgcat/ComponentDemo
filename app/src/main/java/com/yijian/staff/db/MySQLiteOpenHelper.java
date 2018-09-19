@@ -41,7 +41,7 @@ public class MySQLiteOpenHelper extends DaoMaster.OpenHelper {
                     public void onDropAllTables(Database db, boolean ifExists) {
                         DaoMaster.dropAllTables(db, ifExists);
                     }
-                }, SearchKeyDao.class, UserDao.class,
+                }, SearchKeyDao.class,
                 HuiFangTypeBeanDao.class,
                 OthermodelVoDao.class, RoleVoBeanDao.class,
                 CourseStudentModelDao.class, PrivateCoachCourseModelDao.class,

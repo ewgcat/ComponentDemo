@@ -3,14 +3,12 @@ package com.yijian.staff.mvp.huifang.student.task
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
 import android.view.View
-import butterknife.OnClick
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yijian.staff.R
 import com.yijian.staff.bean.HuiFangTypeBean
-import com.yijian.staff.db.DBManager
+import com.yijan.commonlib.db.ClubDBManager
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
 import com.yijian.staff.mvp.huifang.student.history.HuiFangHistoryActivity
 import com.yijian.staff.mvp.huifang.student.task.fragment.BaseHuiFangTaskFragment
@@ -20,11 +18,9 @@ import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody
 import com.yijan.commonlib.net.response.ResultJSONArrayObserver
 import com.yijian.staff.util.JsonUtil
 import com.yijian.staff.widget.NavigationBar
-import com.yijian.staff.widget.PagerSlidingTabStrip
 
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 
 import java.util.ArrayList
 
@@ -82,7 +78,7 @@ class HuiFangTaskActivity : MvcBaseActivity() {
                         if (jsonObject.has("totalNum")) {
                             totalNum = JsonUtil.getInt(jsonObject, "totalNum")
                         }
-                        DBManager.getInstance().insertOrReplaceHuiFangTypeBeans(huiFangTypeBeanArrayList)
+                        ClubDBManager.getInstance().insertOrReplaceHuiFangTypeBeans(huiFangTypeBeanArrayList)
                         initIndicatorAndViewPager()
                     }
                 } catch (e: JSONException) {

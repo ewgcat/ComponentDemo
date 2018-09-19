@@ -25,7 +25,6 @@ public class DaoMaster extends AbstractDaoMaster {
         PrivateCourseMemberModelDao.createTable(db, ifNotExists);
         OthermodelVoDao.createTable(db, ifNotExists);
         RoleVoBeanDao.createTable(db, ifNotExists);
-        UserDao.createTable(db, ifNotExists);
         PrivateCoachCourseModelDao.createTable(db, ifNotExists);
         PrivateCoachCurriculumArrangementPlanModelDao.createTable(db, ifNotExists);
         SearchKeyDao.createTable(db, ifNotExists);
@@ -38,7 +37,6 @@ public class DaoMaster extends AbstractDaoMaster {
         PrivateCourseMemberModelDao.dropTable(db, ifExists);
         OthermodelVoDao.dropTable(db, ifExists);
         RoleVoBeanDao.dropTable(db, ifExists);
-        UserDao.dropTable(db, ifExists);
         PrivateCoachCourseModelDao.dropTable(db, ifExists);
         PrivateCoachCurriculumArrangementPlanModelDao.dropTable(db, ifExists);
         SearchKeyDao.dropTable(db, ifExists);
@@ -65,7 +63,6 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(PrivateCourseMemberModelDao.class);
         registerDaoClass(OthermodelVoDao.class);
         registerDaoClass(RoleVoBeanDao.class);
-        registerDaoClass(UserDao.class);
         registerDaoClass(PrivateCoachCourseModelDao.class);
         registerDaoClass(PrivateCoachCurriculumArrangementPlanModelDao.class);
         registerDaoClass(SearchKeyDao.class);

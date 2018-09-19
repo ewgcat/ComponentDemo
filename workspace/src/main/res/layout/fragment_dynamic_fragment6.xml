@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.workspace.dynamic_assessment.DynamicFragment3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. 平躺，双腿屈膝，两脚平齐，将臀部抬起后放下，两腿并拢，两个膝盖贴合的地方对准胸椎中"
+            android:padding="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"/>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="从脚往头的方向，观察髌骨两点的高低"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小腿"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_lower_leg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="从脚往头的方向，观察髌骨两点的高低"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="大腿"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_big_leg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. 教练将大拇指卡到被测者的踝骨下方往下拉，使被测者双腿伸直"
+            android:padding="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"/>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="从上方观察大拇指在动作前后的移动情况"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="腿（躺着时）"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_leg_lie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="3. 教练将大拇指卡到被测者踝骨下方，被测者坐起"
+            android:textStyle="bold"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"/>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_height="10dp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="#1996f8" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="从上方观察大拇指在动作前后的移动情况"
+                android:textStyle="bold"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="腿（坐着时）"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_leg_sit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

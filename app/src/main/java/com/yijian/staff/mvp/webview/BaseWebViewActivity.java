@@ -7,7 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.yijian.staff.BuildConfig;
-import com.yijian.staff.db.DBManager;
+import com.yijan.commonlib.db.ClubDBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 
 import org.json.JSONException;
@@ -39,7 +39,7 @@ public abstract class BaseWebViewActivity extends MvcBaseActivity {
 
         JSONObject jsonObject = new JSONObject();
         webView.loadUrl("http://192.168.2.165:8080/#/bappclub");
-        String token = DBManager.getInstance().queryUser().getToken();
+        String token = ClubDBManager.getInstance().queryUser().getToken();
         try {
             jsonObject.put("token", token);
         } catch (JSONException e) {

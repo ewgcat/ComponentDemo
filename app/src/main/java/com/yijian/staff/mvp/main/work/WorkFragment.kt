@@ -7,8 +7,8 @@ import android.view.View
 
 import com.yijian.staff.R
 import com.yijian.staff.bean.IndexDataInfo
-import com.yijian.staff.db.DBManager
-import com.yijian.staff.db.bean.OthermodelVo
+import com.yijan.commonlib.db.ClubDBManager
+import com.yijan.commonlib.db.bean.OthermodelVo
 import com.yijian.staff.jpush.ClearRedPointUtil
 import com.yijian.staff.jpush.bean.PushInfoBean
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment
@@ -39,9 +39,9 @@ class WorkFragment : MvcBaseFragment(), View.OnClickListener {
                 ClearRedPointUtil.clearJieDaiNotice(this.getLifecycle())
                 showJieDaiView(1)
                 SharePreferenceUtil.setHasNewJiedaiPush(false)
-                startActivity(Intent(activity, ReceptionActivity::class.java))
+                startActivity(Intent(context, ReceptionActivity::class.java))
             }
-            R.id.iv_face -> startActivity(Intent(activity, FaceDetectorActivity::class.java))
+            R.id.iv_face -> startActivity(Intent(context, FaceDetectorActivity::class.java))
         }    }
 
     override fun getLayoutId(): Int {
@@ -66,7 +66,7 @@ class WorkFragment : MvcBaseFragment(), View.OnClickListener {
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         recyclerView.adapter = indexMenuAdapter
 
-        val othermodelVo = DBManager.getInstance().queryOthermodelVo()
+        val othermodelVo = ClubDBManager.getInstance().queryOthermodelVo()
         Logger.i(TAG, othermodelVo.toString())
         faceRecognition = othermodelVo.faceRecognition
         if (faceRecognition) {
@@ -150,7 +150,7 @@ class WorkFragment : MvcBaseFragment(), View.OnClickListener {
                     jsonObject.put("reception", othermodelVoBean.isReception)
                     jsonObject.put("coachSchedule", othermodelVoBean.isCoachSchedule)
                     jsonObject.put("sellerSchedule", othermodelVoBean.isSellerSchedule)
-                    DBManager.getInstance().insertOrReplaceOthermodelVo(OthermodelVo(jsonObject))
+                    ClubDBManager.getInstance().insertOrReplaceOthermodelVo(OthermodelVo(jsonObject))
                     reception = othermodelVoBean.isReception
                 } catch (e: JSONException) {
                     e.printStackTrace()

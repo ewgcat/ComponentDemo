@@ -8,9 +8,9 @@ import com.yijian.staff.bean.PrivatePrepareLessonBody;
 import com.yijian.staff.net.requestbody.EditHuiJiVipBody;
 import com.yijian.staff.net.requestbody.CardRequestBody;
 
-import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
-import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
-import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
+//import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
+//import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
+//import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
 import com.yijian.staff.net.requestbody.HuiFangTypeRequestBody;
 import com.yijian.staff.net.requestbody.PrivateCoursePingJiaRequestBody;
 import com.yijian.staff.net.requestbody.AddFuFangResultBody;
@@ -240,20 +240,20 @@ public interface ApiService {
     Observable<JSONObject> postAccessStatistics(@Url String postAccessStatisticsUrl, @HeaderMap Map<String, String> headers, @Body List<AccessStatisticsRequestBody> accessStatisticsRequestBody);
 
 
-    /** 完美围度 **/
-    @Headers({"Content-type: application/json", "Accept: */*"})
-    @POST
-    Observable<JSONObject> postPerfectInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body PerfectRequestBody perfectRequestBody);
-
-    /** 运动表现 **/
-    @Headers({"Content-type: application/json", "Accept: */*"})
-    @POST
-    Observable<JSONObject> postSportInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body SportStepRequedtBody sportStepRequedtBody);
-
-    /** 静态评估 **/
-    @Headers({"Content-type: application/json", "Accept: */*"})
-    @POST
-    Observable<JSONObject> postStaticInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body StaticRequestBody staticRequestBody);
+//    /** 完美围度 **/
+//    @Headers({"Content-type: application/json", "Accept: */*"})
+//    @POST
+//    Observable<JSONObject> postPerfectInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body PerfectRequestBody perfectRequestBody);
+//
+//    /** 运动表现 **/
+//    @Headers({"Content-type: application/json", "Accept: */*"})
+//    @POST
+//    Observable<JSONObject> postSportInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body SportStepRequedtBody sportStepRequedtBody);
+//
+//    /** 静态评估 **/
+//    @Headers({"Content-type: application/json", "Accept: */*"})
+//    @POST
+//    Observable<JSONObject> postStaticInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body StaticRequestBody staticRequestBody);
 
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST

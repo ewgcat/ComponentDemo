@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="闭眼高抬腿原地踏步30秒，同时手大幅摆动"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_black1"
+            android:textSize="@dimen/text_size_17"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="位移情况"
+                android:textColor="@color/text_black1"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_translate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+        <View
+            style="@style/SplitLineStyle"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="旋转方向"
+                android:textColor="@color/text_black1"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_17"/>
+
+            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicCheckGroup
+                android:id="@+id/dynamic_rotate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

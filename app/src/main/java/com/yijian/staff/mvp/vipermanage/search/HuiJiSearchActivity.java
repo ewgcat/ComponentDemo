@@ -11,12 +11,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.R;
+import com.yijian.staff.db.ClubDBManager;
 import com.yijian.staff.db.bean.SearchKey;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.bean.HuiJiViperBean;
 import com.yijian.staff.net.httpmanager.HttpManager;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +42,6 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.yijian.staff.db.DBManager;
 import com.yijian.staff.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
@@ -96,7 +96,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
         searchKeyAdapter.setClearKeyListener(new SearchKeyAdapter.ClearKeyListener() {
             @Override
             public void onClick() {
-                DBManager.getInstance().clearSearchList();
+                ClubDBManager.getInstance().clearSearchList();
                 initSearchData();
             }
         });
@@ -104,7 +104,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
             @Override
             public void onClick(SearchKey searchKey) {
                 hideKeyBoard(etSearch);
-                DBManager.getInstance().deleteSearch(searchKey);
+                ClubDBManager.getInstance().deleteSearch(searchKey);
                 initSearchData();
             }
         });
@@ -215,7 +215,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                     hideLoading();
 
                     SearchKey searchKey = new SearchKey(null, etSearch.getText().toString(), SharePreferenceUtil.getUserId() + "");
-                    DBManager.getInstance().insertOrReplaceSearch(searchKey);
+                    ClubDBManager.getInstance().insertOrReplaceSearch(searchKey);
                     clearEditTextFocus();
 
                     refreshLayout.finishRefresh(2000, true);
@@ -324,7 +324,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
     }
 
     public void initSearchData() {
-        searchList = DBManager.getInstance().querySearchList();
+        searchList = ClubDBManager.getInstance().querySearchList();
         Logger.i("TEST", "" + searchList.size());
         if (searchList != null && searchList.size() > 0) {
             searchKeyAdapter.update(searchList);

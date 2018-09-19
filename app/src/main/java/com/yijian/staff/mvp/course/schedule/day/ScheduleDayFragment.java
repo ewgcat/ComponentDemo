@@ -15,7 +15,7 @@ import com.yijian.staff.R;
 import com.yijian.staff.application.CustomApplication;
 import com.yijian.staff.bean.CourseStudentBean;
 import com.yijian.staff.bean.DateBean;
-import com.yijian.staff.db.DBManager;
+import com.yijan.commonlib.db.ClubDBManager;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.httpmanager.url.CourseUrls;
@@ -85,7 +85,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
 
             @Override
             public void onUnSelectLockTime(View view, String id) {
-                DBManager.getInstance().deletePrivateCoachCurriculumArrangementPlanVOSBeanById(id);
+                ClubDBManager.getInstance().deletePrivateCoachCurriculumArrangementPlanVOSBeanById(id);
                 deleteLockTime(view, id);
             }
         });
@@ -357,7 +357,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                     dayCourseView.dismiss();
                     List<CourseStudentBean> courseStudentBeanList = com.alibaba.fastjson.JSONArray.parseArray(data.toString(), CourseStudentBean.class);
                     if (courseStudentBeanList != null) {
-                        DBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
+                        ClubDBManager.getInstance().insertCourseStudentBeans(courseStudentBeanList);
                     }
                     hideLoading();
                     request();
@@ -384,7 +384,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
         int iendTime = Integer.parseInt(endTime.replace(":", ""));
 
 
-        List<CourseStudentBean> courseStudentBeans = DBManager.getInstance().queryCourseStudentBeans();
+        List<CourseStudentBean> courseStudentBeans = ClubDBManager.getInstance().queryCourseStudentBeans();
         if (courseStudentBeans != null && courseStudentBeans.size() > 0) {
             for (int i = 0; i < courseStudentBeans.size(); i++) {
                 CourseStudentBean courseStudentBean = courseStudentBeans.get(i);
@@ -431,7 +431,7 @@ public class ScheduleDayFragment extends MvcBaseFragment {
                 public void onSuccess(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean bean) {
                     hideLoading();
                     String id = bean.getId();
-                    DBManager.getInstance().insertPrivateCoachCurriculumArrangementPlanVOSBean(bean);
+                    ClubDBManager.getInstance().insertPrivateCoachCurriculumArrangementPlanVOSBean(bean);
                     dayCourseView.addLockView(startTime, endTime, id);
                 }
 

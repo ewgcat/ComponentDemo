@@ -19,25 +19,25 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSONArray;
 import com.jaeger.library.StatusBarUtil;
 import com.yijian.staff.R;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.OthermodelVo;
-import com.yijian.staff.db.bean.RoleVoBean;
-import com.yijian.staff.db.bean.User;
+import com.yijan.commonlib.db.ClubDBManager;
+import com.yijan.commonlib.db.bean.OthermodelVo;
+import com.yijan.commonlib.db.bean.RoleVoBean;
+import com.yijan.commonlib.db.bean.User;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.forgetpassword.ForgetPasswordActivity;
 import com.yijian.staff.mvp.main.MainActivity;
 import com.yijian.staff.bean.PermissionBean;
 import com.yijian.staff.mvp.permission.PermissionUtils;
-import com.yijian.staff.mvp.workspace.utils.AndroidAdjustResizeBugFix;
-import com.yijian.staff.mvp.workspace.widget.TableView;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
 import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.staff.util.AndroidAdjustResizeBugFix;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.util.JsonUtil;
 import com.yijian.staff.util.Logger;
+import com.yijian.staff.widget.TableView;
 
 import org.json.JSONObject;
 
@@ -66,7 +66,7 @@ public class LoginActivity extends MvcBaseActivity implements AndroidAdjustResiz
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_login2;
+        return R.layout.activity_login;
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -145,13 +145,13 @@ public class LoginActivity extends MvcBaseActivity implements AndroidAdjustResiz
                         SharePreferenceUtil.setUserName(account);
                         SharePreferenceUtil.setUserId(user.getUserId());
                         SharePreferenceUtil.setUserRole(user.getRole());
-                        DBManager.getInstance().insertOrReplaceUser(user);
+                        ClubDBManager.getInstance().insertOrReplaceUser(user);
                         JSONObject roleVo = JsonUtil.getJsonObject(result, "roleVo");
-                        DBManager.getInstance().insertOrReplaceRoleVoBean(new RoleVoBean(roleVo));
+                        ClubDBManager.getInstance().insertOrReplaceRoleVoBean(new RoleVoBean(roleVo));
                         JSONObject homePageModelVO = JsonUtil.getJsonObject(result, "homePageModelVO");
                         JSONObject othermodelVo = JsonUtil.getJsonObject(homePageModelVO, "othermodelVo");
 
-                        DBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(othermodelVo));
+                        ClubDBManager.getInstance().insertOrReplaceOthermodelVo(new OthermodelVo(othermodelVo));
 
                         try {
                             //存储菜单子选项

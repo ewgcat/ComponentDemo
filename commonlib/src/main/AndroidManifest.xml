@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yijan.commonlib">
+    package="com.yijian.commonlib">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
@@ -9,7 +9,7 @@
         android:allowBackup="true">
 
         <activity
-            android:name="com.yijan.commonlib.umeng.wxapi.WXEntryActivity"
+            android:name="com.yijian.commonlib.umeng.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />

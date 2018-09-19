@@ -444,26 +444,7 @@
             android:name=".mvp.course.appointcourse.AppointCourseTableActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".mvp.workspace.commen.WorkSpaceSearchActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.workspace.WorkSpaceActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".mvp.workspace.commen.WorkSpaceRecordActivity" />
-        <activity android:name=".mvp.workspace.sport.SportTestActivity" />
-        <activity
-            android:name=".mvp.workspace.perfect.PerfectActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".mvp.workspace.perfect.PerfectTestActivity" />
-        <activity android:name=".mvp.workspace.commen.SearchOprationActivity" />
-        <activity android:name=".mvp.workspace.commen.ShareTestActivity" />
 
-        <activity android:name=".mvp.workspace.static_assessment.StaticPhotoActivity" />
-        <activity
-            android:name=".mvp.workspace.static_assessment.StaticAssessmentActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".mvp.workspace.static_assessment.DragPointViewActivity" />
 
     </application>
 

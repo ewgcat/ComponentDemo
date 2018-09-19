@@ -1,5 +1,43 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yijan.workspace">
-    <application></application>
+    <application>
+        <activity
+            android:name=".static_assessment.StaticPhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".static_assessment.StaticAssessmentActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".dynamic_assessment.DynamicAssessmentActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".dynamic_assessment.DynamicPhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".dynamic_assessment.DynamicDragPointActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".workspace.commen.WorkSpaceSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".workspace.WorkSpaceActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".workspace.commen.WorkSpaceRecordActivity" />
+        <activity android:name=".workspace.sport.SportTestActivity" />
+        <activity
+            android:name=".workspace.perfect.PerfectActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".workspace.perfect.PerfectTestActivity" />
+        <activity android:name=".workspace.commen.SearchOprationActivity" />
+        <activity android:name=".workspace.commen.ShareTestActivity" />
+
+        <activity android:name=".workspace.static_assessment.StaticPhotoActivity" />
+        <activity
+            android:name=".workspace.static_assessment.StaticAssessmentActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".workspace.static_assessment.DragPointViewActivity" />
+    </application>
 
 </manifest>

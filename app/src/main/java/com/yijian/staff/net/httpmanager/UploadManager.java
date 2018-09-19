@@ -5,8 +5,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijan.commonlib.net.httpmanager.RetrofitClient;
 import com.yijian.staff.BuildConfig;
-import com.yijian.staff.db.DBManager;
-import com.yijian.staff.db.bean.User;
+import com.yijan.commonlib.db.ClubDBManager;
+import com.yijan.commonlib.db.bean.User;
 import com.yijian.staff.net.api.ApiService;
 
 import org.json.JSONObject;
@@ -45,7 +45,7 @@ public class UploadManager {
      */
     public static void upLoadFiles(List<String> list, String fileType, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
-        User user = DBManager.getInstance().queryUser();
+        User user = ClubDBManager.getInstance().queryUser();
         if (user == null || TextUtils.isEmpty(user.getToken())) {
             ARouter.getInstance().build("/test/login").navigation();
         } else {

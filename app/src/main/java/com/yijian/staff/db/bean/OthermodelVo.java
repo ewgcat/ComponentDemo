@@ -3,8 +3,8 @@ package com.yijian.staff.db.bean;
 import com.yijian.staff.util.JsonUtil;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.json.JSONObject;
 import org.greenrobot.greendao.annotation.Generated;
+import org.json.JSONObject;
 
 /**
  * author：李帅华

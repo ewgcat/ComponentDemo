@@ -17,8 +17,7 @@ import com.tbruyelle.rxpermissions2.Permission
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.yijian.staff.R
 import com.yijian.staff.application.CustomApplication
-import com.yijian.staff.db.DBManager
-import com.yijian.staff.db.bean.User
+import com.yijan.commonlib.db.ClubDBManager
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
 import com.yijian.staff.mvp.login.LoginActivity
 import com.yijian.staff.mvp.main.MainActivity
@@ -56,7 +55,7 @@ class SplashActivity : MvcBaseActivity() {
 
     fun jumpToNext() {
         Handler().postDelayed({
-            val user = DBManager.getInstance().queryUser()
+            val user = ClubDBManager.getInstance().queryUser()
             if (user != null) {
                 val token = user.token.trim { it <= ' ' }
                 if (TextUtils.isEmpty(token)) {
@@ -82,9 +81,9 @@ class SplashActivity : MvcBaseActivity() {
     fun getNewToken() {
         HttpManager.getHasHeaderNoParam(GET_NEW_TOKEN_URL, object : ResultStringObserver(lifecycle) {
             override fun onSuccess(result: String) {
-                val user = DBManager.getInstance().queryUser()
+                val user = ClubDBManager.getInstance().queryUser()
                 user.token = result
-                DBManager.getInstance().insertOrReplaceUser(user)
+                ClubDBManager.getInstance().insertOrReplaceUser(user)
                 val intent = Intent()
                 intent.setClass(this@SplashActivity, MainActivity::class.java)
                 startActivity(intent)

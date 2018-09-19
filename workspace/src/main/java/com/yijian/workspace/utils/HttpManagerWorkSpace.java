@@ -32,6 +32,8 @@ public class HttpManagerWorkSpace {
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
     private static String HOST;
 
+
+
     public static void setWorkSpaceHost(boolean isWorkspace) {
         SharePreferenceUtil.setWorkSpaceHost(isWorkspace);
         HOST = SharePreferenceUtil.getHostUrl();

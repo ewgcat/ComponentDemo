@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.base.seepic
+package com.yijian.commonlib.mvp.base.seepic
 
 import android.os.Bundle
 import android.view.View
@@ -8,10 +8,10 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.github.chrisbanes.photoview.PhotoView
-import com.yijian.staff.R
-import com.yijian.staff.constant.Constant
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity
-import com.yijian.staff.widget.NavigationBar
+import com.yijian.commonlib.R
+import com.yijian.commonlib.constant.Constant
+import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity
+import com.yijian.commonlib.widget.NavigationBar
 
 
 class SeePicActivity : MvcBaseActivity() {

@@ -1,4 +1,4 @@
-package com.yijian.staff.widget.selectphoto;
+package com.yijian.commonlib.widget.selectphoto;
 
 /**
  * author：李帅华

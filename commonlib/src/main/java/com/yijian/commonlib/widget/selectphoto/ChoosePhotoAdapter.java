@@ -1,4 +1,4 @@
-package com.yijian.staff.widget.selectphoto;
+package com.yijian.commonlib.widget.selectphoto;
 
 import android.Manifest;
 import android.content.Context;
@@ -16,10 +16,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.yijian.staff.R;
-import com.yijian.staff.constant.Constant;
-import com.yijian.staff.mvp.base.seepic.SeePicActivity;
-import com.yijian.staff.util.FileUtil;
+import com.yijian.commonlib.R;
+import com.yijian.commonlib.constant.Constant;
+import com.yijian.commonlib.mvp.base.seepic.SeePicActivity;
+import com.yijian.commonlib.util.FileUtil;
 
 import java.util.ArrayList;
 import java.util.List;

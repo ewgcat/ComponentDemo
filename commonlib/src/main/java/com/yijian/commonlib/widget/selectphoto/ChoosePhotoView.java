@@ -1,4 +1,4 @@
-package com.yijian.staff.widget.selectphoto;
+package com.yijian.commonlib.widget.selectphoto;
 
 import android.Manifest;
 import android.app.Activity;
@@ -17,10 +17,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-
-import com.yijian.staff.R;
-import com.yijian.staff.util.Logger;
-import com.yijian.staff.util.PictureUtil;
+import com.yijian.commonlib.R;
+import com.yijian.commonlib.util.Logger;
+import com.yijian.commonlib.util.PictureUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

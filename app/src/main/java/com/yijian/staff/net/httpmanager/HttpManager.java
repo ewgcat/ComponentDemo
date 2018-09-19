@@ -31,7 +31,7 @@ import com.yijian.staff.net.requestbody.privatecourse.CoachPrivateCourseRequestB
 import com.yijian.staff.net.requestbody.questionnaire.QuestionnaireRequestBody;
 import com.yijian.staff.net.requestbody.savemenu.MenuRequestBody;
 import com.yijian.staff.net.requestbody.login.LoginRequestBody;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 
 import org.json.JSONObject;
 

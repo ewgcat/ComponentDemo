@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.DisplayMetrics
 import android.view.WindowManager
 
-import com.yijian.staff.prefs.SharePreferenceUtil
+import com.yijian.commonlib.prefs.SharePreferenceUtil
 
 import com.yijian.commonlib.application.BaseApplication
 import com.yijian.commonlib.db.DBManager
@@ -15,7 +15,6 @@ class CustomApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        SharePreferenceUtil.setWorkSpaceHost(SharePreferenceUtil.isWorkSpaceVersion())
         DBManager.init(this)
         //初始化屏幕宽高
         getScreenSize()

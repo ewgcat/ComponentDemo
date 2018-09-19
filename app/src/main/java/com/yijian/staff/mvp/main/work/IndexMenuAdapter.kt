@@ -17,7 +17,7 @@ import com.yijian.staff.R
 import com.yijian.staff.bean.IndexDataInfo
 import com.yijian.staff.jpush.ClearRedPointUtil
 import com.yijian.staff.mvp.permission.PermissionUtils
-import com.yijian.staff.prefs.SharePreferenceUtil
+import com.yijian.commonlib.prefs.SharePreferenceUtil
 import com.yijian.staff.util.ImageLoader
 
 import java.util.ArrayList

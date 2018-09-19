@@ -24,7 +24,7 @@ import com.yijan.commonlib.net.response.Response2Observer;
 import com.yijan.commonlib.net.response.ResponseObserver;
 import com.yijan.commonlib.net.response.ResultJSONArrayObserver;
 import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijian.staff.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.staff.util.CommonUtil;
 import com.yijian.staff.util.DateUtil;
 import com.yijian.staff.util.JsonUtil;

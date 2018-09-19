@@ -10,7 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/indicatorseekbar/indicatorseekbar.iml" filepath="$PROJECT_DIR$/indicatorseekbar/indicatorseekbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoview/photoview.iml" filepath="$PROJECT_DIR$/photoview/photoview.iml" />
       <module fileurl="file://$PROJECT_DIR$/retrofit2/retrofit2.iml" filepath="$PROJECT_DIR$/retrofit2/retrofit2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/workspace/workspace.iml" filepath="$PROJECT_DIR$/workspace/workspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workspace_module/workspace_module.iml" filepath="$PROJECT_DIR$/workspace_module/workspace_module.iml" />
     </modules>
   </component>
 </project>

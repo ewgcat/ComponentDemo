@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.static_assessment;
+package com.yijian.workspace.static_assessment;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.yijian.staff.mvp.workspace.widget.ControlViewListener;
+import com.yijian.workspace.widget.ControlViewListener;
 
 import java.util.ArrayList;
 import java.util.List;

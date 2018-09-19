@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.bean;
+package com.yijian.workspace.bean;
 
 public class PerfectRequestBody {
 

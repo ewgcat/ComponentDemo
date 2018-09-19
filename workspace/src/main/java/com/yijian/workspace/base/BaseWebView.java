@@ -6,9 +6,9 @@ import android.util.AttributeSet;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.yijian.staff.mvp.workspace.webutils.JavaScriptInterface;
-import com.yijian.staff.mvp.workspace.webutils.SafeWebChromeClient;
-import com.yijian.staff.mvp.workspace.webutils.SafeWebViewClient;
+import com.yijian.workspace.webutils.JavaScriptInterface;
+import com.yijian.workspace.webutils.SafeWebChromeClient;
+import com.yijian.workspace.webutils.SafeWebViewClient;
 
 public class BaseWebView extends WebView {
 

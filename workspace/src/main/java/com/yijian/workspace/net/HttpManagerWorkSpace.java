@@ -1,10 +1,11 @@
-package com.yijian.workspace.utils;
+package com.yijian.workspace.net;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.commonlib.db.DBManager;
 import com.yijian.commonlib.db.bean.User;
 import com.yijian.commonlib.net.httpmanager.RetrofitClient;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.workspace.bean.DynamicRequestBody;
 import com.yijian.workspace.bean.PerfectRequestBody;
 import com.yijian.workspace.bean.SportStepRequedtBody;
@@ -32,10 +33,7 @@ public class HttpManagerWorkSpace {
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
     private static String HOST;
 
-
-
     public static void setWorkSpaceHost(boolean isWorkspace) {
-        SharePreferenceUtil.setWorkSpaceHost(isWorkspace);
         HOST = SharePreferenceUtil.getHostUrl();
     }
 

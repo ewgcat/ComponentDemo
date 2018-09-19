@@ -15,9 +15,8 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.widget.EmptyView;
-import com.yijian.staff.mvp.workspace.bean.WorkSpaceRecordBean;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.workspace.bean.WorkSpaceRecordBean;
+import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 
 import org.json.JSONArray;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class WorkSpaceRecordActivity extends MvcBaseActivity {
 
@@ -41,7 +39,7 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
     private int pageSize = 10;//每页数量
     private int pagesTotal; //总共多少页
     private List<WorkSpaceRecordBean> workSpaceRecordBeanList = new ArrayList<>();
-    private com.yijian.staff.mvp.workspace.commen.WorkSpaceRecordAdapter workSpaceRecordAdapter;
+    private com.yijian.workspace.commen.WorkSpaceRecordAdapter workSpaceRecordAdapter;
 
 
     @Override

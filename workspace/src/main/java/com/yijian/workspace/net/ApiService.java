@@ -1,6 +1,7 @@
 package com.yijian.workspace.net;
 
 
+import com.yijian.workspace.bean.DynamicRequestBody;
 import com.yijian.workspace.bean.PerfectRequestBody;
 import com.yijian.workspace.bean.SportStepRequedtBody;
 import com.yijian.workspace.bean.StaticRequestBody;
@@ -130,5 +131,12 @@ public interface ApiService {
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postStaticInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body StaticRequestBody staticRequestBody);
+
+    /** 动态评估 **/
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> postDynamicInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body DynamicRequestBody dynamicRequestBody);
+
+
 
 }

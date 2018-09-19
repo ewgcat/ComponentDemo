@@ -1,9 +1,7 @@
-package com.yijian.staff.mvp.workspace.static_assessment;
+package com.yijian.workspace.static_assessment;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,32 +9,18 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
-import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
-import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
-import com.yijian.staff.mvp.workspace.perfect.PerfectTestActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.utils.GlideApp;
-import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.staff.mvp.workspace.utils.StreamUtils;
-import com.yijian.staff.mvp.workspace.widget.ControlView;
+import com.yijian.workspace.bean.StaticRequestBody;
+import com.yijian.workspace.utils.ActivityUtils;
+import com.yijian.workspace.utils.GlideApp;
+import com.yijian.workspace.utils.StreamUtils;
+import com.yijian.workspace.widget.ControlView;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
-import com.yijian.staff.util.GlideCircleTransform;
-import com.yijian.staff.util.ImageLoader;
 import com.yijian.staff.widget.NavigationBar2;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

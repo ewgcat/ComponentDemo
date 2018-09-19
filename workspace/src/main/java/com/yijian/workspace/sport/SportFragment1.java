@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.sport;
+package com.yijian.workspace.sport;
 
 import android.content.Context;
 import android.net.Uri;
@@ -21,11 +21,11 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
 import com.yijian.staff.mvp.main.MainActivity;
-import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
-import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
-import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
-import com.yijian.staff.mvp.workspace.perfect.PerfectTestActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.workspace.base.BaseSpaceFragment;
+import com.yijian.workspace.bean.SportStepRequedtBody;
+import com.yijian.workspace.commen.ShareTestActivity;
+import com.yijian.workspace.perfect.PerfectTestActivity;
+import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultStringObserver;
 

@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
-import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
+import com.yijian.workspace.base.BaseSpaceFragment;
+import com.yijian.workspace.sport.SportTestActivity;
 import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 

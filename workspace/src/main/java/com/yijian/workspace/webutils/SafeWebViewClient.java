@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.webutils;
+package com.yijian.workspace.webutils;
 
 import android.graphics.Bitmap;
 import android.net.http.SslError;

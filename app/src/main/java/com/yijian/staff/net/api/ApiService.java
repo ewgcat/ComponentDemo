@@ -240,21 +240,6 @@ public interface ApiService {
     Observable<JSONObject> postAccessStatistics(@Url String postAccessStatisticsUrl, @HeaderMap Map<String, String> headers, @Body List<AccessStatisticsRequestBody> accessStatisticsRequestBody);
 
 
-//    /** 完美围度 **/
-//    @Headers({"Content-type: application/json", "Accept: */*"})
-//    @POST
-//    Observable<JSONObject> postPerfectInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body PerfectRequestBody perfectRequestBody);
-//
-//    /** 运动表现 **/
-//    @Headers({"Content-type: application/json", "Accept: */*"})
-//    @POST
-//    Observable<JSONObject> postSportInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body SportStepRequedtBody sportStepRequedtBody);
-//
-//    /** 静态评估 **/
-//    @Headers({"Content-type: application/json", "Accept: */*"})
-//    @POST
-//    Observable<JSONObject> postStaticInfo(@Url String url, @HeaderMap Map<String, String> headers, @Body StaticRequestBody staticRequestBody);
-
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
     Observable<JSONObject> postInvateContent(@Url String url,@HeaderMap HashMap<String, String> headers, @Body  SaveInviteBody saveInviteBody);

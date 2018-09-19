@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace;
+package com.yijian.workspace;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,12 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
-import com.yijian.staff.mvp.workspace.static_assessment.StaticPhotoActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
-import com.yijian.staff.mvp.workspace.commen.WorkSpaceSearchActivity;
+import com.yijian.workspace.static_assessment.StaticAssessmentActivity;
+import com.yijian.workspace.static_assessment.StaticPhotoActivity;
+import com.yijian.workspace.utils.ActivityUtils;
+import com.yijian.workspace.widget.CommenPopupWindow;
+import com.yijian.workspace.commen.WorkSpaceSearchActivity;
 import com.yijian.staff.widget.NavigationBar2;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,7 +31,7 @@ public class WorkSpaceActivity extends AppCompatActivity {
     }
 
     private void initTitle(){
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
+        NavigationBar navigationBar2 = findViewById(R.id.navigation_bar);
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);
         navigationBar2.setTitle("私教P.O.S工具");

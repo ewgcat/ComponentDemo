@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.webutils;
+package com.yijian.workspace.webutils;
 
 import android.os.Handler;
 import android.webkit.JavascriptInterface;

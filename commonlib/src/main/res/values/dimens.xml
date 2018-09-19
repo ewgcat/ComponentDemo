@@ -6,10 +6,8 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
 
 
-    <dimen name="text_size_13">13sp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="text_size_17">17sp</dimen>
-    <dimen name="text_size_20">20sp</dimen>
 
 
 </resources>

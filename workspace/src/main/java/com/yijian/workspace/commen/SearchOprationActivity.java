@@ -7,11 +7,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.util.ImageLoader;
-import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
-import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
-import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
-import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.workspace.bean.WorkSpaceVipBean;
+import com.yijian.workspace.perfect.PerfectActivity;
+import com.yijian.workspace.sport.SportTestActivity;
+import com.yijian.workspace.static_assessment.StaticAssessmentActivity;
+import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 
 import butterknife.BindView;

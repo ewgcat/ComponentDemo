@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.utils.StreamUtils;
+import com.yijian.workspace.utils.ActivityUtils;
+import com.yijian.workspace.utils.StreamUtils;
 import com.yijian.workspace.R;
 
 import java.io.ByteArrayOutputStream;
@@ -23,7 +23,7 @@ public class DynamicDragPointActivity extends MvcBaseActivity {
     @BindView(R.id.rel_container)
     RelativeLayout rel_container;
     @BindView(R.id.pointView)
-    com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicPointView pointView;
+    com.yijian.workspace.dynamic_assessment.DynamicPointView pointView;
 
     @Override
     protected int getLayoutID() {

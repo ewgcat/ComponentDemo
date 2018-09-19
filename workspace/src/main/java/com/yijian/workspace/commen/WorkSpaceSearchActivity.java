@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 import com.yijian.workspace.observe.EditActionObservable;
 
@@ -29,8 +29,8 @@ public class WorkSpaceSearchActivity extends MvcBaseActivity {
     @BindView(R.id.lin_search_bt)
     LinearLayout lin_search_bt;
 
-    private final String tag1 = "com.yijian.staff.mvp.workspace.commen.SearchFragment1";
-    private final String tag2 = "com.yijian.staff.mvp.workspace.commen.SearchFragment2";
+    private final String tag1 = "com.yijian.workspace.commen.SearchFragment1";
+    private final String tag2 = "com.yijian.workspace.commen.SearchFragment2";
     private EditActionObservable editActionObservable = new EditActionObservable();
 
 

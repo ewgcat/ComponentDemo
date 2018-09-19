@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.dynamic_assessment;
+package com.yijian.workspace.dynamic_assessment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.utils.GlideApp;
+import com.yijian.workspace.base.BaseSpaceFragment;
+import com.yijian.workspace.utils.ActivityUtils;
+import com.yijian.workspace.utils.GlideApp;
 
 import java.io.File;
 import java.util.Map;

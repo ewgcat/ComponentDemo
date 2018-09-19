@@ -1,14 +1,11 @@
 package com.yijian.workspace.dynamic_assessment;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -18,22 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.umeng.debug.log.D;
-import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.util.DensityUtil;
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
-import com.yijian.staff.mvp.workspace.bean.DynamicRequestBody;
-import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
-import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
-import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.utils.GlideApp;
-import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
+import com.yijian.workspace.base.BaseSpaceFragment;
+import com.yijian.workspace.bean.DynamicRequestBody;
+import com.yijian.workspace.commen.ShareTestActivity;
+import com.yijian.workspace.utils.ActivityUtils;
+import com.yijian.workspace.utils.GlideApp;
+import com.yijian.workspace.widget.CommenPopupWindow;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.util.DensityUtil;
@@ -54,13 +44,13 @@ import butterknife.OnClick;
 
 public class DynamicAssessmentActivity extends MvcBaseActivity {
 
-    private final String tag1 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment1";
-    private final String tag2 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment2";
-    private final String tag3 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment3";
-    private final String tag4 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment4";
-    private final String tag5 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment5";
-    private final String tag6 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment6";
-    private final String tag7 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment7";
+    private final String tag1 = "com.yijian.workspace.dynamic_assessment.DynamicFragment1";
+    private final String tag2 = "com.yijian.workspace.dynamic_assessment.DynamicFragment2";
+    private final String tag3 = "com.yijian.workspace.dynamic_assessment.DynamicFragment3";
+    private final String tag4 = "com.yijian.workspace.dynamic_assessment.DynamicFragment4";
+    private final String tag5 = "com.yijian.workspace.dynamic_assessment.DynamicFragment5";
+    private final String tag6 = "com.yijian.workspace.dynamic_assessment.DynamicFragment6";
+    private final String tag7 = "com.yijian.workspace.dynamic_assessment.DynamicFragment7";
     private TextView rightTv;
     private CommenPopupWindow popupWindow;
     private EditActionObservable editActionObservable = new EditActionObservable();

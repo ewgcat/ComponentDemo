@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.dynamic_assessment;
+package com.yijian.workspace.dynamic_assessment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
+import com.yijian.workspace.base.BaseSpaceFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.sport;
+package com.yijian.workspace.sport;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,9 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yijian.staff.R;
-import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
-import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.workspace.base.BaseSpaceFragment;
+import com.yijian.workspace.bean.SportStepRequedtBody;
+import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultStringObserver;
 

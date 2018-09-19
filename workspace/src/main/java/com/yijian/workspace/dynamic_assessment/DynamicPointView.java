@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.dynamic_assessment;
+package com.yijian.workspace.dynamic_assessment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,9 +17,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.yijian.staff.mvp.face.BitmapFaceUtils;
-import com.yijian.staff.mvp.workspace.static_assessment.DragPointBean;
-import com.yijian.staff.mvp.workspace.static_assessment.DragPointUtil;
-import com.yijian.staff.mvp.workspace.static_assessment.PointEnum;
+import com.yijian.workspace.static_assessment.DragPointBean;
+import com.yijian.workspace.static_assessment.DragPointUtil;
+import com.yijian.workspace.static_assessment.PointEnum;
 
 import java.util.ArrayList;
 import java.util.Collections;

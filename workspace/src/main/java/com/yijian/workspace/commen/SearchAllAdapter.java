@@ -12,9 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijian.commonlib.util.ImageLoader;
-import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.workspace.bean.WorkSpaceVipBean;
+import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 
 import java.util.ArrayList;

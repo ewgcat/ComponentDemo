@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.utils;
+package com.yijian.workspace.utils;
 
 import android.app.Activity;
 import android.content.Context;

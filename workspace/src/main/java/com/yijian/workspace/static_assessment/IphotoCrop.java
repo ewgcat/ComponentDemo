@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.static_assessment;
+package com.yijian.workspace.static_assessment;
 
 public interface IphotoCrop {
 

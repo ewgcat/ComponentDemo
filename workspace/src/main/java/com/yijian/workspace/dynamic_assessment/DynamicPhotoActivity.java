@@ -1,4 +1,4 @@
-package com.yijian.staff.mvp.workspace.dynamic_assessment;
+package com.yijian.workspace.dynamic_assessment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -22,9 +22,9 @@ import android.widget.TextView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.face.BitmapFaceUtils;
-import com.yijian.staff.mvp.workspace.static_assessment.DragPointViewActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.utils.StreamUtils;
+import com.yijian.workspace.static_assessment.DragPointViewActivity;
+import com.yijian.workspace.utils.ActivityUtils;
+import com.yijian.workspace.utils.StreamUtils;
 import com.yijian.staff.util.DensityUtil;
 import com.yijian.staff.widget.NavigationBar2;
 import java.io.ByteArrayOutputStream;

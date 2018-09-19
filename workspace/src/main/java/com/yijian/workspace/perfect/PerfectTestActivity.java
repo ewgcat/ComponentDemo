@@ -1,6 +1,5 @@
-package com.yijian.staff.mvp.workspace.perfect;
+package com.yijian.workspace.perfect;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,16 +12,13 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.yijian.staff.R;
 import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
 import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
-import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
-import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
-import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
-import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.workspace.bean.PerfectRequestBody;
+import com.yijian.workspace.commen.ShareTestActivity;
+import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.staff.net.httpmanager.HttpManager;
 import com.yijian.staff.net.response.ResultJSONObjectObserver;
 import com.yijian.staff.net.response.ResultStringObserver;
 import com.yijian.staff.widget.NavigationBar2;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;

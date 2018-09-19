@@ -1,4 +1,4 @@
-package com.yijian.workspace.perfect;
+package com.yijian.staff.mvp.workspace.perfect;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -22,16 +22,16 @@ import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yijian.workspace.R;
-import com.yijan.commonlib.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.face.BitmapFaceUtils;
-import com.yijan.commonlib.face.FaceDetectorActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.workspace.utils.StreamUtils;
-import com.yijan.commonlib.net.httpmanager.HttpManager;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijan.commonlib.widget.NavigationBar2;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.face.BitmapFaceUtils;
+import com.yijian.staff.mvp.face.FaceDetectorActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.staff.mvp.workspace.utils.StreamUtils;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
 import org.json.JSONException;

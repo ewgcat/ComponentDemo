@@ -1,4 +1,4 @@
-package com.yijian.workspace.sport;
+package com.yijian.staff.mvp.workspace.sport;
 
 import android.content.Context;
 import android.net.Uri;
@@ -18,16 +18,16 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.yijian.workspace.R;
-import com.yijan.commonlib.base.mvc.MvcBaseFragment;
-import com.yijan.commonlib.main.MainActivity;
-import com.yijian.workspace.base.BaseSpaceFragment;
-import com.yijian.workspace.bean.SportStepRequedtBody;
-import com.yijian.workspace.commen.ShareTestActivity;
-import com.yijian.workspace.perfect.PerfectTestActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijan.commonlib.net.httpmanager.HttpManager;
-import com.yijan.commonlib.net.response.ResultStringObserver;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseFragment;
+import com.yijian.staff.mvp.main.MainActivity;
+import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
+import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
+import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
+import com.yijian.staff.mvp.workspace.perfect.PerfectTestActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultStringObserver;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

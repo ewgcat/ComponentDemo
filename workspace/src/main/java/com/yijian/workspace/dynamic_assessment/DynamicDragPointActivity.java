@@ -1,27 +1,18 @@
 package com.yijian.workspace.dynamic_assessment;
 
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.StreamUtils;
 import com.yijian.workspace.R;
-
-import com.yijan.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.widget.NavigationBar;
-import com.yijian.workspace.face.BitmapFaceUtils;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.StreamUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -32,7 +23,7 @@ public class DynamicDragPointActivity extends MvcBaseActivity {
     @BindView(R.id.rel_container)
     RelativeLayout rel_container;
     @BindView(R.id.pointView)
-    DynamicPointView pointView;
+    com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicPointView pointView;
 
     @Override
     protected int getLayoutID() {
@@ -47,10 +38,10 @@ public class DynamicDragPointActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
-        navigationBar.setTitle("盆骨图打点");
-        navigationBar.hideLeftSecondIv();
-        navigationBar.setBackClickListener(this);
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
+        navigationBar2.setTitle("盆骨图打点");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
     }
 
     @OnClick({R.id.iv_finish})

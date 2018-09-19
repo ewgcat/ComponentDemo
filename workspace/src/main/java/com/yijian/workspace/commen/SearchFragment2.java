@@ -1,4 +1,4 @@
-package com.yijian.workspace.commen;
+package com.yijian.staff.mvp.workspace.commen;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -15,14 +15,14 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.yijian.workspace.R;
-import com.yijian.workspace.base.BaseSpaceFragment;
-import com.yijian.workspace.bean.WorkSpaceVipBean;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijan.commonlib.net.httpmanager.HttpManager;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijan.commonlib.util.JsonUtil;
-import com.yijan.commonlib.widget.EmptyView;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.JsonUtil;
+import com.yijian.staff.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONException;

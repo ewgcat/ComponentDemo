@@ -1,19 +1,11 @@
 package com.yijian.workspace.dynamic_assessment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
-import com.yijian.workspace.sport.SportTestActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

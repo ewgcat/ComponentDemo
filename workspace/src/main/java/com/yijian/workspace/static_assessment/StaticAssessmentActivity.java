@@ -1,4 +1,4 @@
-package com.yijian.workspace.static_assessment;
+package com.yijian.staff.mvp.workspace.static_assessment;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.yijan.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.workspace.bean.StaticRequestBody;
-import com.yijian.workspace.commen.ShareTestActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.workspace.utils.StreamUtils;
-
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
+import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.GlideApp;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.staff.mvp.workspace.utils.StreamUtils;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +29,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 
-
+import butterknife.BindView;
+import butterknife.OnClick;
 
 public class StaticAssessmentActivity extends MvcBaseActivity {
 

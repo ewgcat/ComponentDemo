@@ -1,4 +1,4 @@
-package com.yijian.workspace.sport;
+package com.yijian.staff.mvp.workspace.sport;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -8,18 +8,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yijian.workspace.R;
-import com.yijan.commonlib.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.course.preparelessons.createlession.EditActionObservable;
-import com.yijian.workspace.base.BaseSpaceFragment;
-import com.yijian.workspace.bean.SportStepRequedtBody;
-import com.yijian.workspace.commen.ShareTestActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.workspace.widget.CommenPopupWindow;
-import com.yijan.commonlib.net.httpmanager.HttpManager;
-import com.yijan.commonlib.net.response.ResultStringObserver;
-import com.yijan.commonlib.widget.NavigationBar2;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
+import com.yijian.staff.mvp.workspace.bean.SportStepRequedtBody;
+import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.widget.NavigationBar2;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,9 +29,9 @@ import butterknife.OnClick;
 
 public class  SportTestActivity extends MvcBaseActivity {
 
-    private final String tag1 = "com.yijian.workspace.sport.SportFragment1";
-    private final String tag2 = "com.yijian.workspace.sport.SportFragment2";
-    private final String tag3 = "com.yijian.workspace.sport.SportFragment3";
+    private final String tag1 = "com.yijian.staff.mvp.workspace.sport.SportFragment1";
+    private final String tag2 = "com.yijian.staff.mvp.workspace.sport.SportFragment2";
+    private final String tag3 = "com.yijian.staff.mvp.workspace.sport.SportFragment3";
     private int currentIndex = 0;
 
     private TextView rightTv;

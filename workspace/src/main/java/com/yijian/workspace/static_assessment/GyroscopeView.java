@@ -1,4 +1,4 @@
-package com.yijian.workspace.static_assessment;
+package com.yijian.staff.mvp.workspace.static_assessment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,7 +14,7 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import com.yijian.workspace.R;
+import com.yijian.staff.R;
 
 public class GyroscopeView extends View {
 

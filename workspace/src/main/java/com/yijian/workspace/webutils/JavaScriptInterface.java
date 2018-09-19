@@ -1,10 +1,10 @@
-package com.yijian.workspace.webutils;
+package com.yijian.staff.mvp.workspace.webutils;
 
 import android.os.Handler;
 import android.webkit.JavascriptInterface;
 
-import com.yijan.commonlib.db.DBManager;
-import com.yijan.commonlib.db.bean.User;
+import com.yijian.staff.db.DBManager;
+import com.yijian.staff.db.bean.User;
 
 public final class JavaScriptInterface {
 
@@ -89,7 +89,7 @@ public final class JavaScriptInterface {
 	}
 
 	public interface CallBackListener{
-		Object callBack(String msg, int type);
+		Object callBack(String msg,int type);
 	}
 
 	

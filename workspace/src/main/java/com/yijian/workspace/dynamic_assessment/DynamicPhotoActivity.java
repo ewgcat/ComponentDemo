@@ -1,4 +1,4 @@
-package com.yijian.workspace.dynamic_assessment;
+package com.yijian.staff.mvp.workspace.dynamic_assessment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -19,14 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
-
-import com.yijan.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.widget.NavigationBar;
-import com.yijian.workspace.R;
-import com.yijian.workspace.face.BitmapFaceUtils;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.StreamUtils;
-import com.yijan.commonlib.util.DensityUtil;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.face.BitmapFaceUtils;
+import com.yijian.staff.mvp.workspace.static_assessment.DragPointViewActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.StreamUtils;
+import com.yijian.staff.util.DensityUtil;
+import com.yijian.staff.widget.NavigationBar2;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -78,16 +78,16 @@ public class DynamicPhotoActivity extends MvcBaseActivity {
                 screenWidth = DensityUtil.getScreenWidth(DynamicPhotoActivity.this);
                 screenHeight = DensityUtil.getScreenHeight(DynamicPhotoActivity.this);
             }
-        });
+        }); 
         initTitle();
         initUi();
     }
 
     private void initTitle() {
-        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
-        navigationBar.setTitle("盆骨图拍照");
-        navigationBar.hideLeftSecondIv();
-        navigationBar.setBackClickListener(this);
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
+        navigationBar2.setTitle("盆骨图拍照");
+        navigationBar2.hideLeftSecondIv();
+        navigationBar2.setBackClickListener(this);
     }
 
     private void initUi() {

@@ -1,4 +1,4 @@
-package com.yijian.workspace.widget;
+package com.yijian.staff.mvp.workspace.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,7 +16,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.yijian.workspace.R;
+import com.yijian.staff.R;
 
 public class ControlView extends View {
 

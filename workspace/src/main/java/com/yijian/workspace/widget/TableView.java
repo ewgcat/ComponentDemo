@@ -1,4 +1,4 @@
-package com.yijian.workspace.widget;
+package com.yijian.staff.mvp.workspace.widget;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.yijian.workspace.R;
+import com.yijian.staff.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +91,7 @@ public class TableView extends LinearLayout {
         tvList.get(0).post(new Runnable() {
             @Override
             public void run() {
-                LayoutParams lp = (LayoutParams) fl_curssor_container.getLayoutParams();
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fl_curssor_container.getLayoutParams();
                 lp.width = tvList.get(0).getWidth();
                 fl_curssor_container.setLayoutParams(lp);
             }

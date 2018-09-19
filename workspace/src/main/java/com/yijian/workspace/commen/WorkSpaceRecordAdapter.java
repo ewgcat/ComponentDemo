@@ -11,11 +11,12 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceRecordBean;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
+import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
-import com.yijian.workspace.bean.WorkSpaceRecordBean;
-import com.yijian.workspace.bean.WorkSpaceVipBean;
-import com.yijian.workspace.sport.SportTestActivity;
-import com.yijian.workspace.utils.ActivityUtils;
 
 import java.util.ArrayList;
 import java.util.List;

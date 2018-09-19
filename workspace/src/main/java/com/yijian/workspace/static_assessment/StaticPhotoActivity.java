@@ -1,4 +1,4 @@
-package com.yijian.workspace.static_assessment;
+package com.yijian.staff.mvp.workspace.static_assessment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -26,15 +26,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.umeng.debug.log.D;
-import com.yijian.workspace.R;
-import com.yijan.commonlib.face.BitmapFaceUtils;
-import com.yijan.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijian.workspace.perfect.PerfectTestActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.workspace.utils.StreamUtils;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijan.commonlib.util.DensityUtil;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.face.BitmapFaceUtils;
+import com.yijian.staff.mvp.workspace.perfect.PerfectTestActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.staff.mvp.workspace.utils.StreamUtils;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.util.DensityUtil;
+import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +47,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 
 public class StaticPhotoActivity extends MvcBaseActivity {
 

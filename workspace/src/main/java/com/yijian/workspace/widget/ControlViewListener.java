@@ -1,4 +1,4 @@
-package com.yijian.workspace.widget;
+package com.yijian.staff.mvp.workspace.widget;
 
 public interface ControlViewListener {
 

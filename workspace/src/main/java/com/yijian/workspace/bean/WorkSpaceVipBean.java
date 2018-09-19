@@ -1,4 +1,4 @@
-package com.yijian.workspace.bean;
+package com.yijian.staff.mvp.workspace.bean;
 
 import java.io.Serializable;
 

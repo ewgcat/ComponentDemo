@@ -20,21 +20,26 @@ import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.umeng.debug.log.D;
+import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.util.DensityUtil;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
+import com.yijian.staff.mvp.workspace.bean.DynamicRequestBody;
+import com.yijian.staff.mvp.workspace.bean.StaticRequestBody;
+import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
+import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.GlideApp;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.util.DensityUtil;
+import com.yijian.staff.widget.NavigationBar2;
 import com.yijian.workspace.R;
-import com.yijan.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.widget.NavigationBar;
-import com.yijian.workspace.base.BaseSpaceFragment;
-import com.yijian.workspace.bean.DynamicRequestBody;
-import com.yijian.workspace.bean.StaticRequestBody;
-import com.yijian.workspace.commen.ShareTestActivity;
 import com.yijian.workspace.observe.EditActionObservable;
-import com.yijian.workspace.static_assessment.StaticAssessmentActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.workspace.widget.CommenPopupWindow;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijan.commonlib.net.response.ResultStringObserver;
-import com.yijan.commonlib.util.DensityUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,13 +54,13 @@ import butterknife.OnClick;
 
 public class DynamicAssessmentActivity extends MvcBaseActivity {
 
-    private final String tag1 = "com.yijian.workspace.dynamic_assessment.DynamicFragment1";
-    private final String tag2 = "com.yijian.workspace.dynamic_assessment.DynamicFragment2";
-    private final String tag3 = "com.yijian.workspace.dynamic_assessment.DynamicFragment3";
-    private final String tag4 = "com.yijian.workspace.dynamic_assessment.DynamicFragment4";
-    private final String tag5 = "com.yijian.workspace.dynamic_assessment.DynamicFragment5";
-    private final String tag6 = "com.yijian.workspace.dynamic_assessment.DynamicFragment6";
-    private final String tag7 = "com.yijian.workspace.dynamic_assessment.DynamicFragment7";
+    private final String tag1 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment1";
+    private final String tag2 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment2";
+    private final String tag3 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment3";
+    private final String tag4 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment4";
+    private final String tag5 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment5";
+    private final String tag6 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment6";
+    private final String tag7 = "com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicFragment7";
     private TextView rightTv;
     private CommenPopupWindow popupWindow;
     private EditActionObservable editActionObservable = new EditActionObservable();
@@ -253,14 +258,14 @@ public class DynamicAssessmentActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
-        navigationBar.setTitle("动作评估");
-        navigationBar.hideLeftSecondIv();
-        rightTv = navigationBar.getmRightTv();
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
+        navigationBar2.setTitle("动作评估");
+        navigationBar2.hideLeftSecondIv();
+        rightTv = navigationBar2.getmRightTv();
         rightTv.setText("上一步");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
         rightTv.setVisibility(View.GONE);
-        navigationBar.getBackLL().setOnClickListener(new View.OnClickListener() {
+        navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (popupWindow == null) {

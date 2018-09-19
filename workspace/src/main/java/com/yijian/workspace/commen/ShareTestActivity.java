@@ -1,6 +1,5 @@
 package com.yijian.workspace.commen;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,30 +10,24 @@ import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.yijan.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.umeng.SharePopupWindow;
-import com.yijan.commonlib.widget.NavigationBar;
+import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.umeng.SharePopupWindow;
+import com.yijian.commonlib.widget.EmptyView;
+import com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicAssessmentActivity;
+import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
+import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
+import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.staff.mvp.workspace.webutils.JavaScriptInterface;
+import com.yijian.staff.mvp.workspace.webutils.SafeWebChromeClient;
+import com.yijian.staff.mvp.workspace.webutils.SafeWebViewClient;
+import com.yijian.staff.mvp.workspace.widget.CommenPopupWindow;
 import com.yijian.workspace.R;
-
 import com.yijian.workspace.base.BaseWebView;
-import com.yijian.workspace.dynamic_assessment.DynamicAssessmentActivity;
-import com.yijian.workspace.perfect.PerfectActivity;
-import com.yijian.workspace.sport.SportTestActivity;
-import com.yijian.workspace.static_assessment.StaticAssessmentActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.workspace.webutils.JavaScriptInterface;
-import com.yijian.workspace.webutils.SafeWebChromeClient;
-import com.yijian.workspace.webutils.SafeWebViewClient;
-import com.yijian.workspace.widget.CommenPopupWindow;
-import com.yijan.commonlib.widget.EmptyView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import butterknife.BindView;
 
 public class ShareTestActivity extends MvcBaseActivity {
@@ -51,7 +44,7 @@ public class ShareTestActivity extends MvcBaseActivity {
     String shareWorkSpaceTitle;
     String shareWorkSpaceImgUrl;
     String shareWorkSpaceDescr;
-    NavigationBar navigationBar2;
+    NavigationBar2 navigationBar2;
     String webUrl;
 
 
@@ -76,7 +69,7 @@ public class ShareTestActivity extends MvcBaseActivity {
         navigationBar2.setBackLLVisiable(View.GONE);
 //        navigationBar2.setmRightIv(R.mipmap.share);
         navigationBar2.setBackClickListener(this);
-        navigationBar2.setRightClickListener(new View.OnClickListener() {
+        navigationBar2.setmRightIvClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showShareDialog();

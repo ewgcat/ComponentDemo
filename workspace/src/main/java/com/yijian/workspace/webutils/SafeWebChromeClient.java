@@ -1,4 +1,4 @@
-package com.yijian.workspace.webutils;
+package com.yijian.staff.mvp.workspace.webutils;
 
 import android.graphics.Bitmap;
 import android.util.Log;

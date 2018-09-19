@@ -4,16 +4,15 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
-import com.yijan.commonlib.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.course.preparelessons.createlession.EditActionObservable;
-import com.yijian.workspace.utils.ActivityUtils;
+import com.yijian.workspace.observe.EditActionObservable;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WorkSpaceSearchActivity extends MvcBaseActivity {
@@ -30,8 +29,8 @@ public class WorkSpaceSearchActivity extends MvcBaseActivity {
     @BindView(R.id.lin_search_bt)
     LinearLayout lin_search_bt;
 
-    private final String tag1 = "com.yijian.workspace.commen.SearchFragment1";
-    private final String tag2 = "com.yijian.workspace.commen.SearchFragment2";
+    private final String tag1 = "com.yijian.staff.mvp.workspace.commen.SearchFragment1";
+    private final String tag2 = "com.yijian.staff.mvp.workspace.commen.SearchFragment2";
     private EditActionObservable editActionObservable = new EditActionObservable();
 
 

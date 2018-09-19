@@ -1,4 +1,4 @@
-package com.yijian.workspace.utils;
+package com.yijian.staff.mvp.workspace.utils;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.module.AppGlideModule;
-import com.yijan.commonlib.util.FileUtil;
+import com.yijian.staff.util.FileUtil;
 
 /**
  * Created by GZLX on 2018/5/17.

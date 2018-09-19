@@ -1,4 +1,4 @@
-package com.yijian.workspace.widget;
+package com.yijian.staff.mvp.workspace.widget;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
-import com.yijian.workspace.R;
+import com.yijian.staff.R;
 
 public class CommenPopupWindow extends PopupWindow {
 

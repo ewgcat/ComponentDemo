@@ -1,41 +1,31 @@
 package com.yijian.workspace.commen;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.yijan.commonlib.mvp.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.widget.NavigationBar;
+import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.widget.EmptyView;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceRecordBean;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.workspace.R;
-import com.yijian.workspace.bean.WorkSpaceRecordBean;
-import com.yijian.workspace.bean.WorkSpaceVipBean;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijan.commonlib.util.JsonUtil;
-import com.yijan.commonlib.widget.EmptyView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -51,7 +41,7 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
     private int pageSize = 10;//每页数量
     private int pagesTotal; //总共多少页
     private List<WorkSpaceRecordBean> workSpaceRecordBeanList = new ArrayList<>();
-    private  WorkSpaceRecordAdapter workSpaceRecordAdapter;
+    private com.yijian.staff.mvp.workspace.commen.WorkSpaceRecordAdapter workSpaceRecordAdapter;
 
 
     @Override
@@ -62,8 +52,6 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        ButterKnife.bind(this);
-
         showLoading();
         initTitle();
         initComponent();
@@ -73,7 +61,7 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
 
     private void initTitle() {
         String name = getIntent().getStringExtra("name");
-        NavigationBar navigationBar2 = findViewById(R.id.navigation_bar);
+        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
         navigationBar2.setTitle(ActivityUtils.name + ActivityUtils.moduleType+"测评记录");
         navigationBar2.hideLeftSecondIv();
         navigationBar2.setBackClickListener(this);

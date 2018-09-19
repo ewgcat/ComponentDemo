@@ -1,23 +1,18 @@
 package com.yijian.workspace.commen;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
+import com.yijian.commonlib.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.util.ImageLoader;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
+import com.yijian.staff.mvp.workspace.perfect.PerfectActivity;
+import com.yijian.staff.mvp.workspace.sport.SportTestActivity;
+import com.yijian.staff.mvp.workspace.static_assessment.StaticAssessmentActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
-import com.yijan.commonlib.base.mvc.MvcBaseActivity;
-import com.yijian.workspace.bean.WorkSpaceVipBean;
-import com.yijian.workspace.dynamic_assessment.DynamicAssessmentActivity;
-import com.yijian.workspace.perfect.PerfectActivity;
-import com.yijian.workspace.sport.SportTestActivity;
-import com.yijian.workspace.static_assessment.StaticAssessmentActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijan.commonlib.util.ImageLoader;
-import com.yijan.commonlib.widget.NavigationBar2;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -65,40 +60,6 @@ public class SearchOprationActivity extends MvcBaseActivity {
         tv_name.setText(workSpaceVipBean.getName());
         tv_age.setText(String.valueOf(workSpaceVipBean.getAge()));
         tv_role.setText(workSpaceVipBean.getTypeName());
-       /* String subclassName = workSpaceVipBean.getSubclassName();
-        switch (subclassName) {
-            case "CustomerInfoVO":
-                tv_role.setText("正式会员");
-                break;
-            case "PotentialVO":
-                tv_role.setText("潜在会员");
-                break;
-            case "CustomerIntentionVO":
-                tv_role.setText("意向会员");
-                break;
-            case "CustomerExpireVO":
-                tv_role.setText("过期会员");
-                break;
-            case "CustomerTodayVisitVO":
-                tv_role.setText("今日来访会员");
-                break;
-            case "CoachInfoVO":
-                tv_role.setText("正式学员");
-                break;
-            case "CoachIntentionVO":
-                tv_role.setText("意向学员");
-                break;
-            case "CoachExpireVO":
-                tv_role.setText("过期学员");
-                break;
-            case "CoachPotentialStudentVO":
-                tv_role.setText("潜在学员");
-                break;
-            case "CoachTodayVisitVO":
-                tv_role.setText("今日来访学员");
-                break;
-            default:
-        }*/
     }
 
     @OnClick({R.id.btn_start, R.id.btn_record})

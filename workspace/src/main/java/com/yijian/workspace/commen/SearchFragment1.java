@@ -6,7 +6,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -14,25 +13,19 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijan.commonlib.util.JsonUtil;
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
+import com.yijian.commonlib.util.JsonUtil;
+import com.yijian.commonlib.widget.EmptyView;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
-import com.yijian.workspace.bean.WorkSpaceVipBean;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijian.workspace.widget.EmptyView;
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import butterknife.BindView;
-
 
 public class SearchFragment1 extends BaseSpaceFragment {
 

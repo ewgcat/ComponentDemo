@@ -10,12 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.yijian.commonlib.util.ImageLoader;
+import com.yijian.staff.mvp.workspace.bean.WorkSpaceVipBean;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
 import com.yijian.workspace.R;
-import com.yijian.workspace.bean.WorkSpaceVipBean;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijan.commonlib.net.httpmanager.HttpManager;
-import com.yijan.commonlib.util.ImageLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class SearchAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tv_age = itemView.findViewById(R.id.tv_age);
         }
 
-        public void bind(WorkSpaceVipBean workSpaceVipBean) {
+        public void bind(final WorkSpaceVipBean workSpaceVipBean) {
             rel_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

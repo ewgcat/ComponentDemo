@@ -1,4 +1,4 @@
-package com.yijian.workspace.dynamic_assessment;
+package com.yijian.staff.mvp.workspace.dynamic_assessment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,9 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.yijian.workspace.R;
-import com.yijian.workspace.base.BaseSpaceFragment;
-import com.yijian.workspace.utils.ActivityUtils;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.workspace.base.BaseSpaceFragment;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.GlideApp;
 
 import java.io.File;
 import java.util.Map;
@@ -83,10 +84,10 @@ public class DynamicFragment7 extends BaseSpaceFragment {
             File file = new File(dynamicAssessmentActivity.getCacheDir() + "/img_dynamic.jpg");
             //若该文件存在
             if (file.exists()) {
-                final Bitmap bitmap= BitmapFactory.decodeFile(dynamicAssessmentActivity.getCacheDir() + "/img_dynamic.jpg");
+                Bitmap bitmap= BitmapFactory.decodeFile(dynamicAssessmentActivity.getCacheDir() + "/img_dynamic.jpg");
                 float bWidth = bitmap.getWidth();
                 float bHeight = bitmap.getHeight();
-                final float scale = bWidth / bHeight;
+                float scale = bWidth / bHeight;
                 iv_result.post(new Runnable() {
                     @Override
                     public void run() {

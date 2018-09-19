@@ -1,4 +1,4 @@
-package com.yijian.workspace.perfect;
+package com.yijian.staff.mvp.workspace.perfect;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,17 +10,17 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.yijian.workspace.R;
-import com.yijan.commonlib.base.mvc.MvcBaseActivity;
-import com.yijan.commonlib.course.preparelessons.createlession.EditActionObservable;
-import com.yijian.workspace.bean.PerfectRequestBody;
-import com.yijian.workspace.commen.ShareTestActivity;
-import com.yijian.workspace.utils.ActivityUtils;
-import com.yijian.workspace.utils.HttpManagerWorkSpace;
-import com.yijan.commonlib.net.httpmanager.HttpManager;
-import com.yijan.commonlib.net.response.ResultJSONObjectObserver;
-import com.yijan.commonlib.net.response.ResultStringObserver;
-import com.yijan.commonlib.widget.NavigationBar2;
+import com.yijian.staff.R;
+import com.yijian.staff.mvp.base.mvc.MvcBaseActivity;
+import com.yijian.staff.mvp.course.preparelessons.createlession.EditActionObservable;
+import com.yijian.staff.mvp.workspace.bean.PerfectRequestBody;
+import com.yijian.staff.mvp.workspace.commen.ShareTestActivity;
+import com.yijian.staff.mvp.workspace.utils.ActivityUtils;
+import com.yijian.staff.mvp.workspace.utils.HttpManagerWorkSpace;
+import com.yijian.staff.net.httpmanager.HttpManager;
+import com.yijian.staff.net.response.ResultJSONObjectObserver;
+import com.yijian.staff.net.response.ResultStringObserver;
+import com.yijian.staff.widget.NavigationBar2;
 
 import org.json.JSONObject;
 

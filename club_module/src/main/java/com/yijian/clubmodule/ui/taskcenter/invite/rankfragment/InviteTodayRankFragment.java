@@ -37,12 +37,12 @@ public class InviteTodayRankFragment extends MvcBaseFragment {
     @Override
     public void initView() {
         rankBeanList.clear();
-        ivHeader = findView(R.id.iv_header);
-        tvName = findView(R.id.tv_name);
-        tvCompletedPrecent = findView(R.id.tv_completed_precent);
-        tvRankPosition = findView(R.id.tv_rank_position);
-        rv = findView(R.id.rv);
-        findView(R.id.tv_more).setOnClickListener(new View.OnClickListener() {
+        ivHeader = getRootView().findViewById(R.id.iv_header);
+        tvName = getRootView().findViewById(R.id.tv_name);
+        tvCompletedPrecent = getRootView().findViewById(R.id.tv_completed_precent);
+        tvRankPosition = getRootView().findViewById(R.id.tv_rank_position);
+        rv = getRootView().findViewById(R.id.rv);
+        getRootView().findViewById(R.id.tv_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RankListActivity.class);

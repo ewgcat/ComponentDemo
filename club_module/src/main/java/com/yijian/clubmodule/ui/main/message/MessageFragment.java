@@ -55,9 +55,9 @@ public class MessageFragment extends MvcBaseFragment {
 
 
     public void initComponent(View view) {
-        rv = findView(R.id.rv);
-        refreshLayout = findView(R.id.refreshLayout);
-        emptyView = findView(R.id.empty_view);
+        rv = getRootView().findViewById(R.id.rv);
+        refreshLayout = getRootView().findViewById(R.id.refreshLayout);
+        emptyView = getRootView().findViewById(R.id.empty_view);
         emptyView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

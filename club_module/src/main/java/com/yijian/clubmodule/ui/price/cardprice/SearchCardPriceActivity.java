@@ -36,7 +36,7 @@ public class SearchCardPriceActivity extends MvcBaseActivity {
     }
 
     private void initView() {
-        etSearch= findView(R. id.et_search);
+        etSearch= findViewById(R. id.et_search);
         CommonUtil.showSoftInputFromWindow(this,etSearch);
         TextView tvComplete = findViewById(R.id.tv_complete);
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {

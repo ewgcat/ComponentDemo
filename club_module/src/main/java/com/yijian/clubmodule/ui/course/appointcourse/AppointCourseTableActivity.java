@@ -19,6 +19,7 @@ import com.yijian.clubmodule.net.httpmanager.HttpManager;
 import com.yijian.clubmodule.net.httpmanager.url.CourseUrls;
 import com.yijian.commonlib.util.CommonUtil;
 import com.yijian.commonlib.util.DateUtil;
+import com.yijian.commonlib.util.system.ScreenUtil;
 import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.bean.AppointCourseBean;
@@ -97,7 +98,7 @@ public class AppointCourseTableActivity extends MvcBaseActivity {
         long l1 = 86400000;
         long l2 = l - currentDate;
         long top = height * size * l2 / l1 + courseView.getPaddingTop();
-        int screenHeight = ClubModuleApplication.Companion.getSCREEN_HEIGHT();
+        int screenHeight =  ScreenUtil.getScreenHeight(this);
         if (top > screenHeight) {
             long l3 = top - screenHeight / 2;
             scollView.scrollTo(0, (int) l3);

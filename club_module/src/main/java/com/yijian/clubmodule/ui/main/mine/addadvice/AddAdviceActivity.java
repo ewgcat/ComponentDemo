@@ -32,7 +32,7 @@ public class AddAdviceActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        etAdvice= findView(R. id.et_advice);
+        etAdvice= findViewById(R. id.et_advice);
 
         NavigationBar navigationBar = (NavigationBar) findViewById(R.id.advice_view_navigation_bar);
         navigationBar.setTitle("系统意见");

@@ -135,14 +135,7 @@ abstract class MvcBaseActivity : AppCompatActivity() {
     fun showToast(msg: String, time: Int) {
         Toast.makeText(this, msg, time).show()
     }
-    @Suppress("UNCHECKED_CAST")
-    fun <T : View> findView(viewId: Int): T {
-        return this.findViewById<View>(viewId) as T
-    }
-    @Suppress("UNCHECKED_CAST")
-    fun <T : View> findView(view: View, viewId: Int): T {
-        return view.findViewById<View>(viewId) as T
-    }
+
 
 
     /**

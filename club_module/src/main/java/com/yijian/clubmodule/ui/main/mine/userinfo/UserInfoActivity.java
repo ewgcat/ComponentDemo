@@ -46,14 +46,14 @@ public class UserInfoActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        ivHead=findView(R.id.iv_head);
-        tvSex=findView(R.id.tv_sex);
-        tvName=findView(R.id.tv_name);
-        tvPhone=findView(R.id.tv_phone);
-        tvWorkNum=findView(R.id.tv_work_num);
-        tvMendian=findView(R.id.tv_mendian);
-        tvDepartment=findView(R.id.tv_department);
-        tvPosition=findView(R.id.tv_position);
+        ivHead=findViewById(R.id.iv_head);
+        tvSex=findViewById(R.id.tv_sex);
+        tvName=findViewById(R.id.tv_name);
+        tvPhone=findViewById(R.id.tv_phone);
+        tvWorkNum=findViewById(R.id.tv_work_num);
+        tvMendian=findViewById(R.id.tv_mendian);
+        tvDepartment=findViewById(R.id.tv_department);
+        tvPosition=findViewById(R.id.tv_position);
         initView();
     }
 

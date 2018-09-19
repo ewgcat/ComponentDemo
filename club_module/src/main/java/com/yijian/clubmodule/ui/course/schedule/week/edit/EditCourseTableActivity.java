@@ -41,27 +41,27 @@ public class EditCourseTableActivity extends MvcBaseActivity implements View.OnC
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        tvSeven = findView(R.id.tv_seven);
-        line7 = findView(R.id.line7);
-        line1 = findView(R.id.line1);
-        line2 = findView(R.id.line2);
-        line3 = findView(R.id.line3);
-        line4 = findView(R.id.line4);
-        line5 = findView(R.id.line5);
-        line6 = findView(R.id.line6);
-        tvOne = findView(R.id.tv_one);
-        tvTwo = findView(R.id.tv_two);
-        tvThree = findView(R.id.tv_three);
-        tvFour = findView(R.id.tv_four);
-        tvFive = findView(R.id.tv_five);
-        tvSix = findView(R.id.tv_six);
-      findView(R.id.ll_week_sunday).setOnClickListener(this);
-      findView(R.id.ll_week_one).setOnClickListener(this);
-      findView(R.id.ll_week_two).setOnClickListener(this);
-      findView(R.id.ll_week_three).setOnClickListener(this);
-      findView(R.id.ll_week_four).setOnClickListener(this);
-      findView(R.id.ll_week_five).setOnClickListener(this);
-      findView(R.id.ll_week_six).setOnClickListener(this);
+        tvSeven = findViewById(R.id.tv_seven);
+        line7 = findViewById(R.id.line7);
+        line1 = findViewById(R.id.line1);
+        line2 = findViewById(R.id.line2);
+        line3 = findViewById(R.id.line3);
+        line4 = findViewById(R.id.line4);
+        line5 = findViewById(R.id.line5);
+        line6 = findViewById(R.id.line6);
+        tvOne = findViewById(R.id.tv_one);
+        tvTwo = findViewById(R.id.tv_two);
+        tvThree = findViewById(R.id.tv_three);
+        tvFour = findViewById(R.id.tv_four);
+        tvFive = findViewById(R.id.tv_five);
+        tvSix = findViewById(R.id.tv_six);
+      findViewById(R.id.ll_week_sunday).setOnClickListener(this);
+      findViewById(R.id.ll_week_one).setOnClickListener(this);
+      findViewById(R.id.ll_week_two).setOnClickListener(this);
+      findViewById(R.id.ll_week_three).setOnClickListener(this);
+      findViewById(R.id.ll_week_four).setOnClickListener(this);
+      findViewById(R.id.ll_week_five).setOnClickListener(this);
+      findViewById(R.id.ll_week_six).setOnClickListener(this);
 
         NavigationBar navigationBar = findViewById(R.id.navigation_bar);
         navigationBar.setTitle("编辑排课表");

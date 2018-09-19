@@ -69,10 +69,10 @@ public class HuijiAllViperFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-        rv_vip_all = findView(R.id.rv);
-        refreshLayout = findView(R.id.refreshLayout);
-        empty_view = findView(R.id.empty_view);
-        tv_total_num = findView(R.id.tv_total_num);
+        rv_vip_all = getRootView().findViewById(R.id.rv);
+        refreshLayout = getRootView().findViewById(R.id.refreshLayout);
+        empty_view = getRootView().findViewById(R.id.empty_view);
+        tv_total_num = getRootView().findViewById(R.id.tv_total_num);
         empty_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

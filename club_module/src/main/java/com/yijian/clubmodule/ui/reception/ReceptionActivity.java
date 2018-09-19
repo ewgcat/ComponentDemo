@@ -56,10 +56,10 @@ public class ReceptionActivity extends MvcBaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        navigationBar= findView(R.id.navigationBar);
-        rv= findView(R.id.rv);
-        refreshLayout= findView(R.id.refreshLayout);
-        emptyView= findView(R.id.empty_view);
+        navigationBar= findViewById(R.id.navigationBar);
+        rv= findViewById(R.id.rv);
+        refreshLayout= findViewById(R.id.refreshLayout);
+        emptyView= findViewById(R.id.empty_view);
         emptyView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.yijian.staff.mvp.course.appointcourse.AppointCourseView
+                <com.yijian.clubmodule.ui.course.appointcourse.AppointCourseView
                     android:id="@+id/course_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

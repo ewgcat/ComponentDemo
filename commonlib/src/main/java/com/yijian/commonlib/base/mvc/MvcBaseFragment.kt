@@ -86,10 +86,6 @@ abstract class MvcBaseFragment : Fragment() {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show()
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T : View> findView(viewId: Int): T {
-        return rootView!!.findViewById<View>(viewId) as T
-    }
 
 
 

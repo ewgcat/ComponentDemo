@@ -69,15 +69,15 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        choosePhotoView = findView(R.id.choose_photo_view);
-        back = findView(R.id.back);
-        goodAtTv = findView(R.id.good_at_tv);
-        headTitle = findView(R.id.head_title);
-        toolbar = findView(R.id.toolbar);
-        appbar = findView(R.id.appbar);
-        rv1 = findView(R.id.rv1);
-        rv2 = findView(R.id.rv2);
-        ll_my_zhenshu_img = findView(R.id.ll_my_zhenshu_img);
+        choosePhotoView = findViewById(R.id.choose_photo_view);
+        back = findViewById(R.id.back);
+        goodAtTv = findViewById(R.id.good_at_tv);
+        headTitle = findViewById(R.id.head_title);
+        toolbar = findViewById(R.id.toolbar);
+        appbar = findViewById(R.id.appbar);
+        rv1 = findViewById(R.id.rv1);
+        rv2 = findViewById(R.id.rv2);
+        ll_my_zhenshu_img = findViewById(R.id.ll_my_zhenshu_img);
         choosePhotoView.setMode(ChoosePhotoView.MODE_ONLY_SHOW);
 
         rv1.setLayoutManager(new LinearLayoutManager(this));

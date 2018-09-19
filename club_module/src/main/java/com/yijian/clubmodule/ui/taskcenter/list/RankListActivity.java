@@ -64,9 +64,9 @@ public class RankListActivity extends MvcBaseActivity {
 
     public void initView() {
 
-        rv= findView(R.id.rv);
-        refreshLayout= findView(R.id.refreshLayout);
-        emptyView= findView(R.id.empty_view);
+        rv= findViewById(R.id.rv);
+        refreshLayout= findViewById(R.id.refreshLayout);
+        emptyView= findViewById(R.id.empty_view);
         emptyView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

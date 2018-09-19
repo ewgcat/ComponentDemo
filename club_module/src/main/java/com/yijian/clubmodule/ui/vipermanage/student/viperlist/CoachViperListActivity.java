@@ -43,13 +43,13 @@ public class CoachViperListActivity extends MvcBaseActivity implements View.OnCl
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        tv_label_all = findView(R.id.tv_label_all);
-        tv_label_visit = findView(R.id.tv_label_visit);
-        view_all = findView(R.id.view_all);
-        view_today_visit = findView(R.id.view_today_visit);
+        tv_label_all = findViewById(R.id.tv_label_all);
+        tv_label_visit = findViewById(R.id.tv_label_visit);
+        view_all = findViewById(R.id.view_all);
+        view_today_visit = findViewById(R.id.view_today_visit);
 
-        findView(R.id.lin_all_vip).setOnClickListener(this);
-        findView(R.id.lin_today_visit).setOnClickListener(this);
+        findViewById(R.id.lin_all_vip).setOnClickListener(this);
+        findViewById(R.id.lin_today_visit).setOnClickListener(this);
 
         NavigationBar navigationBar = findViewById(R.id.vip_over_navigation_bar);
         navigationBar.hideLeftSecondIv();

@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.yijian.staff.mvp.course.schedule.day.DayCourseView
+                <com.yijian.clubmodule.ui.course.schedule.day.DayCourseView
                     android:id="@+id/course_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

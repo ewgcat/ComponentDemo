@@ -14,12 +14,8 @@ import com.yijian.clubmodule.ui.course.schedule.week.ScheduleWeekFragment;
 import com.yijian.commonlib.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.util.ImageLoader;
 
-
-
-
 @Route(path = "/test/32")
 public class ScheduleCourseActivity extends MvcBaseActivity implements View.OnClickListener {
-
 
 
     TextView title_tv;
@@ -37,10 +33,10 @@ public class ScheduleCourseActivity extends MvcBaseActivity implements View.OnCl
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        title_tv= findView(R.id.title_tv);
-        iv_right= findView(R.id.iv_right);
-    findView(R.id.ll_left).setOnClickListener(this);
-    findView(R.id.ll_right).setOnClickListener(this);
+        title_tv = findViewById(R.id.title_tv);
+        iv_right = findViewById(R.id.iv_right);
+        findViewById(R.id.ll_left).setOnClickListener(this);
+        findViewById(R.id.ll_right).setOnClickListener(this);
         title_tv.setText("排课表");
 
         changeFragment(index);
@@ -89,14 +85,11 @@ public class ScheduleCourseActivity extends MvcBaseActivity implements View.OnCl
     }
 
 
-
-
     @Override
     public void onClick(View view) {
         int i = view.getId();
         if (i == R.id.ll_left) {
             finish();
-
         } else if (i == R.id.ll_right) {
             if (index == 0) {
                 index = 1;

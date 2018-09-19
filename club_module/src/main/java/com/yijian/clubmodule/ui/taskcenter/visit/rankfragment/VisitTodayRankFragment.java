@@ -36,12 +36,12 @@ public class VisitTodayRankFragment extends MvcBaseFragment {
 
     @Override
     public void initView() {
-        ivHeader = findView(R.id.visit_iv_header);
-        tvName = findView(R.id.visit_tv_name);
-        tvCompletedPrecent = findView(R.id.visit_tv_completed_precent);
-        tvRankPosition = findView(R.id.visit_tv_rank_position);
-        rv = findView(R.id.visit_rv);
-        findView(R.id.visit_tv_more).setOnClickListener(new View.OnClickListener() {
+        ivHeader = getRootView().findViewById(R.id.visit_iv_header);
+        tvName = getRootView().findViewById(R.id.visit_tv_name);
+        tvCompletedPrecent = getRootView().findViewById(R.id.visit_tv_completed_precent);
+        tvRankPosition = getRootView().findViewById(R.id.visit_tv_rank_position);
+        rv = getRootView().findViewById(R.id.visit_rv);
+        getRootView().findViewById(R.id.visit_tv_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RankListActivity.class);

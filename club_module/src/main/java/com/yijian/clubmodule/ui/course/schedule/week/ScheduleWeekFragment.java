@@ -23,6 +23,8 @@ import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.commonlib.util.CommonUtil;
 import com.yijian.commonlib.util.DateUtil;
 import com.yijian.commonlib.util.JsonUtil;
+import com.yijian.commonlib.util.Logger;
+import com.yijian.commonlib.util.system.ScreenUtil;
 import com.yijian.commonlib.widget.MyScollView;
 import com.yijian.commonlib.widget.ScrollViewListener;
 import com.yijian.commonlib.widget.WeekLayout;
@@ -57,14 +59,17 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements View.OnClic
 
     @Override
     public void initView() {
-        scoll_view = findView(R.id.scoll_view);
-        content = findView(R.id.content);
-        week_layout = findView(R.id.week_layout);
-        week_course_view = findView(R.id.week_course_view);
+        View rootView = getRootView();
+        scoll_view = rootView.findViewById(R.id.scoll_view);
+        content = rootView.findViewById(R.id.content);
+        week_layout = rootView.findViewById(R.id.week_layout);
+        week_course_view = rootView.findViewById(R.id.week_course_view);
 
-        findView(R.id.iv_edit).setOnClickListener(this);
+        rootView.findViewById(R.id.ll_edit).setOnClickListener(this);
 
-        width = ((ClubModuleApplication.Companion.getSCREEN_WIDTH() - CommonUtil.dp2px(getContext(), 40))) / 7;
+        int screen_width = ScreenUtil.getScreenWidth(getContext());
+        Logger.i("TEST","screen_width="+screen_width);
+        width = ((screen_width - CommonUtil.dp2px(getContext(), 40))) / 7;
         week_layout.setTimeItemWidthAndHeight(width, width);
 
         //下边界 屏幕底部
@@ -299,7 +304,7 @@ public class ScheduleWeekFragment extends MvcBaseFragment implements View.OnClic
         long l1 = 86400000;
         long l2 = l - currentDate;
         long top = width * size * l2 / l1 + week_course_view.getPaddingTop();
-        int screenHeight = ClubModuleApplication.Companion.getSCREEN_HEIGHT();
+        int screenHeight =ScreenUtil.getScreenHeight(getContext());
         if (top > screenHeight) {
             long l3 = top - screenHeight / 2;
             scoll_view.scrollTo(0, (int) l3);

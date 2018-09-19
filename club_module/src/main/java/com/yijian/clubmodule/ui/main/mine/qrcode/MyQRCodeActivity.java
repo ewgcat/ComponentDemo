@@ -55,13 +55,13 @@ public class MyQRCodeActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
 
-        iv=findView(R.id.iv);
-        ivHeader=findView(R.id.iv_header);
-        tvName=findView(R.id.tv_name);
-        ivGender=findView(R.id.iv_gender);
-        tvRole=findView(R.id.tv_role);
-        rootView=findView(R.id.rootView);
-        refresh=findView(R.id.refresh);
+        iv=findViewById(R.id.iv);
+        ivHeader=findViewById(R.id.iv_header);
+        tvName=findViewById(R.id.tv_name);
+        ivGender=findViewById(R.id.iv_gender);
+        tvRole=findViewById(R.id.tv_role);
+        rootView=findViewById(R.id.rootView);
+        refresh=findViewById(R.id.refresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

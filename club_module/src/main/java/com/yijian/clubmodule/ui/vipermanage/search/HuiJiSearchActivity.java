@@ -75,11 +75,11 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        etSearch = findView(R.id.et_search);
-        rcl_search = findView(R.id.rv);
-        refreshLayout = findView(R.id.refreshLayout);
-        empty_view = findView(R.id.empty_view);
-        findView(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+        etSearch = findViewById(R.id.et_search);
+        rcl_search = findViewById(R.id.rv);
+        refreshLayout = findViewById(R.id.refreshLayout);
+        empty_view = findViewById(R.id.empty_view);
+        findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SystemUtil.hideKeyBoard(etSearch, HuiJiSearchActivity.this);

@@ -47,8 +47,8 @@ public class CourseListFragment extends MvcBaseFragment implements View.OnClickL
     @Override
     public void initView() {
 
-        rv=findView(R.id.rv);
-       findView(R.id.ll_add_student).setOnClickListener(this);
+        rv=getRootView().findViewById(R.id.rv);
+       getRootView().findViewById(R.id.ll_add_student).setOnClickListener(this);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.addItemDecoration(new MyDividerItemDecoration());
 

@@ -29,6 +29,7 @@ import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.commonlib.util.CommonUtil;
 import com.yijian.commonlib.util.DateUtil;
 import com.yijian.commonlib.util.JsonUtil;
+import com.yijian.commonlib.util.system.ScreenUtil;
 import com.yijian.commonlib.widget.MyScollView;
 import com.yijian.commonlib.widget.ScrollViewListener;
 
@@ -65,14 +66,17 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
 
     @Override
     public void initView() {
-        initLeftDate();
-        rv = findView(R.id.rv);
-        dayCourseView = findView(R.id.course_view);
-        scollView = findView(R.id.scoll_view);
-        findView(R.id.iv_edit).setOnClickListener(this);
+        View rootView = getRootView();
+
+        rv =  rootView.findViewById(R.id.rv);
+        dayCourseView = rootView.findViewById(R.id.course_view);
+        scollView =  rootView.findViewById(R.id.scoll_view);
+        rootView.findViewById(R.id.iv_edit).setOnClickListener(this);
+
         height = CommonUtil.dp2px(getContext(), 44);
         size = 48;
         dayCourseView.setHeightAndSize(height, size);
+        initLeftDate();
         dayCourseView.setOnSelectFlagListener(new DayCourseView.OnSelectFlagListener() {
             @Override
             public void OnSelectFlag(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color) {
@@ -159,7 +163,7 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
         long l1 = 86400000;
         long l2 = l - currentDate;
         long top = height * size * l2 / l1 + dayCourseView.getPaddingTop();
-        int screenHeight = ClubModuleApplication.Companion.getSCREEN_HEIGHT();
+        int screenHeight = ScreenUtil.getScreenHeight(getContext());
         if (top > screenHeight) {
             long l3 = top - screenHeight / 2;
             scollView.scrollTo(0, (int) l3);
@@ -177,7 +181,7 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
             dateBean.setWeekDay(weekOfDate);
             dateBeanList.add(dateBean);
         }
-        LeftDateListAdapter adapter = new LeftDateListAdapter(getContext(), ClubModuleApplication.Companion.getSCREEN_HEIGHT() / 9, dateBeanList);
+        LeftDateListAdapter adapter = new LeftDateListAdapter(getContext(),ScreenUtil.getScreenHeight(getContext()) / 9, dateBeanList);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);

@@ -50,15 +50,15 @@ public class InvateActivity extends MvcBaseActivity implements View.OnClickListe
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        ivHeader=findView(R.id.iv_header);
-        tvName=findView(R.id.tv_name);
-        ivGender=findView(R.id.iv_gender);
-        tvViperType=findView(R.id.tv_viper_type);
-        tvTelephone=findView(R.id.tv_telephone);
-        tvFuyueTime=findView(R.id.tv_fuyue_time);
-        etInvateContent=findView(R.id.et_invate_content);
-        tvCanInputNumber=findView(R.id.tv_can_input_number);
-        findView(R.id.rl_fuyue_time).setOnClickListener(this);
+        ivHeader=findViewById(R.id.iv_header);
+        tvName=findViewById(R.id.tv_name);
+        ivGender=findViewById(R.id.iv_gender);
+        tvViperType=findViewById(R.id.tv_viper_type);
+        tvTelephone=findViewById(R.id.tv_telephone);
+        tvFuyueTime=findViewById(R.id.tv_fuyue_time);
+        etInvateContent=findViewById(R.id.et_invate_content);
+        tvCanInputNumber=findViewById(R.id.tv_can_input_number);
+        findViewById(R.id.rl_fuyue_time).setOnClickListener(this);
         initTitle();
         initView();
     }

@@ -64,10 +64,10 @@ public class HuijiOutdateViperListActivity extends MvcBaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        rv_outdate = findView(R.id.rv);
-        refreshLayout = findView(R.id.refreshLayout);
-        empty_view = findView(R.id.empty_view);
-        tv_total_num = findView(R.id.tv_total_num);
+        rv_outdate = findViewById(R.id.rv);
+        refreshLayout = findViewById(R.id.refreshLayout);
+        empty_view = findViewById(R.id.empty_view);
+        tv_total_num = findViewById(R.id.tv_total_num);
 
         empty_view.setOnClickListener(new View.OnClickListener() {
             @Override

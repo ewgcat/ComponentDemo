@@ -27,8 +27,8 @@ public class AboutUsActivity extends BaseWebViewActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        navigationBar = findView(R.id.about_us_navigation_bar);
-        webView = findView(R.id.web_view);
+        navigationBar = findViewById(R.id.about_us_navigation_bar);
+        webView = findViewById(R.id.web_view);
         navigationBar.setTitle("关于易健");
         navigationBar.hideLeftSecondIv();
         navigationBar.setBackClickListener(this);

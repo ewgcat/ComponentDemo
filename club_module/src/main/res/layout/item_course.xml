@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yijian.staff.mvp.course.schedule.week.edit.list.CourseItemView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yijian.clubmodule.ui.course.schedule.week.edit.list.CourseItemView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
@@ -120,4 +120,4 @@
         android:text="删除"
         android:textColor="@android:color/white" />
 
-</com.yijian.staff.mvp.course.schedule.week.edit.list.CourseItemView>
+</com.yijian.clubmodule.ui.course.schedule.week.edit.list.CourseItemView>

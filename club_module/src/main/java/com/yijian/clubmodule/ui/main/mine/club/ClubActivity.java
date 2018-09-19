@@ -59,12 +59,12 @@ public class ClubActivity extends BaseWebViewActivity implements View.OnClickLis
     @Override
     protected void initView(Bundle savedInstanceState) {
 
-        banner= findView(R. id.banner);
-        tvClubName= findView(R. id.tv_club_name);
-        tvDes= findView(R. id.tv_des);
-        ivLogo= findView(R. id.iv_logo);
-        findView(R.id.ll_back).setOnClickListener(this);
-        findView(R.id.ll_share).setOnClickListener(this);
+        banner= findViewById(R. id.banner);
+        tvClubName= findViewById(R. id.tv_club_name);
+        tvDes= findViewById(R. id.tv_des);
+        ivLogo= findViewById(R. id.iv_logo);
+        findViewById(R.id.ll_back).setOnClickListener(this);
+        findViewById(R.id.ll_share).setOnClickListener(this);
 
         String version = CommonUtil.getAccessStatisticsVersionName(this) + " " + CommonUtil.getVersionCode(this);
         AccessStatisticsRequestBody body = new AccessStatisticsRequestBody("app_club", version);

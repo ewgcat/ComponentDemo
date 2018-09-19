@@ -40,17 +40,17 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-
+    <uses-permission android:name="android.permission.GET_TASKS"/>
     <application
-        android:name=".application.ClubModuleApplication"
         android:allowBackup="true"
-        android:hardwareAccelerated="true"
+        android:name=".application.ClubModuleApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:replace="android:theme,android:name">
+        android:theme="@style/AppTheme" >
+
+
+
 
         <activity
             android:name=".ui.main.MainActivity"
@@ -58,6 +58,9 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+        <activity
+            android:name=".ui.forgetpassword.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:screenOrientation="portrait"
@@ -149,18 +152,7 @@
         <activity
             android:name=".ui.vipermanage.viper.detail.formatoroutdate.HuiJiViperDetailActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.resourceallocation.coach.CoachResourceAllocationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.resourceallocation.huiji.HuiJiRescourceAllocationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.resourceallocation.huijileader.index.HuiJiLeaderResourceIndexActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.resourceallocation.huijileader.detail.ResourceDetailActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.main.mine.setting.SettingActivity"
             android:screenOrientation="portrait" />
@@ -170,9 +162,7 @@
         <activity
             android:name=".ui.main.mine.qualification.MyQualificationActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.base.seepic.SeePicActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.main.mine.selectheadicon.ClipActivity"
             android:screenOrientation="portrait" />
@@ -218,10 +208,26 @@
             android:name=".ui.course.punch.CoursePunchActivity"
             android:screenOrientation="portrait" />
 
+        <!-- arouter 路由过滤 -->
+        <activity android:name="com.yijian.commonlib.schamefilter.SchameFilterActivity">
+
+            <!-- Schame -->
+            <intent-filter>
+                <data
+                    android:host="m.aliyun.com"
+                    android:scheme="arouter" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
         <receiver
-            android:name=".jpush.JpushMessageReceiver"
+            android:name="com.yijian.clubmodule.jpush.JpushMessageReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -235,7 +241,7 @@
         </receiver>
 
         <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调 -->
-        <receiver android:name=".jpush.JPushOperatorResultReceiver">
+        <receiver android:name="com.yijian.clubmodule.jpush.JPushOperatorResultReceiver">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
 
@@ -405,5 +411,4 @@
 
 
     </application>
-
 </manifest>

@@ -87,16 +87,16 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity implements 
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        rv=findView(R.id.rv);
-        tvCourseTimeStatus=findView(R.id.tv_course_time_status);
-        ivHeader=findView(R.id.iv_header);
-        tvName=findView(R.id.tv_name);
-        ivSex=findView(R.id.iv_sex);
-        tvCourse=findView(R.id.tv_course);
-        wheelView1=findView(R.id.wheelview1);
-        wheelView2=findView(R.id.wheelview2);
-        dateSelectWheelView=findView(R.id.date_select_wheel_view);
-        findView(R.id.add_time).setOnClickListener(this);
+        rv=findViewById(R.id.rv);
+        tvCourseTimeStatus=findViewById(R.id.tv_course_time_status);
+        ivHeader=findViewById(R.id.iv_header);
+        tvName=findViewById(R.id.tv_name);
+        ivSex=findViewById(R.id.iv_sex);
+        tvCourse=findViewById(R.id.tv_course);
+        wheelView1=findViewById(R.id.wheelview1);
+        wheelView2=findViewById(R.id.wheelview2);
+        dateSelectWheelView=findViewById(R.id.date_select_wheel_view);
+        findViewById(R.id.add_time).setOnClickListener(this);
         NavigationBar navigationBar = findViewById(R.id.navigation_bar);
         navigationBar .hideLeftSecondIv();
         navigationBar .setBackClickListener(this);

@@ -41,13 +41,13 @@ public class InvateDetailActivity extends MvcBaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        ivHeader=findView(R.id.iv_header);
-        tvName=findView(R.id.tv_name);
-        ivGender=findView(R.id.iv_gender);
-        tvViperType=findView(R.id.tv_viper_type);
-        tvTelephone=findView(R.id.tv_telephone);
-        tvFuyueTime=findView(R.id.tv_fuyue_time);
-        tvInvateContent=findView(R.id.tv_invate_content);
+        ivHeader=findViewById(R.id.iv_header);
+        tvName=findViewById(R.id.tv_name);
+        ivGender=findViewById(R.id.iv_gender);
+        tvViperType=findViewById(R.id.tv_viper_type);
+        tvTelephone=findViewById(R.id.tv_telephone);
+        tvFuyueTime=findViewById(R.id.tv_fuyue_time);
+        tvInvateContent=findViewById(R.id.tv_invate_content);
         initTitle();
         initView();
     }

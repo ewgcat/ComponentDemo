@@ -9,7 +9,7 @@ import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
 
 import com.yijian.clubmodule.R;
-import com.yijian.clubmodule.application.ClubModuleApplication;
+
 import com.yijian.clubmodule.bean.CourseStudentBean;
 import com.yijian.clubmodule.db.ClubDBManager;
 import com.yijian.clubmodule.ui.course.schedule.week.edit.EditCourseTableActivity;

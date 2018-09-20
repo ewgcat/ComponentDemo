@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.clubmodule.R;
-import com.yijian.clubmodule.application.ClubModuleApplication;
+
 import com.yijian.commonlib.base.mvc.MvcBaseActivity;
 import com.yijian.clubmodule.bean.ViperDetailBean;
 import com.yijian.clubmodule.ui.invate.InvateActivity;

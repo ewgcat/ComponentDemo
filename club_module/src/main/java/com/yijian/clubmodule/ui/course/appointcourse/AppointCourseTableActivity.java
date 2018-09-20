@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.yijian.clubmodule.application.ClubModuleApplication;
+
 import com.yijian.clubmodule.net.httpmanager.HttpManager;
 import com.yijian.clubmodule.net.httpmanager.url.CourseUrls;
 import com.yijian.commonlib.util.CommonUtil;

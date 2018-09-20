@@ -91,5 +91,6 @@ android {
 
 dependencies {
     api project(':commonlib')
+    kapt 'com.alibaba:arouter-compiler:1.1.4'
 
 }

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import com.yijian.clubmodule.R;
-import com.yijian.clubmodule.application.ClubModuleApplication;
+
 import com.yijian.clubmodule.bean.CourseStudentBean;
 import com.yijian.clubmodule.bean.DateBean;
 import com.yijian.clubmodule.db.ClubDBManager;

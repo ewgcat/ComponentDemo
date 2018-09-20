@@ -16,9 +16,7 @@ class ClubModuleApplication : BaseApplication() {
         super.onCreate()
         instance = this
         RetrofitClient.init(this)
-
         ClubDBManager.init(this)
-
     }
 
 

@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijian.clubmodule.R;
-import com.yijian.clubmodule.application.ClubModuleApplication;
+
 import com.yijian.clubmodule.bean.ViperDetailBean;
 import com.yijian.clubmodule.ui.permission.PermissionUtils;
 

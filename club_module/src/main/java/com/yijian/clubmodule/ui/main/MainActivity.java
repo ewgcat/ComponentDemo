@@ -12,13 +12,14 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yijian.clubmodule.R;
-import com.yijian.clubmodule.application.ClubModuleApplication;
+
 import com.yijian.clubmodule.jpush.JPushTagAliasOperatorHelper;
 import com.yijian.clubmodule.jpush.bean.PushInfoBean;
 import com.yijian.clubmodule.net.requestbody.AccessStatisticsRequestBody;
 import com.yijian.clubmodule.jpush.ClearRedPointUtil;
 import com.yijian.clubmodule.ui.main.message.MessageFragment;
 import com.yijian.clubmodule.ui.main.mine.MineFragment;
+import com.yijian.commonlib.application.BaseApplication;
 import com.yijian.commonlib.base.mvc.MvcBaseActivity;
 import com.yijian.clubmodule.ui.main.work.WorkFragment;
 import com.yijian.clubmodule.net.httpmanager.HttpManager;
@@ -204,7 +205,7 @@ public class MainActivity extends MvcBaseActivity implements Bottombar.OnClickBo
                 mExitTime = secondTime;
                 return true;
             } else {
-                ClubModuleApplication.instance.exitApp();
+             BaseApplication.instance.exitApp();
             }
         }
         return true;

@@ -74,6 +74,7 @@ public class User {
 
         this.chief = JsonUtil.getBoolean(jsonObject, "chief");
     }
+
     @Generated(hash = 2031216056)
     public User(int age, Long birthday, boolean chief, String departmentId, int faceRecognitionType, String headImg, String merchantId, String mobile, String name, int post, String postName, int role, String sex, String shopId, String token, String tokenAge, String userId) {
         this.age = age;
@@ -94,11 +95,13 @@ public class User {
         this.tokenAge = tokenAge;
         this.userId = userId;
     }
+
     @Generated(hash = 586692638)
     public User() {
     }
+
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     public void setAge(int age) {
@@ -106,15 +109,15 @@ public class User {
     }
 
     public Long getBirthday() {
-        return birthday;
+        return this.birthday;
     }
 
     public void setBirthday(Long birthday) {
         this.birthday = birthday;
     }
 
-    public boolean isChief() {
-        return chief;
+    public boolean getChief() {
+        return this.chief;
     }
 
     public void setChief(boolean chief) {
@@ -122,7 +125,7 @@ public class User {
     }
 
     public String getDepartmentId() {
-        return departmentId;
+        return this.departmentId;
     }
 
     public void setDepartmentId(String departmentId) {
@@ -130,7 +133,7 @@ public class User {
     }
 
     public int getFaceRecognitionType() {
-        return faceRecognitionType;
+        return this.faceRecognitionType;
     }
 
     public void setFaceRecognitionType(int faceRecognitionType) {
@@ -138,17 +141,15 @@ public class User {
     }
 
     public String getHeadImg() {
-        return headImg;
+        return this.headImg;
     }
 
     public void setHeadImg(String headImg) {
         this.headImg = headImg;
     }
 
-
-
     public String getMerchantId() {
-        return merchantId;
+        return this.merchantId;
     }
 
     public void setMerchantId(String merchantId) {
@@ -156,7 +157,7 @@ public class User {
     }
 
     public String getMobile() {
-        return mobile;
+        return this.mobile;
     }
 
     public void setMobile(String mobile) {
@@ -164,7 +165,7 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -172,7 +173,7 @@ public class User {
     }
 
     public int getPost() {
-        return post;
+        return this.post;
     }
 
     public void setPost(int post) {
@@ -180,7 +181,7 @@ public class User {
     }
 
     public String getPostName() {
-        return postName;
+        return this.postName;
     }
 
     public void setPostName(String postName) {
@@ -188,17 +189,15 @@ public class User {
     }
 
     public int getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(int role) {
         this.role = role;
     }
 
-  
-
     public String getSex() {
-        return sex;
+        return this.sex;
     }
 
     public void setSex(String sex) {
@@ -206,7 +205,7 @@ public class User {
     }
 
     public String getShopId() {
-        return shopId;
+        return this.shopId;
     }
 
     public void setShopId(String shopId) {
@@ -214,7 +213,7 @@ public class User {
     }
 
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     public void setToken(String token) {
@@ -222,7 +221,7 @@ public class User {
     }
 
     public String getTokenAge() {
-        return tokenAge;
+        return this.tokenAge;
     }
 
     public void setTokenAge(String tokenAge) {
@@ -230,16 +229,12 @@ public class User {
     }
 
     public String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public boolean getChief() {
-        return this.chief;
-    }
-
 
 
 

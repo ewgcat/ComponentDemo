@@ -1,4 +1,4 @@
-package com.yijian.clubmodule.jpush;
+package com.yijian.staff.jpush;
 
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.yijian.clubmodule.jpush.bean.PushInfoBean;
 import com.yijian.clubmodule.ui.course.appointcourse.AppointCourseTableActivity;
 import com.yijian.clubmodule.ui.main.MainActivity;
@@ -96,17 +97,11 @@ public class JpushMessageReceiver extends BroadcastReceiver {
                 if (jsonObject1.has("type")){
                     int type = jsonObject1.getInt("type");
                     if (type == 0) {// //属于接待消息
-                        Intent intent1 = new Intent(context, ReceptionActivity.class);
-                        context.startActivity(intent1);
+                        ARouter.getInstance().build("/test/reception").navigation();
                     }else   if (type == 1||type == 2){//约课取消约课
-                        String date= jsonObject1.getString("data");
-                        Intent intent1 = new Intent(context, AppointCourseTableActivity.class);
-                        intent1.putExtra("date",date);
-                        context.startActivity(intent1);
+                        ARouter.getInstance().build("/test/31").navigation();
                     }else   if (type>2&&type<18){//业务消息
-                        Intent intent1 = new Intent(context, MainActivity.class);
-                        intent1.putExtra("push_message",2);
-                        context.startActivity(intent1);
+                        ARouter.getInstance().build("/test/main").withInt("push_message", 2).navigation();
                     }
                 }
             } catch (JSONException e) {

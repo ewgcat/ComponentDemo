@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -33,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
+@Route(path = "/test/reception")
 public class ReceptionActivity extends MvcBaseActivity {
 
     NavigationBar navigationBar;

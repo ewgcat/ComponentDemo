@@ -1,4 +1,4 @@
-package com.yijian.clubmodule.bean;
+package com.yijian.clubmodule.db.bean;
 
 import com.yijian.commonlib.util.JsonUtil;
 
@@ -28,24 +28,18 @@ public class HuiFangTypeBean {
         this.name = JsonUtil.getString(jsonObject, "name");
     }
 
-
-
     @Generated(hash = 421963944)
     public HuiFangTypeBean(int menu, String name) {
         this.menu = menu;
         this.name = name;
     }
 
-
-
     @Generated(hash = 1337111592)
     public HuiFangTypeBean() {
     }
 
-
-
     public int getMenu() {
-        return menu;
+        return this.menu;
     }
 
     public void setMenu(int menu) {
@@ -53,10 +47,13 @@ public class HuiFangTypeBean {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
+
+
 }

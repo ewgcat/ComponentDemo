@@ -7,7 +7,7 @@ import android.view.View
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yijian.clubmodule.R
-import com.yijian.clubmodule.bean.HuiFangTypeBean
+import com.yijian.clubmodule.db.bean.HuiFangTypeBean
 import com.yijian.commonlib.base.mvc.MvcBaseActivity
 import com.yijian.clubmodule.ui.huifang.student.history.HuiFangHistoryActivity
 import com.yijian.clubmodule.ui.huifang.student.task.fragment.BaseHuiFangTaskFragment

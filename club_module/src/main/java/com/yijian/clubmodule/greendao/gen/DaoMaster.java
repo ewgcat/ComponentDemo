@@ -21,7 +21,6 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        HuiFangTypeBeanDao.createTable(db, ifNotExists);
         PrivateCourseMemberModelDao.createTable(db, ifNotExists);
         OthermodelVoDao.createTable(db, ifNotExists);
         RoleVoBeanDao.createTable(db, ifNotExists);
@@ -29,11 +28,11 @@ public class DaoMaster extends AbstractDaoMaster {
         PrivateCoachCurriculumArrangementPlanModelDao.createTable(db, ifNotExists);
         SearchKeyDao.createTable(db, ifNotExists);
         CourseStudentModelDao.createTable(db, ifNotExists);
+        HuiFangTypeBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        HuiFangTypeBeanDao.dropTable(db, ifExists);
         PrivateCourseMemberModelDao.dropTable(db, ifExists);
         OthermodelVoDao.dropTable(db, ifExists);
         RoleVoBeanDao.dropTable(db, ifExists);
@@ -41,6 +40,7 @@ public class DaoMaster extends AbstractDaoMaster {
         PrivateCoachCurriculumArrangementPlanModelDao.dropTable(db, ifExists);
         SearchKeyDao.dropTable(db, ifExists);
         CourseStudentModelDao.dropTable(db, ifExists);
+        HuiFangTypeBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -59,7 +59,6 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(HuiFangTypeBeanDao.class);
         registerDaoClass(PrivateCourseMemberModelDao.class);
         registerDaoClass(OthermodelVoDao.class);
         registerDaoClass(RoleVoBeanDao.class);
@@ -67,6 +66,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(PrivateCoachCurriculumArrangementPlanModelDao.class);
         registerDaoClass(SearchKeyDao.class);
         registerDaoClass(CourseStudentModelDao.class);
+        registerDaoClass(HuiFangTypeBeanDao.class);
     }
 
     public DaoSession newSession() {

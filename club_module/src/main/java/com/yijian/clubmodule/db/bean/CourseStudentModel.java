@@ -26,8 +26,6 @@ public class CourseStudentModel {
     private String localDate;
     private Integer weekCode;
     private String weekName;
-
-
     @Generated(hash = 767421336)
     public CourseStudentModel(Long idx, String day, String dayAlias, String localDate, Integer weekCode, String weekName) {
         this.idx = idx;
@@ -37,81 +35,44 @@ public class CourseStudentModel {
         this.weekCode = weekCode;
         this.weekName = weekName;
     }
-
-
     @Generated(hash = 876313228)
     public CourseStudentModel() {
     }
-
-
-    @Override
-    public String toString() {
-        return "CourseStudentModel{" +
-                "day='" + day + '\'' +
-                ", dayAlias='" + dayAlias + '\'' +
-                ", localDate='" + localDate + '\'' +
-                ", weekCode=" + weekCode +
-                ", weekName='" + weekName + '\'' +
-                '}';
-    }
-
-
     public Long getIdx() {
         return this.idx;
     }
-
-
     public void setIdx(Long idx) {
         this.idx = idx;
     }
-
-
     public String getDay() {
         return this.day;
     }
-
-
     public void setDay(String day) {
         this.day = day;
     }
-
-
     public String getDayAlias() {
         return this.dayAlias;
     }
-
-
     public void setDayAlias(String dayAlias) {
         this.dayAlias = dayAlias;
     }
-
-
     public String getLocalDate() {
         return this.localDate;
     }
-
-
     public void setLocalDate(String localDate) {
         this.localDate = localDate;
     }
-
-
     public Integer getWeekCode() {
         return this.weekCode;
     }
-
-
     public void setWeekCode(Integer weekCode) {
         this.weekCode = weekCode;
     }
-
-
     public String getWeekName() {
         return this.weekName;
     }
-
-
     public void setWeekName(String weekName) {
         this.weekName = weekName;
     }
+
 }

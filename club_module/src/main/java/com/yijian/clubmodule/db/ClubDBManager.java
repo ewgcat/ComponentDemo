@@ -7,7 +7,7 @@ import android.text.TextUtils;
 
 import com.yijian.commonlib.db.DBManager;
 import com.yijian.clubmodule.bean.CourseStudentBean;
-import com.yijian.clubmodule.bean.HuiFangTypeBean;
+import com.yijian.clubmodule.db.bean.HuiFangTypeBean;
 import com.yijian.clubmodule.db.bean.CourseStudentModel;
 import com.yijian.clubmodule.db.bean.OthermodelVo;
 import com.yijian.clubmodule.db.bean.PrivateCoachCourseModel;

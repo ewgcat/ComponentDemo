@@ -100,4 +100,7 @@ public class OthermodelVo {
         this.reception = reception;
     }
 
+
+
+
 }

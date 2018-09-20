@@ -68,26 +68,12 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
 
-        <!-- arouter 路由过滤 -->
-        <activity android:name="com.yijian.commonlib.schamefilter.SchameFilterActivity">
 
-            <!-- Schame -->
-            <intent-filter>
-                <data
-                    android:host="m.aliyun.com"
-                    android:scheme="arouter" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
-        </activity>
 
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
         <receiver
-            android:name="com.yijian.clubmodule.jpush.JpushMessageReceiver"
+            android:name=".jpush.JpushMessageReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

@@ -23,6 +23,10 @@ android {
     buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId rootProject.applicationId
+        }
+
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode rootProject.versionCode

@@ -206,6 +206,10 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
+        classJieShu = -1;
+        price = -1;
+        classYouXiaoQi = -1;
+
     }
 
 
@@ -217,6 +221,9 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         tvClassJieshu1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvClassJieshu2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvClassJieshu3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvClassJieshu1.setCompoundDrawables(null, null, null, null);
+        tvClassJieshu2.setCompoundDrawables(null, null, null, null);
+        tvClassJieshu3.setCompoundDrawables(null, null, null, null);
     }
 
     private void resetPrice(){
@@ -229,6 +236,11 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         tvPrice2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvPrice3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvPrice4.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvPrice1.setCompoundDrawables(null, null, null, null);
+        tvPrice2.setCompoundDrawables(null, null, null, null);
+        tvPrice3.setCompoundDrawables(null, null, null, null);
+        tvPrice4.setCompoundDrawables(null, null, null, null);
+
     }
 
     private void resetValidity(){
@@ -239,6 +251,9 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         tvYouxiaoqi1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvYouxiaoqi2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
         tvYouxiaoqi3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYouxiaoqi1.setCompoundDrawables(null, null, null, null);
+        tvYouxiaoqi2.setCompoundDrawables(null, null, null, null);
+        tvYouxiaoqi3.setCompoundDrawables(null, null, null, null);
     }
 
     private void resetView() {

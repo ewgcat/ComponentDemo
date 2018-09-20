@@ -277,7 +277,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
         } else if (i1 == R.id.tv_chuzhi_card) {
 
-            if("1".equals(conditionBody.getCardType())){
+            if("2".equals(conditionBody.getCardType())){
                 resetCardType();
                 conditionBody.setCardType(null);
             }else{
@@ -289,7 +289,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
         } else if (i1 == R.id.tv_huiyuan_card) {
 
-            if("1".equals(conditionBody.getCardType())){
+            if("3".equals(conditionBody.getCardType())){
                 resetCardType();
                 conditionBody.setCardType(null);
             }else{
@@ -301,6 +301,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
         } else if (i1 == R.id.tv_price1) {
             if(priceFlag == 0){
+                priceFlag = -1;
                 resetPriseStyle();
                 conditionBody.setStartPrice(null);
                 conditionBody.setEndPrice(null);
@@ -316,6 +317,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         } else if (i1 == R.id.tv_price2) {
 
             if(priceFlag == 1){
+                priceFlag = -1;
                 resetPriseStyle();
                 conditionBody.setStartPrice(null);
                 conditionBody.setEndPrice(null);
@@ -330,6 +332,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         } else if (i1 == R.id.tv_price3) {
 
             if(priceFlag == 2){
+                priceFlag = -1;
                 resetPriseStyle();
                 conditionBody.setStartPrice(null);
                 conditionBody.setEndPrice(null);
@@ -344,6 +347,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         } else if (i1 == R.id.tv_price4) {
 
             if(priceFlag == 3){
+                priceFlag = -1;
                 resetPriseStyle();
                 conditionBody.setStartPrice(null);
                 conditionBody.setEndPrice(null);

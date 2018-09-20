@@ -80,6 +80,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
                         resetSelectState();
                         venueBean.setSelect(true);
                         if (lisenter != null) lisenter.onVenueClick(position, venueBean);
+                        positionFlag = position;
                     }
 
 

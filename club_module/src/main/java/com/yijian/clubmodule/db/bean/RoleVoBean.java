@@ -35,4 +35,59 @@ public  class RoleVoBean {
     }
 
 
+    @Generated(hash = 1607978983)
+    public RoleVoBean(int classification, String roleCode, String roleId,
+            String roleName) {
+        this.classification = classification;
+        this.roleCode = roleCode;
+        this.roleId = roleId;
+        this.roleName = roleName;
+    }
+
+
+    @Generated(hash = 1692024802)
+    public RoleVoBean() {
+    }
+
+
+    public int getClassification() {
+        return this.classification;
+    }
+
+
+    public void setClassification(int classification) {
+        this.classification = classification;
+    }
+
+
+    public String getRoleCode() {
+        return this.roleCode;
+    }
+
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
+
+
+    public String getRoleId() {
+        return this.roleId;
+    }
+
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+
+    public String getRoleName() {
+        return this.roleName;
+    }
+
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+
 }

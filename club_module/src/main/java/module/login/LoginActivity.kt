@@ -43,6 +43,8 @@ class LoginActivity : MvcBaseActivity(), AndroidAdjustResizeBugFix.CallKeyBoardS
     internal lateinit var rel_container: RelativeLayout
     private var containerHeight: Float = 0F
     private var difference: Float = 0F
+    private val TAG = LoginActivity::class.java.simpleName
+
     override fun getLayoutID(): Int {
         return R.layout.activity_login
     }
@@ -90,12 +92,6 @@ class LoginActivity : MvcBaseActivity(), AndroidAdjustResizeBugFix.CallKeyBoardS
     }
 
 
-    private fun jumpToForgetPassword() {
-        val account = etAccount.text.toString()
-        val intent = Intent(this@LoginActivity, ForgetPasswordActivity::class.java)
-        intent.putExtra("account", account)
-        startActivity(intent)
-    }
 
     private fun login() {
         val account = etAccount.text.toString()
@@ -168,9 +164,4 @@ class LoginActivity : MvcBaseActivity(), AndroidAdjustResizeBugFix.CallKeyBoardS
         }
     }
 
-    companion object {
-
-
-        private val TAG = LoginActivity::class.java.simpleName
-    }
 }

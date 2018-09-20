@@ -23,11 +23,11 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
     TextView tvBirthday;
     TextView tvBirthdayType;
     TextView tvAge;
-    TextView tvXiaoFeiTotal;
+//    TextView tvXiaoFeiTotal;
     TextView tvFuwuHuiji;
     TextView tvFuwuJiaolian;
     RecyclerView rv_sijiao_class;
-    LinearLayout rlSijiaoClass;
+    TextView tv_sijiao_class;
     TextView tvRecentFitNessTime;
     TextView deadLine;
 
@@ -40,11 +40,11 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
         tvAge = itemView.findViewById(R.id.tv_age);
 
         deadLine = itemView.findViewById(R.id.tv_deadline);
-        tvXiaoFeiTotal = itemView.findViewById(R.id.tv_xiao_fei_total);
+//        tvXiaoFeiTotal = itemView.findViewById(R.id.tv_xiao_fei_total);
+        tv_sijiao_class = itemView.findViewById(R.id.tv_sijiao_class);
         tvFuwuHuiji = itemView.findViewById(R.id.tv_fuwu_huiji);
         tvFuwuJiaolian = itemView.findViewById(R.id.tv_fuwu_jiaolian);
         rv_sijiao_class = itemView.findViewById(R.id.rv_sijiao_class);
-        rlSijiaoClass = itemView.findViewById(R.id.rl_sijiao_class);
         tvRecentFitNessTime = itemView.findViewById(R.id.tv_recent_fitness_time);
 
     }
@@ -83,7 +83,7 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
         }
 
 
-        tvXiaoFeiTotal.setText(judgeNull(viperDetailBean.getTotalConsumption()) + " 元");
+//        tvXiaoFeiTotal.setText(judgeNull(viperDetailBean.getTotalConsumption()) + " 元");
         ViperDetailBean.CustomerServiceInfoBean customerServiceInfoBean = viperDetailBean.getCustomerServiceInfo();
         if (customerServiceInfoBean == null) return;
         tvFuwuHuiji.setText(judgeNull(customerServiceInfoBean.getServiceSale()));
@@ -91,7 +91,8 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
         List<String> privateCourses = customerServiceInfoBean.getPrivateCourses();
 
         if (privateCourses != null && privateCourses.size() > 0) {
-            rlSijiaoClass.setVisibility(View.VISIBLE);
+            rv_sijiao_class.setVisibility(View.VISIBLE);
+            tv_sijiao_class.setVisibility(View.GONE);
             StringListAdapter stringListAdapter = new StringListAdapter(privateCourses);
 
             final LinearLayoutManager layoutManager = new LinearLayoutManager(rv_sijiao_class.getContext());
@@ -108,7 +109,8 @@ public class VipTypeTwoViewHolder extends BaseVipperViewHolder {
 //                }
 //            }
         } else {
-            rlSijiaoClass.setVisibility(View.GONE);
+            rv_sijiao_class.setVisibility(View.GONE);
+            tv_sijiao_class.setVisibility(View.VISIBLE);
         }
 
 

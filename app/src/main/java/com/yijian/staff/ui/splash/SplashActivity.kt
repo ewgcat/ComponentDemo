@@ -16,6 +16,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.tbruyelle.rxpermissions2.Permission
 
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.yijian.commonlib.application.BaseApplication
 
 import com.yijian.staff.application.CustomApplication
 import com.yijian.commonlib.db.DBManager
@@ -180,7 +181,7 @@ class SplashActivity : MvcBaseActivity() {
                 mExitTime = secondTime
                 return true
             } else {
-                CustomApplication.instance.exitApp()
+                BaseApplication.instance.exitApp()
             }
         }
         return true

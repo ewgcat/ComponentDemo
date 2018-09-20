@@ -43,7 +43,7 @@ public class InvitationRecordAdatper extends RecyclerView.Adapter<InvitationReco
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         InvitationRecordBean invitationRecordBean = invitationRecordBeanList.get(position);
-        ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl()+invitationRecordBean.getHeadPath(), context, holder.iv_header);
+        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl()+invitationRecordBean.getHeadPath(), context, holder.iv_header);
         int medalType = invitationRecordBean.getMedalType();
         if (medalType==0){
 

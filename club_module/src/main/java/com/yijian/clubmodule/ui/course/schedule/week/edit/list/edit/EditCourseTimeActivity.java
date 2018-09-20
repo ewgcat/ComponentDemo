@@ -99,7 +99,7 @@ public class EditCourseTimeActivity extends MvcBaseActivity implements View.OnCl
         if (courseStudentBean != null) {
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseStudentBean.getPrivateCourseMemberVO();
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseStudentBean.getPrivateCoachCourseVO();
-            ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl() + privateCourseMemberVO.getHeadPath(), this, ivHeader);
+            ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + privateCourseMemberVO.getHeadPath(), this, ivHeader);
             int resId = privateCourseMemberVO.getMemberSex() == 1 ? R.mipmap.lg_man : R.mipmap.lg_women;
             ImageLoader.setImageResource(resId, this, ivSex);
             tvName.setText(privateCourseMemberVO.getMemberName());

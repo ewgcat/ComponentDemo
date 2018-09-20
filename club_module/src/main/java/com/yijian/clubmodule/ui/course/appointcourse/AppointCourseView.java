@@ -130,7 +130,7 @@ public class AppointCourseView extends FrameLayout {
             TextView tv_course_name = view.findViewById(R.id.tv_course_name);
             TextView tv_course_status = view.findViewById(R.id.tv_course_status);
             LinearLayout ll_content = view.findViewById(R.id.ll_content);
-            ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl() + appointCourseBean.getHeadPath(), view.getContext(), iv_header);
+            ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + appointCourseBean.getHeadPath(), view.getContext(), iv_header);
             tv_name.setText(appointCourseBean.getMemberName());
             String memberCourseName = appointCourseBean.getMemberCourseName();
             tv_course_name.setText("私教课: "+memberCourseName);

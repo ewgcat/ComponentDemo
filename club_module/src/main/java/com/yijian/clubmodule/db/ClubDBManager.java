@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ClubDBManager extends DBManager {
+public class ClubDBManager  {
     private final static String TAG = "ClubDBManager";
     private static ClubDBManager mInstance;
     private final static String dbName = "club_db";
@@ -43,8 +43,6 @@ public class ClubDBManager extends DBManager {
 
 
     public ClubDBManager(Context context) {
-        super(context);
-
         openHelper = new MySQLiteOpenHelper(context, dbName, null);
         db = openHelper.getWritableDatabase();
         mDaoMaster = new DaoMaster(db);

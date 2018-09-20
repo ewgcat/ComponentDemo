@@ -15,6 +15,7 @@ class CustomApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         RetrofitClient.init(this)
+        ClubDBManager.init(this)
     }
 
 

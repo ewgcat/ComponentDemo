@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rel_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="168dp"
+                android:layout_height="123.5dp"
+                android:src="@mipmap/logo"
+                />
+
+        </LinearLayout>
+
+
+        <com.yijian.commonlib.widget.TableView
+            android:id="@+id/tab_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:textSelectColor="#FFFFFF"
+            app:textNormalColor="#95D0FC"
+            app:curssorColor="#FFFFFF"
+            app:paddingLeft="20"
+            app:paddingRight="20"
+            app:textTabSize="20"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/zhanghao"/>
+
+                <EditText
+                    android:id="@+id/et_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="请输入账号"
+                    android:background="@null"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColorHint="@color/white"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/white"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+            <View
+                style="@style/SplitLineStyle"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/mima"/>
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="请输入账号密码"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/white"
+                    android:textCursorDrawable="@null"
+                    android:paddingRight="10dp"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+            <View
+                style="@style/SplitLineStyle"
+                />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/forget_password"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:text="忘记密码？"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ll_login"
+            android:layout_width="285dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/login_button_bg"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="登录"
+                android:textColor="@color/blue"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

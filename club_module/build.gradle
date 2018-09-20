@@ -25,6 +25,12 @@ android {
     defaultConfig {
         if (isModule.toBoolean()) {
             applicationId "com.yijian.clubmodule"
+            manifestPlaceholders = [
+                    JPUSH_PKGNAME: applicationId,
+                    JPUSH_APPKEY : "0633251c7577933569229449", //JPush上注册的包名对应的appkey.
+                    JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+            ]
+
         }
 
         minSdkVersion rootProject.minSdkVersion
@@ -61,16 +67,33 @@ android {
                 arg("moduleName", project.getName())
             }
         }
-        kapt {
-            arguments {
-                arg("moduleName", project.getName())
-            }
-        }
+
     
     }
 
 
-
+    productFlavors {
+        dev {
+            buildConfigField "String", "HOST", "\"$dev_host\""
+            buildConfigField "String", "FILE_HOST", "\"$dev_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$h5_dev_host\""
+        }
+        prod {
+            buildConfigField "String", "HOST", "\"$prod_host\""
+            buildConfigField "String", "FILE_HOST", "\"$prod_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$h5_prod_host\""
+        }
+        train {
+            buildConfigField "String", "HOST", "\"$train_host\""
+            buildConfigField "String", "FILE_HOST", "\"$train_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$train_file_host\""
+        }
+        sittest {
+            buildConfigField "String", "HOST", "\"$test_host\""
+            buildConfigField "String", "FILE_HOST", "\"$test_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$h5_test_host\""
+        }
+    }
 
 
     compileOptions {
@@ -88,19 +111,11 @@ greendao {
 }
 dependencies {
 
-    //network
-
     api project(':indicatorseekbar')
     api project(':commonlib')
-
-    kapt 'com.github.bumptech.glide:compiler:4.7.1'
-    kapt 'com.alibaba:arouter-compiler:1.1.4'
-
-
-    //kotlin
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-
     api 'io.fotoapparat:facedetector:1.0.0'
     api 'io.fotoapparat.fotoapparat:library:1.2.0'
 
+    kapt 'com.github.bumptech.glide:compiler:4.7.1'
+    kapt 'com.alibaba:arouter-compiler:1.1.4'
 }

@@ -3,6 +3,7 @@ package com.yijian.clubmodule.net.httpmanager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
+import com.yijian.clubmodule.net.requestbody.login.LoginRequestBody;
 import com.yijian.commonlib.db.DBManager;
 import com.yijian.commonlib.db.bean.User;
 import com.yijian.commonlib.net.retrofit.RetrofitClient;
@@ -214,7 +215,11 @@ public class HttpManager {
 
 
 
-  
+    //登陆
+    public static void postLogin(LoginRequestBody loginRequestBody, Observer<JSONObject> observer) {
+        Observable<JSONObject> loginObservable = apiService.login(SharePreferenceUtil.getHostUrl() + LOGIN_URL, loginRequestBody);
+        execute(loginObservable, observer);
+    }
 
     //访问
     public static void postAccessStatistics(AccessStatisticsRequestBody accessStatisticsRequestBody, Observer<JSONObject> observer) {

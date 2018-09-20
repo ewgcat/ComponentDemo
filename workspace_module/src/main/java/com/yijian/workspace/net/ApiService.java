@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import module.LoginRequestBody;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
@@ -114,6 +115,10 @@ public interface ApiService {
 
 
 
+    //登录
+    @Headers({"Content-type: application/json", "Accept: */*"})
+    @POST
+    Observable<JSONObject> login(@Url String url, @Body LoginRequestBody loginRequest);
 
     /** 完美围度 **/
     @Headers({"Content-type: application/json", "Accept: */*"})

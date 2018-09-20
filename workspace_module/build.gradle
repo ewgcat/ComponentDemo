@@ -15,11 +15,27 @@ android {
     defaultConfig {
         if (isModule.toBoolean()) {
             applicationId "com.yijian.workspace"
+            manifestPlaceholders = [
+                    JPUSH_PKGNAME: applicationId,
+                    JPUSH_APPKEY : "0633251c7577933569229449", //JPush上注册的包名对应的appkey.
+                    JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+            ]
         }
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+        flavorDimensions '' + rootProject.versionCode
+        resConfigs "zh"
+        multiDexEnabled true
+
+        //使用renderscript 兼容包
+        renderscriptTargetApi 25
+        renderscriptSupportModeEnabled true
+
+        vectorDrawables.useSupportLibrary true
+        javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
+
         sourceSets {
             main {
                 if (isModule.toBoolean()) {
@@ -39,14 +55,38 @@ android {
                 arg("moduleName", project.getName())
             }
         }
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+
+
     }
 
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
+        dev {
+            buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_dev_host\""
+            buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_dev_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$h5_dev_host\""
+        }
+        prod {
+            buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_prod_host\""
+            buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_prod_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$h5_prod_host\""
+        }
+        train {
+            buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_train_host\""
+            buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_train_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$h5_train_host\""
+        }
+        sittest {
+            buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_test_host\""
+            buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_test_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$h5_test_host\""
+        }
+    }
 }
 
 dependencies {

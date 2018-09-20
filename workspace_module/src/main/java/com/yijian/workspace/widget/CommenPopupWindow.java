@@ -12,6 +12,8 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 
+import com.yijian.workspace.R;
+
 public class CommenPopupWindow extends PopupWindow {
 
     private View mMenuView;

@@ -3,6 +3,7 @@ package com.yijian.workspace.dynamic_assessment;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 
 import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
@@ -30,8 +31,9 @@ public class DynamicFragment2 extends BaseSpaceFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initIdRes() {
-        dynamic_translate = findView(R.id.dynamic_translate);
-        dynamic_rotate = findView(R.id.dynamic_rotate);
+        View rootView=getRootView();
+        dynamic_translate = rootView.findViewById(R.id.dynamic_translate);
+        dynamic_rotate = rootView.findViewById(R.id.dynamic_rotate);
         List<String> translateList = new ArrayList<>();
         translateList.add("前进");
         translateList.add("后退");

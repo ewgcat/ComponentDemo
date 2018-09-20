@@ -155,5 +155,5 @@ dependencies {
 
 
     compile project(path: ':club_module')
-//    compile project(path: ':workspace')
+    compile project(path: ':workspace_module')
 }

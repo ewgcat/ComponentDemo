@@ -15,10 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
+import com.yijian.commonlib.net.response.ResultStringObserver;
 import com.yijian.commonlib.util.DensityUtil;
+import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.bean.DynamicRequestBody;
 import com.yijian.workspace.commen.ShareTestActivity;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.widget.CommenPopupWindow;
 import com.yijian.workspace.R;
@@ -32,7 +37,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DynamicAssessmentActivity extends MvcBaseActivity {
+public class DynamicAssessmentActivity extends MvcBaseActivity implements View.OnClickListener {
 
     private final String tag1 = "com.yijian.workspace.dynamic_assessment.DynamicFragment1";
     private final String tag2 = "com.yijian.workspace.dynamic_assessment.DynamicFragment2";
@@ -57,43 +62,23 @@ public class DynamicAssessmentActivity extends MvcBaseActivity {
     private String[] tags = new String[]{tag1, tag2, tag3, tag4, tag5, tag6, tag7};
     private DynamicRequestBody dynamicRequestBody;
 
-    @BindView(R. id.btn_next)
     Button btn_next;
-    @BindView(R. id.lin_next)
     LinearLayout lin_next;
-    @BindView(R. id.progress_bar)
     ProgressBar progress_bar;
-    @BindView(R. id.line_progress)
-    LinearLayout line_progress;
-    @BindView(R. id.iv_1)
     ImageView iv_1;
-    @BindView(R. id.iv_2)
     ImageView iv_2;
-    @BindView(R. id.iv_3)
     ImageView iv_3;
-    @BindView(R. id.iv_4)
     ImageView iv_4;
-    @BindView(R. id.iv_5)
     ImageView iv_5;
-    @BindView(R. id.iv_6)
     ImageView iv_6;
-    @BindView(R. id.iv_7)
     ImageView iv_7;
-    @BindView(R. id.lin_step1)
     LinearLayout lin_step1;
-    @BindView(R. id.lin_step2)
     LinearLayout lin_step2;
-    @BindView(R. id.lin_step3)
     LinearLayout lin_step3;
-    @BindView(R. id.lin_step4)
     LinearLayout lin_step4;
-    @BindView(R. id.lin_step5)
     LinearLayout lin_step5;
-    @BindView(R. id.lin_step6)
     LinearLayout lin_step6;
-    @BindView(R. id.lin_step7)
     LinearLayout lin_step7;
-    @BindView(R. id.dynamic_top_step)
     HorizontalScrollView dynamic_top_step;
     private int progresBase;
     private int ivWidth;
@@ -115,6 +100,30 @@ public class DynamicAssessmentActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+
+
+
+
+        btn_next = findViewById(R.id.btn_next);
+        lin_next = findViewById(R.id.lin_next);
+        progress_bar = findViewById(R.id.progress_bar);
+        iv_1 = findViewById(R.id.iv_1);
+        iv_2 = findViewById(R.id.iv_2);
+        iv_3 = findViewById(R.id.iv_3);
+        iv_4 = findViewById(R.id.iv_4);
+        iv_5 = findViewById(R.id.iv_5);
+        iv_6 = findViewById(R.id.iv_6);
+        iv_7 = findViewById(R.id.iv_7);
+        lin_step1 = findViewById(R.id.lin_step1);
+        lin_step2 = findViewById(R.id.lin_step2);
+        lin_step3 = findViewById(R.id.lin_step3);
+        lin_step4 = findViewById(R.id.lin_step4);
+        lin_step5 = findViewById(R.id.lin_step5);
+        lin_step6 = findViewById(R.id.lin_step6);
+        lin_step7 = findViewById(R.id.lin_step7);
+        dynamic_top_step = findViewById(R.id.dynamic_top_step);
+        findViewById(R.id.right_tv).setOnClickListener(this);
+        findViewById(R.id.btn_next).setOnClickListener(this);
         initTitle();
         initUi();
         initData();
@@ -238,14 +247,14 @@ public class DynamicAssessmentActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("动作评估");
-        navigationBar2.hideLeftSecondIv();
-        rightTv = navigationBar2.getmRightTv();
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("动作评估");
+        navigationBar.hideLeftSecondIv();
+        rightTv = navigationBar.getmRightTv();
         rightTv.setText("上一步");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
         rightTv.setVisibility(View.GONE);
-        navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
+        navigationBar.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (popupWindow == null) {
@@ -269,81 +278,6 @@ public class DynamicAssessmentActivity extends MvcBaseActivity {
 
     private void initData() {
         ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag1, editActionObservable, tags);
-    }
-
-
-    @OnClick({R.id.right_tv, R.id.btn_next})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_next: //下一步
-                switch (currentIndex) {
-                    case 0:
-                        observerMap.put("type", STEP1);
-                        break;
-                    case 1:
-                        observerMap.put("type", STEP2);
-                        break;
-                    case 2:
-                        observerMap.put("type", STEP3);
-                        break;
-                    case 3:
-                        observerMap.put("type", STEP4);
-                        break;
-                    case 4:
-                        observerMap.put("type", STEP5);
-                        break;
-                    case 5:
-                        observerMap.put("type", STEP6);
-                        break;
-                    case 6:
-                        observerMap.put("type", STEP7);
-                        break;
-                    default:
-                }
-                editActionObservable.notifyObservers(observerMap);
-                break;
-
-            case R.id.right_tv: //上一步
-                if (currentIndex > 0) {
-                    currentIndex--;
-                }
-                if (currentIndex == 0) {
-                    rightTv.setVisibility(View.GONE);
-                    lin_next.setVisibility(View.VISIBLE);
-                    btn_next.setText("下一步");
-                    ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag1, editActionObservable, tags);
-                } else if (currentIndex == 1) {
-                    rightTv.setVisibility(View.VISIBLE);
-                    lin_next.setVisibility(View.VISIBLE);
-                    btn_next.setText("下一步");
-                    ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag2, editActionObservable, tags);
-                } else if (currentIndex == 2) {
-                    rightTv.setVisibility(View.VISIBLE);
-                    lin_next.setVisibility(View.VISIBLE);
-                    btn_next.setText("下一步");
-                    ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag3, editActionObservable, tags);
-                } else if (currentIndex == 3) {
-                    rightTv.setVisibility(View.VISIBLE);
-                    lin_next.setVisibility(View.VISIBLE);
-                    btn_next.setText("下一步");
-                    ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag4, editActionObservable, tags);
-                } else if (currentIndex == 4) {
-                    rightTv.setVisibility(View.VISIBLE);
-                    lin_next.setVisibility(View.VISIBLE);
-                    btn_next.setText("下一步");
-                    ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag5, editActionObservable, tags);
-
-                } else if (currentIndex == 5) {
-                    rightTv.setVisibility(View.VISIBLE);
-                    lin_next.setVisibility(View.VISIBLE);
-                    btn_next.setText("下一步");
-                    ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag6, editActionObservable, tags);
-                }
-                setStep(currentIndex, false);
-                break;
-            default:
-
-        }
     }
 
 
@@ -534,6 +468,78 @@ public class DynamicAssessmentActivity extends MvcBaseActivity {
         }
         observerMap.put("type", STEP7_IMG);
         editActionObservable.notifyObservers(observerMap);
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.btn_next) {
+            switch (currentIndex) {
+                case 0:
+                    observerMap.put("type", STEP1);
+                    break;
+                case 1:
+                    observerMap.put("type", STEP2);
+                    break;
+                case 2:
+                    observerMap.put("type", STEP3);
+                    break;
+                case 3:
+                    observerMap.put("type", STEP4);
+                    break;
+                case 4:
+                    observerMap.put("type", STEP5);
+                    break;
+                case 5:
+                    observerMap.put("type", STEP6);
+                    break;
+                case 6:
+                    observerMap.put("type", STEP7);
+                    break;
+                default:
+            }
+            editActionObservable.notifyObservers(observerMap);
+
+        } else if (i == R.id.right_tv) {
+            if (currentIndex > 0) {
+                currentIndex--;
+            }
+            if (currentIndex == 0) {
+                rightTv.setVisibility(View.GONE);
+                lin_next.setVisibility(View.VISIBLE);
+                btn_next.setText("下一步");
+                ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag1, editActionObservable, tags);
+            } else if (currentIndex == 1) {
+                rightTv.setVisibility(View.VISIBLE);
+                lin_next.setVisibility(View.VISIBLE);
+                btn_next.setText("下一步");
+                ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag2, editActionObservable, tags);
+            } else if (currentIndex == 2) {
+                rightTv.setVisibility(View.VISIBLE);
+                lin_next.setVisibility(View.VISIBLE);
+                btn_next.setText("下一步");
+                ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag3, editActionObservable, tags);
+            } else if (currentIndex == 3) {
+                rightTv.setVisibility(View.VISIBLE);
+                lin_next.setVisibility(View.VISIBLE);
+                btn_next.setText("下一步");
+                ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag4, editActionObservable, tags);
+            } else if (currentIndex == 4) {
+                rightTv.setVisibility(View.VISIBLE);
+                lin_next.setVisibility(View.VISIBLE);
+                btn_next.setText("下一步");
+                ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag5, editActionObservable, tags);
+
+            } else if (currentIndex == 5) {
+                rightTv.setVisibility(View.VISIBLE);
+                lin_next.setVisibility(View.VISIBLE);
+                btn_next.setText("下一步");
+                ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_dynamic, tag6, editActionObservable, tags);
+            }
+            setStep(currentIndex, false);
+
+        } else {
+        }
     }
 
 }

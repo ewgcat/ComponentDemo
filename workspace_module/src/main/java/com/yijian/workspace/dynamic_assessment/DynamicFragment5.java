@@ -3,7 +3,9 @@ package com.yijian.workspace.dynamic_assessment;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 
 import java.util.ArrayList;
@@ -41,9 +43,11 @@ public class DynamicFragment5 extends BaseSpaceFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initIdRes() {
-        dynamic_positive_leftknee = findView(R.id.dynamic_positive_leftknee);
-        dynamic_positive_rightknee = findView(R.id.dynamic_positive_rightknee);
-        dynamic_positive_jian = findView(R.id.dynamic_positive_jian);
+        View rootView=getRootView();
+
+        dynamic_positive_leftknee = rootView.findViewById(R.id.dynamic_positive_leftknee);
+        dynamic_positive_rightknee = rootView.findViewById(R.id.dynamic_positive_rightknee);
+        dynamic_positive_jian = rootView.findViewById(R.id.dynamic_positive_jian);
         List<String> list_dynamic_positive_leftknee = new ArrayList<>();
         list_dynamic_positive_leftknee.add("内扣");
         list_dynamic_positive_leftknee.add("外翻");
@@ -57,8 +61,8 @@ public class DynamicFragment5 extends BaseSpaceFragment {
         list_dynamic_positive_jian.add("右肩偏高");
         dynamic_positive_jian.createChekTab(list_dynamic_positive_jian);
 
-        dynamic_side_yao_pg = findView(R.id.dynamic_side_yao_pg);
-        dynamic_side_yao_fb = findView(R.id.dynamic_side_yao_fb);
+        dynamic_side_yao_pg = rootView.findViewById(R.id.dynamic_side_yao_pg);
+        dynamic_side_yao_fb = rootView.findViewById(R.id.dynamic_side_yao_fb);
         List<String> list_dynamic_side_yao_pg = new ArrayList<>();
         list_dynamic_side_yao_pg.add("后倾");
         dynamic_side_yao_pg.createChekTab(list_dynamic_side_yao_pg);
@@ -66,8 +70,8 @@ public class DynamicFragment5 extends BaseSpaceFragment {
         list_dynamic_side_yao_fb.add("突出");
         dynamic_side_yao_fb.createChekTab(list_dynamic_side_yao_fb);
 
-        dynamic_bg_translate = findView(R.id.dynamic_bg_translate);
-        dynamic_bg_yb = findView(R.id.dynamic_bg_yb);
+        dynamic_bg_translate = rootView.findViewById(R.id.dynamic_bg_translate);
+        dynamic_bg_yb = rootView.findViewById(R.id.dynamic_bg_yb);
         List<String> list_dynamic_bg_translate = new ArrayList<>();
         list_dynamic_bg_translate.add("向左");
         list_dynamic_bg_translate.add("向右");

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.utils.ActivityUtils;
 
@@ -30,9 +31,11 @@ public class DynamicFragment7 extends BaseSpaceFragment {
 
     @Override
     public void initView() {
-        iv_result = findView(R.id.iv_result);
-        tv_take_picture = findView(R.id.tv_take_picture);
-        tv_take_finish = findView(R.id.tv_take_finish);
+        View rootView=getRootView();
+
+        iv_result = rootView.findViewById(R.id.iv_result);
+        tv_take_picture = rootView.findViewById(R.id.tv_take_picture);
+        tv_take_finish = rootView.findViewById(R.id.tv_take_finish);
         tv_take_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,10 +78,10 @@ public class DynamicFragment7 extends BaseSpaceFragment {
             File file = new File(dynamicAssessmentActivity.getCacheDir() + "/img_dynamic.jpg");
             //若该文件存在
             if (file.exists()) {
-                Bitmap bitmap= BitmapFactory.decodeFile(dynamicAssessmentActivity.getCacheDir() + "/img_dynamic.jpg");
+                final Bitmap bitmap= BitmapFactory.decodeFile(dynamicAssessmentActivity.getCacheDir() + "/img_dynamic.jpg");
                 float bWidth = bitmap.getWidth();
                 float bHeight = bitmap.getHeight();
-                float scale = bWidth / bHeight;
+                final float scale = bWidth / bHeight;
                 iv_result.post(new Runnable() {
                     @Override
                     public void run() {

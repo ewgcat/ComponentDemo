@@ -15,6 +15,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.yijian.workspace.R;
+
 public class GyroscopeView extends View {
 
     private Paint mPaint;

@@ -66,7 +66,7 @@ public final class JavaScriptInterface {
 	}
 
 	@JavascriptInterface
-	public void returnShareUrl(String shareUrl){
+	public void returnShareUrl(final String shareUrl){
 		mHandler.post(new Runnable() {
 			@Override
 			public void run() {

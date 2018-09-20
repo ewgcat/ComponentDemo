@@ -14,6 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yijian.workspace.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +106,7 @@ public class TableView extends LinearLayout {
                     ObjectAnimator objectAnimator1 = ObjectAnimator.ofPropertyValuesHolder(tvList.get(i), holder_large_x, holder_large_y);
                     objectAnimator1.start();
                     tvList.get(i).setTextColor(textSelectColor);
-                    int finalI = i;
+                    final int finalI = i;
                     tvList.get(i).post(new Runnable() {
                         @Override
                         public void run() {

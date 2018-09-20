@@ -10,7 +10,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.widget.NavigationBar;
+import com.yijian.workspace.R;
 import com.yijian.workspace.bean.StaticRequestBody;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.utils.StreamUtils;
@@ -20,21 +26,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.List;
 
-public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop {
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
 
-    @BindView(R. id.iv_pendding)
+public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop, View.OnClickListener {
+
     ImageView iv_pendding;
-    @BindView(R. id.iv_sample)
     ImageView iv_sample;
-    @BindView(R. id.iv_crop)
     ImageView iv_crop;
-    @BindView(R. id.rel_container)
     RelativeLayout rel_container;
-    @BindView(R. id.pointView_positive)
     DragPointView pointView_positive;
-    @BindView(R. id.pointView_side)
     SideDragPointView pointView_side;
-    @BindView(R. id.controlview)
     ControlView controlview;
     private int type;
     private int maxWidth, maxHeight; //最大宽高
@@ -47,6 +48,19 @@ public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+
+
+
+        iv_pendding = findViewById(R.id.iv_pendding);
+        iv_sample = findViewById(R.id.iv_sample);
+        iv_crop = findViewById(R.id.iv_crop);
+        rel_container = findViewById(R.id.rel_container);
+        pointView_positive = findViewById(R.id.pointView_positive);
+        pointView_side = findViewById(R.id.pointView_side);
+        controlview = findViewById(R.id.controlview);
+
+
+        findViewById(R.id.right_tv).setOnClickListener(this);
         Bundle bundle = getIntent().getExtras();
         type = bundle.getInt("type");
         pointView_positive.setVisibility(type == 0 ? View.VISIBLE : View.GONE);
@@ -57,7 +71,10 @@ public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop
             controlview.setListener(pointView_side);
         }
         File file = new File(getCacheDir() + (type == 0 ? "/img_positive.jpg" : "/img_side.jpg"));
-        GlideApp.with(this).load(file).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(iv_pendding);
+
+        RequestOptions options = centerCropTransform().priority(Priority.HIGH).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE);
+        Glide.with(this).load(file).apply(options).into(iv_pendding);
+
         initTitle();
         pointView_positive.setListener(this);
         pointView_side.setListener(this);
@@ -77,55 +94,17 @@ public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle(type == 0 ? "正面照" : "侧身照");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this); TextView rightTv = navigationBar2.getmRightTv();
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle(type == 0 ? "正面照" : "侧身照");
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this); TextView rightTv = navigationBar.getmRightTv();
         rightTv.setText("完成");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
-        navigationBar2.setBackClickListener(this);
+        navigationBar.setBackClickListener(this);
     }
 
 
-    @OnClick({R.id.right_tv})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.right_tv:
-                if (type == 0) {
-                    pointView_positive.clearSelCircle();
-                } else {
-                    pointView_side.clearSelCircle();
-                }
-                rel_container.setDrawingCacheEnabled(true);
-                Bitmap bitmap = rel_container.getDrawingCache();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-                byte[] datas = baos.toByteArray();
-                StreamUtils.createFileWithByte(datas, getCacheDir() + (type == 0 ? "/img_positive.jpg" : "/img_side.jpg"));
-                StaticRequestBody staticRequestBody = StaticAssessmentActivity.getInstance().getStaticRequestBody();
-                staticRequestBody.setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getGender()));
-                staticRequestBody.setBirthday(ActivityUtils.workSpaceVipBean.getBirthday());
-                staticRequestBody.setMemberId(ActivityUtils.workSpaceVipBean.getMemberId());
-                if (type == 0) { //正面
-                    List<Double> positiveList = pointView_positive.returnOrientation();
-                    staticRequestBody.setTbqxqk(positiveList.get(0));
-                    staticRequestBody.setJbqxqk(positiveList.get(1));
-                    staticRequestBody.setQjqkxol(positiveList.get(4));
-                    staticRequestBody.setNwbqkl(positiveList.get(5));
-                    staticRequestBody.setQjqkxor(positiveList.get(2));
-                    staticRequestBody.setNwbqkr(positiveList.get(3));
-                } else { //侧面
-                    List<Double> sideList = pointView_side.returnOrientation();
-                    staticRequestBody.setXeqsqk(sideList.get(0));
-                    staticRequestBody.setTbqk(sideList.get(1));
-                    staticRequestBody.setSbqxqk(sideList.get(2));
-                }
-                ActivityUtils.startActivity(DragPointViewActivity.this, StaticAssessmentActivity.class);
-                finish();
-                break;
-            default:
-        }
-    }
+
 
     @Override
     public void onTouchCrop(float cX, float cY) {
@@ -227,4 +206,37 @@ public class DragPointViewActivity extends MvcBaseActivity implements IphotoCrop
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        if (type == 0) {
+            pointView_positive.clearSelCircle();
+        } else {
+            pointView_side.clearSelCircle();
+        }
+        rel_container.setDrawingCacheEnabled(true);
+        Bitmap bitmap = rel_container.getDrawingCache();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        byte[] datas = baos.toByteArray();
+        StreamUtils.createFileWithByte(datas, getCacheDir() + (type == 0 ? "/img_positive.jpg" : "/img_side.jpg"));
+        StaticRequestBody staticRequestBody = StaticAssessmentActivity.getInstance().getStaticRequestBody();
+        staticRequestBody.setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getGender()));
+        staticRequestBody.setBirthday(ActivityUtils.workSpaceVipBean.getBirthday());
+        staticRequestBody.setMemberId(ActivityUtils.workSpaceVipBean.getMemberId());
+        if (type == 0) { //正面
+            List<Double> positiveList = pointView_positive.returnOrientation();
+            staticRequestBody.setTbqxqk(positiveList.get(0));
+            staticRequestBody.setJbqxqk(positiveList.get(1));
+            staticRequestBody.setQjqkxol(positiveList.get(4));
+            staticRequestBody.setNwbqkl(positiveList.get(5));
+            staticRequestBody.setQjqkxor(positiveList.get(2));
+            staticRequestBody.setNwbqkr(positiveList.get(3));
+        } else { //侧面
+            List<Double> sideList = pointView_side.returnOrientation();
+            staticRequestBody.setXeqsqk(sideList.get(0));
+            staticRequestBody.setTbqk(sideList.get(1));
+            staticRequestBody.setSbqxqk(sideList.get(2));
+        }
+        ActivityUtils.startActivity(DragPointViewActivity.this, StaticAssessmentActivity.class);
+        finish();    }
 }

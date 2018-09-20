@@ -6,25 +6,23 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
 import com.yijian.commonlib.util.ImageLoader;
+import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.workspace.bean.WorkSpaceVipBean;
+import com.yijian.workspace.dynamic_assessment.DynamicAssessmentActivity;
 import com.yijian.workspace.perfect.PerfectActivity;
 import com.yijian.workspace.sport.SportTestActivity;
 import com.yijian.workspace.static_assessment.StaticAssessmentActivity;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 
-public class SearchOprationActivity extends MvcBaseActivity {
+public class SearchOprationActivity extends MvcBaseActivity implements View.OnClickListener {
 
-    @BindView(R. id.iv_header)
     ImageView iv_header;
-    @BindView(R. id.iv_gender)
     ImageView iv_gender;
-    @BindView(R. id.tv_name)
     TextView tv_name;
-    @BindView(R. id.tv_age)
     TextView tv_age;
-    @BindView(R. id.tv_role)
     TextView tv_role;
 
     WorkSpaceVipBean workSpaceVipBean;
@@ -38,15 +36,24 @@ public class SearchOprationActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        iv_header = findViewById(R.id.iv_header);
+        iv_gender = findViewById(R.id.iv_gender);
+        tv_name = findViewById(R.id.tv_name);
+        tv_age = findViewById(R.id.tv_age);
+        tv_role = findViewById(R.id.tv_role);
+
+        findViewById(R.id.btn_start).setOnClickListener(this);
+        findViewById(R.id.btn_record).setOnClickListener(this);
+
         initTitle();
         initData();
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("学员测评");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("学员测评");
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this);
     }
 
     private void initData() {
@@ -59,32 +66,34 @@ public class SearchOprationActivity extends MvcBaseActivity {
         tv_role.setText(workSpaceVipBean.getTypeName());
     }
 
-    @OnClick({R.id.btn_start, R.id.btn_record})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_start: //测试
-                if(ActivityUtils.isShareJump){
-                    ActivityUtils.moduleType = ActivityUtils.tempModule;
-                    ActivityUtils.isShareJump = false;
-                }
-                if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)) {
-                    mContext.startActivity(new Intent(mContext, SportTestActivity.class));
-                }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)){
-                    mContext.startActivity(new Intent(mContext, PerfectActivity.class));
-                }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_STATIC_EVALUATE)){
-                    mContext.startActivity(new Intent(mContext, StaticAssessmentActivity.class));
-                }else if(ActivityUtils.moduleType.equals(ActivityUtils.MODULE_DYNAMIC_EVALUATE)){
-                    mContext.startActivity(new Intent(mContext, DynamicAssessmentActivity.class));
-                }
-                break;
-            case R.id.btn_record: //记录
-                if(ActivityUtils.isShareJump){
-                    ActivityUtils.moduleType = ActivityUtils.tempModule;
-                    ActivityUtils.isShareJump = false;
-                }
-                mContext.startActivity(new Intent(mContext, WorkSpaceRecordActivity.class));
-                break;
-            default:
+
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.btn_start) {
+            if (ActivityUtils.isShareJump) {
+                ActivityUtils.moduleType = ActivityUtils.tempModule;
+                ActivityUtils.isShareJump = false;
+            }
+            if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_SPORT)) {
+                mContext.startActivity(new Intent(mContext, SportTestActivity.class));
+            } else if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_PERFECT)) {
+                mContext.startActivity(new Intent(mContext, PerfectActivity.class));
+            } else if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_STATIC_EVALUATE)) {
+                mContext.startActivity(new Intent(mContext, StaticAssessmentActivity.class));
+            } else if (ActivityUtils.moduleType.equals(ActivityUtils.MODULE_DYNAMIC_EVALUATE)) {
+                mContext.startActivity(new Intent(mContext, DynamicAssessmentActivity.class));
+            }
+
+        } else if (i == R.id.btn_record) {
+            if (ActivityUtils.isShareJump) {
+                ActivityUtils.moduleType = ActivityUtils.tempModule;
+                ActivityUtils.isShareJump = false;
+            }
+            mContext.startActivity(new Intent(mContext, WorkSpaceRecordActivity.class));
+
+        } else {
         }
     }
 }

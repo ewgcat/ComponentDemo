@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.yijian.commonlib.db.DBManager;
 import com.yijian.commonlib.db.bean.User;
+import com.yijian.commonlib.net.retrofit.RetrofitClient;
 import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.workspace.bean.DynamicRequestBody;
 import com.yijian.workspace.bean.PerfectRequestBody;

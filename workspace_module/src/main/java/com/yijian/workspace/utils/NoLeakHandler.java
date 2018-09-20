@@ -18,7 +18,6 @@ public class NoLeakHandler<T extends Context> extends Handler {
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
-//        Toast.makeText(mActivity.get(),"消息来了...",Toast.LENGTH_SHORT).show();
     }
 
 

@@ -62,7 +62,7 @@ public class WorkSpaceRecordAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             tv_result_score = itemView.findViewById(R.id.tv_result_score);
         }
 
-        public void bind(WorkSpaceRecordBean workSpaceRecordBean){
+        public void bind(final WorkSpaceRecordBean workSpaceRecordBean){
             rel_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

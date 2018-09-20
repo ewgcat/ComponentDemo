@@ -21,6 +21,12 @@ import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
+import com.yijian.commonlib.widget.NavigationBar;
+import com.yijian.workspace.R;
+import com.yijian.workspace.face.BitmapFaceUtils;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.utils.StreamUtils;
 
@@ -32,20 +38,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class PerfectActivity extends MvcBaseActivity {
+public class PerfectActivity extends MvcBaseActivity implements View.OnClickListener {
 
     private SurfaceView surfaceView;
     private Camera mCamera;
     private SurfaceHolder mHolder;
     private static final int REQUEST_CAMERA_CODE = 0x100;
 
-    @BindView(R. id.iv_take)
     ImageView iv_take;
-    @BindView(R. id.iv_cancel)
     ImageView iv_cancel;
-    @BindView(R. id.iv_sure)
     ImageView iv_sure;
-    @BindView(R. id.space_view)
     Space space_view;
     byte[] imgData = null;
     private int screenOritation = 0;
@@ -58,6 +60,17 @@ public class PerfectActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+
+
+        iv_take = findViewById(R.id.iv_take);
+        iv_cancel = findViewById(R.id.iv_cancel);
+        iv_sure = findViewById(R.id.iv_sure);
+        space_view = findViewById(R.id.space_view);
+        findViewById(R.id.right_tv).setOnClickListener(this);
+        findViewById(R.id.iv_take).setOnClickListener(this);
+        findViewById(R.id.iv_cancel).setOnClickListener(this);
+        findViewById(R.id.iv_sure).setOnClickListener(this);
+
         OrientationEventListener mOrientationListener = new OrientationEventListener(this,
                 SensorManager.SENSOR_DELAY_NORMAL) {
 
@@ -95,13 +108,13 @@ public class PerfectActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("完美围度拍照");
-        navigationBar2.hideLeftSecondIv();
-        TextView rightTv = navigationBar2.getmRightTv();
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("完美围度拍照");
+        navigationBar.hideLeftSecondIv();
+        TextView rightTv = navigationBar.getmRightTv();
         rightTv.setText("跳过");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
-        navigationBar2.setBackClickListener(this);
+        navigationBar.setBackClickListener(this);
     }
 
     private void initUi() {
@@ -114,71 +127,6 @@ public class PerfectActivity extends MvcBaseActivity {
                 return;
             }
             openSurfaceView();
-        }
-    }
-
-    @OnClick({R.id.right_tv, R.id.iv_take, R.id.iv_cancel, R.id.iv_sure})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.right_tv: //跳过
-                ActivityUtils.startActivity(this,PerfectTestActivity.class);
-                break;
-            case R.id.iv_take: //拍照
-                mCamera.takePicture(null, null, new Camera.PictureCallback(){
-                    @Override
-                    public void onPictureTaken(byte[] data, Camera camera) {
-                        iv_take.setVisibility(View.GONE);
-                        iv_cancel.setVisibility(View.VISIBLE);
-                        iv_sure.setVisibility(View.VISIBLE);
-                        space_view.setVisibility(View.VISIBLE);
-                        mCamera.stopPreview();
-                        imgData = data;
-
-                    }
-                } );
-                break;
-            case R.id.iv_cancel: //取消
-                mCamera.startPreview();
-                iv_take.setVisibility(View.VISIBLE);
-                iv_cancel.setVisibility(View.GONE);
-                iv_sure.setVisibility(View.GONE);
-                space_view.setVisibility(View.GONE);
-                break;
-            case R.id.iv_sure: //确定
-                showLoading();
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);
-                Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                roateBitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
-                byte[] datas = baos.toByteArray();
-                StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_perfect.jpg");
-
-                HttpManagerWorkSpace.upLoadImageHasParam(HttpManagerWorkSpace.WORKSPACE_UPLOAD_FILE__URL, getCacheDir()+"/img_perfect.jpg", 10, new ResultJSONObjectObserver(getLifecycle()) {
-                    @Override
-                    public void onSuccess(JSONObject result) {
-                        try {
-                            hideLoading();
-                            roateBitmap.recycle();
-                            bitmap.recycle();
-                            JSONArray jsonArray = result.getJSONArray("dataList");
-                            String imgUrl = jsonArray.getString(0);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("imgUrl",imgUrl);
-                            ActivityUtils.startActivity(PerfectActivity.this,PerfectTestActivity.class,bundle);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onFail(String msg) {
-                        hideLoading();
-                        Toast.makeText(PerfectActivity.this,msg,Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                break;
-            default:
         }
     }
 
@@ -290,7 +238,7 @@ public class PerfectActivity extends MvcBaseActivity {
         if (requestCode == REQUEST_CAMERA_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 recreate();
-            }else{
+            } else {
                 openSurfaceView();
             }
         }
@@ -331,6 +279,71 @@ public class PerfectActivity extends MvcBaseActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.right_tv) {
+            ActivityUtils.startActivity(this, PerfectTestActivity.class);
+
+        } else if (i == R.id.iv_take) {
+            mCamera.takePicture(null, null, new Camera.PictureCallback() {
+                @Override
+                public void onPictureTaken(byte[] data, Camera camera) {
+                    iv_take.setVisibility(View.GONE);
+                    iv_cancel.setVisibility(View.VISIBLE);
+                    iv_sure.setVisibility(View.VISIBLE);
+                    space_view.setVisibility(View.VISIBLE);
+                    mCamera.stopPreview();
+                    imgData = data;
+
+                }
+            });
+
+        } else if (i == R.id.iv_cancel) {
+            mCamera.startPreview();
+            iv_take.setVisibility(View.VISIBLE);
+            iv_cancel.setVisibility(View.GONE);
+            iv_sure.setVisibility(View.GONE);
+            space_view.setVisibility(View.GONE);
+
+        } else if (i == R.id.iv_sure) {
+            showLoading();
+            final Bitmap bitmap = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);
+            final Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, screenOritation);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            roateBitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+            byte[] datas = baos.toByteArray();
+            StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_perfect.jpg");
+
+            HttpManagerWorkSpace.upLoadImageHasParam(HttpManagerWorkSpace.WORKSPACE_UPLOAD_FILE__URL, getCacheDir() + "/img_perfect.jpg", 10, new ResultJSONObjectObserver(getLifecycle()) {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    try {
+                        hideLoading();
+                        roateBitmap.recycle();
+                        bitmap.recycle();
+                        JSONArray jsonArray = result.getJSONArray("dataList");
+                        String imgUrl = jsonArray.getString(0);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("imgUrl", imgUrl);
+                        ActivityUtils.startActivity(PerfectActivity.this, PerfectTestActivity.class, bundle);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFail(String msg) {
+                    hideLoading();
+                    Toast.makeText(PerfectActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+        } else {
         }
     }
 

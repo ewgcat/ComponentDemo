@@ -3,6 +3,7 @@ package com.yijian.workspace.dynamic_assessment;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 
 import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
@@ -42,9 +43,11 @@ public class DynamicFragment3 extends BaseSpaceFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initIdRes() {
-        dynamic_foot_out = findView(R.id.dynamic_foot_out);
-        dynamic_knee_left = findView(R.id.dynamic_knee_left);
-        dynamic_knee_right = findView(R.id.dynamic_knee_right);
+        View rootView=getRootView();
+
+        dynamic_foot_out = rootView.findViewById(R.id.dynamic_foot_out);
+        dynamic_knee_left = rootView.findViewById(R.id.dynamic_knee_left);
+        dynamic_knee_right = rootView.findViewById(R.id.dynamic_knee_right);
         List<String> list_dynamic_foot_out = new ArrayList<>();
         list_dynamic_foot_out.add("左足");
         list_dynamic_foot_out.add("右足");
@@ -58,9 +61,9 @@ public class DynamicFragment3 extends BaseSpaceFragment {
         list_dynamic_knee_right.add("外翻");
         dynamic_knee_right.createChekTab(list_dynamic_knee_right);
 
-        dynamic_yao_pg = findView(R.id.dynamic_yao_pg);
-        dynamic_yao_fb = findView(R.id.dynamic_yao_fb);
-        dynamic_side_header = findView(R.id.dynamic_side_header);
+        dynamic_yao_pg = rootView.findViewById(R.id.dynamic_yao_pg);
+        dynamic_yao_fb = rootView.findViewById(R.id.dynamic_yao_fb);
+        dynamic_side_header = rootView.findViewById(R.id.dynamic_side_header);
         List<String> list_dynamic_yao_pg = new ArrayList<>();
         list_dynamic_yao_pg.add("前倾");
         list_dynamic_yao_pg.add("后倾");
@@ -72,8 +75,8 @@ public class DynamicFragment3 extends BaseSpaceFragment {
         list_dynamic_side_header.add("前伸");
         dynamic_side_header.createChekTab(list_dynamic_side_header);
 
-        dynamic_jian = findView(R.id.dynamic_jian);
-        dynamic_bg_header = findView(R.id.dynamic_bg_header);
+        dynamic_jian = rootView.findViewById(R.id.dynamic_jian);
+        dynamic_bg_header = rootView.findViewById(R.id.dynamic_bg_header);
         List<String> list_dynamic_jian = new ArrayList<>();
         list_dynamic_jian.add("左肩偏高");
         list_dynamic_jian.add("右肩偏高");

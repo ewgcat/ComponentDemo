@@ -15,10 +15,13 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.bean.WorkSpaceVipBean;
 import com.yijian.commonlib.util.JsonUtil;
 import com.yijian.commonlib.widget.EmptyView;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,8 +50,10 @@ public class SearchFragment2 extends BaseSpaceFragment {
 
     @Override
     public void initView() {
-        empty_view = findView(R.id.empty_view);
-        refreshLayout = findView(R.id.refreshLayout);
+        View rootView = getRootView();
+
+        empty_view = rootView.findViewById(R.id.empty_view);
+        refreshLayout = rootView.findViewById(R.id.refreshLayout);
         RecyclerView rv_search_all = rootView.findViewById(R.id.rv);
         rv_search_all.setLayoutManager(new LinearLayoutManager(getActivity()));
         //添加Android自带的分割线

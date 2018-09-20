@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.utils.ActivityUtils;
 

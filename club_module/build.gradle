@@ -24,7 +24,7 @@ android {
 
     defaultConfig {
         if (isModule.toBoolean()) {
-            applicationId rootProject.applicationId
+            applicationId "com.yijian.clubmodule"
         }
 
         minSdkVersion rootProject.minSdkVersion

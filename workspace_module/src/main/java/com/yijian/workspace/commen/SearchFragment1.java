@@ -19,6 +19,8 @@ import com.yijian.commonlib.widget.EmptyView;
 import com.yijian.workspace.bean.WorkSpaceVipBean;
 import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,8 +45,10 @@ public class SearchFragment1 extends BaseSpaceFragment {
 
     @Override
     public void initView() {
-        empty_view = findView(R.id.empty_view);
-        refreshLayout = findView(R.id.refreshLayout);
+        View rootView = getRootView();
+
+        empty_view = rootView.findViewById(R.id.empty_view);
+        refreshLayout = rootView.findViewById(R.id.refreshLayout);
         RecyclerView rv_search_all = rootView.findViewById(R.id.rv);
         rv_search_all.setLayoutManager(new LinearLayoutManager(getActivity()));
         //添加Android自带的分割线
@@ -154,10 +158,5 @@ public class SearchFragment1 extends BaseSpaceFragment {
 
     }
 
-   /* @Override
-    public void update(Object data) {
-        memberName = (String) data;
-        refresh();
-    }*/
 
 }

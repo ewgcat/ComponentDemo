@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.yijian.commonlib.util.ImageLoader;
 import com.yijian.workspace.bean.WorkSpaceVipBean;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 

@@ -6,9 +6,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.Option;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
+import com.yijian.commonlib.net.response.ResultStringObserver;
+import com.yijian.commonlib.util.GlideCircleTransform;
+import com.yijian.commonlib.util.ImageLoader;
+import com.yijian.commonlib.widget.NavigationBar;
+import com.yijian.workspace.R;
 import com.yijian.workspace.bean.StaticRequestBody;
 import com.yijian.workspace.commen.ShareTestActivity;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.utils.StreamUtils;
 
@@ -18,11 +30,11 @@ import org.json.JSONObject;
 
 import java.io.File;
 
-public class StaticAssessmentActivity extends MvcBaseActivity {
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
 
-    @BindView(R. id.iv_positive)
+public class StaticAssessmentActivity extends MvcBaseActivity implements View.OnClickListener {
+
     ImageView iv_positive;
-    @BindView(R. id.iv_side)
     ImageView iv_side;
     int type = 0;
     private static StaticAssessmentActivity activity;
@@ -56,33 +68,20 @@ public class StaticAssessmentActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("静态评估");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+
+        iv_positive = findViewById(R.id.iv_positive);
+        iv_side = findViewById(R.id.iv_side);
+
+
+        findViewById(R.id.tv_positive).setOnClickListener(this);
+        findViewById(R.id.tv_side).setOnClickListener(this);
+        findViewById(R.id.tv_finish).setOnClickListener(this);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("静态评估");
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this);
     }
 
-    @OnClick({R.id.tv_positive, R.id.tv_side, R.id.tv_finish})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_positive: //正面
-                type = 0;
-                Bundle bundlePositive = new Bundle();
-                bundlePositive.putInt("type", 0);
-                ActivityUtils.startActivity(this, StaticPhotoActivity.class, bundlePositive);
-                break;
-            case R.id.tv_side: //侧面
-                type = 1;
-                Bundle bundleSide = new Bundle();
-                bundleSide.putInt("type", 1);
-                ActivityUtils.startActivity(this, StaticPhotoActivity.class, bundleSide);
-                break;
-            case R.id.tv_finish: //完成
-                subData();
-                break;
-            default:
-        }
-    }
 
     private void subData(){
 
@@ -143,12 +142,36 @@ public class StaticAssessmentActivity extends MvcBaseActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         File file = new File(getCacheDir() + (type == 0 ? "/img_positive.jpg" : "/img_side.jpg"));
-        GlideApp.with(this).load(file).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(type == 0 ? iv_positive : iv_side);
+
+        RequestOptions options = centerCropTransform().priority(Priority.HIGH).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE);
+        Glide.with(this).load(file).apply(options).into(type == 0 ? iv_positive : iv_side);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         StreamUtils.deleteFile(positivePath, sidePath);
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.tv_positive) {
+            type = 0;
+            Bundle bundlePositive = new Bundle();
+            bundlePositive.putInt("type", 0);
+            ActivityUtils.startActivity(this, StaticPhotoActivity.class, bundlePositive);
+
+        } else if (i == R.id.tv_side) {
+            type = 1;
+            Bundle bundleSide = new Bundle();
+            bundleSide.putInt("type", 1);
+            ActivityUtils.startActivity(this, StaticPhotoActivity.class, bundleSide);
+
+        } else if (i == R.id.tv_finish) {
+            subData();
+
+        } else {
+        }
     }
 }

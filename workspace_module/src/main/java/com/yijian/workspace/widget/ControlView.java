@@ -11,6 +11,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.yijian.workspace.R;
+
 public class ControlView extends View {
 
     private int mWidth, mHeight;

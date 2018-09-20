@@ -47,7 +47,7 @@
                 android:layout_height="match_parent"
                 />
 
-            <com.yijian.staff.mvp.workspace.dynamic_assessment.DynamicPointView
+            <com.yijian.staff.dynamic_assessment.DynamicPointView
                 android:id="@+id/pointView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

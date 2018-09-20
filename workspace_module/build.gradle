@@ -13,6 +13,9 @@ android {
 
 
     defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId "com.yijian.workspace"
+        }
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
@@ -48,4 +51,5 @@ android {
 
 dependencies {
     api project(':commonlib')
+
 }

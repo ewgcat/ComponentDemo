@@ -3,7 +3,9 @@ package com.yijian.workspace.dynamic_assessment;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 
 import java.util.ArrayList;
@@ -49,10 +51,12 @@ public class DynamicFragment4 extends BaseSpaceFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initIdRes() {
-        dynamic_positive1_footer = findView(R.id.dynamic_positive1_footer);
-        dynamic_positive1_knee = findView(R.id.dynamic_positive1_knee);
-        dynamic_bg1_leftfooter = findView(R.id.dynamic_bg1_leftfooter);
-        dynamic_bg1_rightfooter = findView(R.id.dynamic_bg1_rightfooter);
+        View rootView=getRootView();
+
+        dynamic_positive1_footer = rootView.findViewById(R.id.dynamic_positive1_footer);
+        dynamic_positive1_knee = rootView.findViewById(R.id.dynamic_positive1_knee);
+        dynamic_bg1_leftfooter = rootView.findViewById(R.id.dynamic_bg1_leftfooter);
+        dynamic_bg1_rightfooter = rootView.findViewById(R.id.dynamic_bg1_rightfooter);
         List<String> list_dynamic_positive1_footer = new ArrayList<>();
         list_dynamic_positive1_footer.add("左足");
         list_dynamic_positive1_footer.add("右足");
@@ -70,8 +74,8 @@ public class DynamicFragment4 extends BaseSpaceFragment {
         list_dynamic_bg1_rightfooter.add("外斜");
         dynamic_bg1_rightfooter.createChekTab(list_dynamic_bg1_rightfooter);
 
-        dynamic_positive2_leftknee = findView(R.id.dynamic_positive2_leftknee);
-        dynamic_positive2_rightknee = findView(R.id.dynamic_positive2_rightknee);
+        dynamic_positive2_leftknee = rootView.findViewById(R.id.dynamic_positive2_leftknee);
+        dynamic_positive2_rightknee = rootView.findViewById(R.id.dynamic_positive2_rightknee);
         List<String> list_dynamic_positive2_leftknee = new ArrayList<>();
         list_dynamic_positive2_leftknee.add("内扣");
         list_dynamic_positive2_leftknee.add("外翻");
@@ -81,8 +85,8 @@ public class DynamicFragment4 extends BaseSpaceFragment {
         list_dynamic_positive2_rightknee.add("外翻");
         dynamic_positive2_rightknee.createChekTab(list_dynamic_positive2_rightknee);
 
-        dynamic_bg3_jjg = findView(R.id.dynamic_bg3_jjg);
-        dynamic_bg3_jiansz = findView(R.id.dynamic_bg3_jiansz);
+        dynamic_bg3_jjg = rootView.findViewById(R.id.dynamic_bg3_jjg);
+        dynamic_bg3_jiansz = rootView.findViewById(R.id.dynamic_bg3_jiansz);
         List<String> list_dynamic_bg3_jjg = new ArrayList<>();
         list_dynamic_bg3_jjg.add("左肩");
         list_dynamic_bg3_jjg.add("右肩");
@@ -92,8 +96,8 @@ public class DynamicFragment4 extends BaseSpaceFragment {
         list_dynamic_bg3_jiansz.add("右手");
         dynamic_bg3_jiansz.createChekTab(list_dynamic_bg3_jiansz);
 
-        dynamic_bg4_jsb = findView(R.id.dynamic_bg4_jsb);
-        dynamic_bg4_jj = findView(R.id.dynamic_bg4_jj);
+        dynamic_bg4_jsb = rootView.findViewById(R.id.dynamic_bg4_jsb);
+        dynamic_bg4_jj = rootView.findViewById(R.id.dynamic_bg4_jj);
         List<String> list_dynamic_bg4_jsb = new ArrayList<>();
         list_dynamic_bg4_jsb.add("左肩");
         list_dynamic_bg4_jsb.add("右肩");

@@ -13,8 +13,13 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
+import com.yijian.commonlib.util.JsonUtil;
 import com.yijian.commonlib.widget.EmptyView;
+import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.workspace.bean.WorkSpaceRecordBean;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 
@@ -27,11 +32,8 @@ import java.util.List;
 
 public class WorkSpaceRecordActivity extends MvcBaseActivity {
 
-    @BindView(R. id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    @BindView(R. id.rv)
     RecyclerView rv;
-    @BindView(R. id.empty_view)
     EmptyView empty_view;
     private int pageNum = 1;//页码
     private int pageSize = 10;//每页数量
@@ -56,11 +58,13 @@ public class WorkSpaceRecordActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        String name = getIntent().getStringExtra("name");
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle(ActivityUtils.name + ActivityUtils.moduleType+"测评记录");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+        refreshLayout = findViewById(R.id.refreshLayout);
+        rv = findViewById(R.id.rv);
+        empty_view = findViewById(R.id.empty_view);
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle(ActivityUtils.name + ActivityUtils.moduleType+"测评记录");
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this);
     }
 
     private void initData() {

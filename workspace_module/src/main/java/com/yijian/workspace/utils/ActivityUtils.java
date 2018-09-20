@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.bean.WorkSpaceVipBean;
+import com.yijian.workspace.observe.EditActionObservable;
 
 /**
  *  1. 全局数据池

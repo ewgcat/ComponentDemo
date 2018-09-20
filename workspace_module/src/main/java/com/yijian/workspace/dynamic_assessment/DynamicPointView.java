@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.yijian.workspace.face.BitmapFaceUtils;
 import com.yijian.workspace.static_assessment.DragPointBean;
 import com.yijian.workspace.static_assessment.DragPointUtil;
 import com.yijian.workspace.static_assessment.PointEnum;

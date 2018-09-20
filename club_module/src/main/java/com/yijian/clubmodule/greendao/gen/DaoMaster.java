@@ -25,10 +25,10 @@ public class DaoMaster extends AbstractDaoMaster {
         OthermodelVoDao.createTable(db, ifNotExists);
         RoleVoBeanDao.createTable(db, ifNotExists);
         PrivateCoachCourseModelDao.createTable(db, ifNotExists);
+        HuiFangTypeBeanDao.createTable(db, ifNotExists);
         PrivateCoachCurriculumArrangementPlanModelDao.createTable(db, ifNotExists);
         SearchKeyDao.createTable(db, ifNotExists);
         CourseStudentModelDao.createTable(db, ifNotExists);
-        HuiFangTypeBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -37,10 +37,10 @@ public class DaoMaster extends AbstractDaoMaster {
         OthermodelVoDao.dropTable(db, ifExists);
         RoleVoBeanDao.dropTable(db, ifExists);
         PrivateCoachCourseModelDao.dropTable(db, ifExists);
+        HuiFangTypeBeanDao.dropTable(db, ifExists);
         PrivateCoachCurriculumArrangementPlanModelDao.dropTable(db, ifExists);
         SearchKeyDao.dropTable(db, ifExists);
         CourseStudentModelDao.dropTable(db, ifExists);
-        HuiFangTypeBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -63,10 +63,10 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(OthermodelVoDao.class);
         registerDaoClass(RoleVoBeanDao.class);
         registerDaoClass(PrivateCoachCourseModelDao.class);
+        registerDaoClass(HuiFangTypeBeanDao.class);
         registerDaoClass(PrivateCoachCurriculumArrangementPlanModelDao.class);
         registerDaoClass(SearchKeyDao.class);
         registerDaoClass(CourseStudentModelDao.class);
-        registerDaoClass(HuiFangTypeBeanDao.class);
     }
 
     public DaoSession newSession() {

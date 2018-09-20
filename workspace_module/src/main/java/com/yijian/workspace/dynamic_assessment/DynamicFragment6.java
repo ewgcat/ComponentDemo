@@ -3,7 +3,9 @@ package com.yijian.workspace.dynamic_assessment;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 
 import java.util.ArrayList;
@@ -37,8 +39,10 @@ public class DynamicFragment6 extends BaseSpaceFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initIdRes() {
-        dynamic_lower_leg = findView(R.id.dynamic_lower_leg);
-        dynamic_big_leg = findView(R.id.dynamic_big_leg);
+        View rootView=getRootView();
+
+        dynamic_lower_leg = rootView.findViewById(R.id.dynamic_lower_leg);
+        dynamic_big_leg = rootView.findViewById(R.id.dynamic_big_leg);
         List<String> list_dynamic_lower_leg = new ArrayList<>();
         list_dynamic_lower_leg.add("左腿偏长");
         list_dynamic_lower_leg.add("右腿偏长");
@@ -48,13 +52,13 @@ public class DynamicFragment6 extends BaseSpaceFragment {
         list_dynamic_big_leg.add("右腿偏长");
         dynamic_big_leg.createChekTab(list_dynamic_big_leg);
 
-        dynamic_leg_lie = findView(R.id.dynamic_leg_lie);
+        dynamic_leg_lie = rootView.findViewById(R.id.dynamic_leg_lie);
         List<String> list_dynamic_leg_lie = new ArrayList<>();
         list_dynamic_leg_lie.add("左腿偏长");
         list_dynamic_leg_lie.add("右腿偏长");
         dynamic_leg_lie.createChekTab(list_dynamic_leg_lie);
 
-        dynamic_leg_sit = findView(R.id.dynamic_leg_sit);
+        dynamic_leg_sit = rootView.findViewById(R.id.dynamic_leg_sit);
         List<String> list_dynamic_leg_sit = new ArrayList<>();
         list_dynamic_leg_sit.add("左腿偏长");
         list_dynamic_leg_sit.add("右腿偏长");

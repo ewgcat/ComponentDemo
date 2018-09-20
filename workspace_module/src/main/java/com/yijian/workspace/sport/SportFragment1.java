@@ -13,6 +13,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.utils.ActivityUtils;
 
@@ -22,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class SportFragment1 extends BaseSpaceFragment {
+public class SportFragment1 extends BaseSpaceFragment implements View.OnClickListener {
 
     TextView tv_sex;
     TextView tv_birth;
@@ -75,24 +76,29 @@ public class SportFragment1 extends BaseSpaceFragment {
     }
 
     private void initIdRes(){
-        tv_sex = findView(R.id.tv_sex);
-        tv_birth = findView(R.id.tv_birth);
-        tv_height = findView(R.id.tv_height);
-        et_weight = findView(R.id.et_weight);
-        et_juanfu = findView(R.id.et_juanfu);
-        et_jian_weight = findView(R.id.et_jian_weight);
-        et_jian_weight_num = findView(R.id.et_jian_weight_num);
-        et_jian_xiongdaji = findView(R.id.et_jian_xiongdaji);
-        et_xiongdaji_num = findView(R.id.et_xiongdaji_num);
-        et_jian_gong2ji = findView(R.id.et_jian_gong2ji);
-        et_gong2ji_num = findView(R.id.et_gong2ji_num);
-        et_gong3ji = findView(R.id.et_gong3ji);
-        et_gong3ji_num = findView(R.id.et_gong3ji_num);
-        et_yaobeijiqun = findView(R.id.et_yaobeijiqun);
-        et_yaobeijiqun_num = findView(R.id.et_yaobeijiqun_num);
-        et_datuijiqun = findView(R.id.et_datuijiqun);
-        et_datuijiqun_num = findView(R.id.et_datuijiqun_num);
-        et_tiaoyuan = findView(R.id.et_tiaoyuan);
+        View rootView=getRootView();
+
+        tv_sex = rootView.findViewById(R.id.tv_sex);
+        tv_birth = rootView.findViewById(R.id.tv_birth);
+        tv_height = rootView.findViewById(R.id.tv_height);
+        et_weight = rootView.findViewById(R.id.et_weight);
+        et_juanfu = rootView.findViewById(R.id.et_juanfu);
+        et_jian_weight = rootView.findViewById(R.id.et_jian_weight);
+        et_jian_weight_num = rootView.findViewById(R.id.et_jian_weight_num);
+        et_jian_xiongdaji = rootView.findViewById(R.id.et_jian_xiongdaji);
+        et_xiongdaji_num = rootView.findViewById(R.id.et_xiongdaji_num);
+        et_jian_gong2ji = rootView.findViewById(R.id.et_jian_gong2ji);
+        et_gong2ji_num = rootView.findViewById(R.id.et_gong2ji_num);
+        et_gong3ji = rootView.findViewById(R.id.et_gong3ji);
+        et_gong3ji_num = rootView.findViewById(R.id.et_gong3ji_num);
+        et_yaobeijiqun = rootView.findViewById(R.id.et_yaobeijiqun);
+        et_yaobeijiqun_num = rootView.findViewById(R.id.et_yaobeijiqun_num);
+        et_datuijiqun = rootView.findViewById(R.id.et_datuijiqun);
+        et_datuijiqun_num = rootView.findViewById(R.id.et_datuijiqun_num);
+        et_tiaoyuan = rootView.findViewById(R.id.et_tiaoyuan);
+
+                rootView.findViewById(R.id.rel_birthday).setOnClickListener(this);
+                rootView.findViewById(R.id.rel_height).setOnClickListener(this);
     }
 
     private void initData() {
@@ -119,32 +125,12 @@ public class SportFragment1 extends BaseSpaceFragment {
         weightDecimalList.add(".9");
     }
 
-    @OnClick({R.id.rel_birthday, R.id.rel_height})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.rel_birthday:
-                TimePickerView pvTime = new TimePickerBuilder(mContext, new OnTimeSelectListener() {
-                    @Override
-                    public void onTimeSelect(Date date, View v) {
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                        tv_birth.setText(simpleDateFormat.format(date));
-                    }
-                }).setType(new boolean[]{true, true, true, false, false, false})
-                        .build();
-                pvTime.show();
-                break;
-            case R.id.rel_height: //性别身高
-                manualPickedView("男".equals(tv_sex.getText().toString()) ? manHeightList : womenHeightList,
-                        "0", "选择身高", tv_height);
-                break;
-            default:
-        }
-    }
+
 
     /**
      * 选项弹出框
      */
-    private void manualPickedView(List<String> opts, String defaultValue, String title, TextView tv) {
+    private void manualPickedView(final List<String> opts, String defaultValue, String title, final TextView tv) {
         OptionsPickerView pvNoLinkOptions = new OptionsPickerBuilder(mContext, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
@@ -292,5 +278,27 @@ public class SportFragment1 extends BaseSpaceFragment {
             });*/
         }
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.rel_birthday) {
+            TimePickerView pvTime = new TimePickerBuilder(mContext, new OnTimeSelectListener() {
+                @Override
+                public void onTimeSelect(Date date, View v) {
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    tv_birth.setText(simpleDateFormat.format(date));
+                }
+            }).setType(new boolean[]{true, true, true, false, false, false})
+                    .build();
+            pvTime.show();
+
+        } else if (i == R.id.rel_height) {
+            manualPickedView("男".equals(tv_sex.getText().toString()) ? manHeightList : womenHeightList,
+                    "0", "选择身高", tv_height);
+
+        } else {
+        }
     }
 }

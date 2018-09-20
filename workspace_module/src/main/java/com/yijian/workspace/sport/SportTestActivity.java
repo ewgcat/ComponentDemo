@@ -8,16 +8,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.net.response.ResultStringObserver;
+import com.yijian.commonlib.widget.NavigationBar;
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.bean.SportStepRequedtBody;
 import com.yijian.workspace.commen.ShareTestActivity;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
+import com.yijian.workspace.observe.EditActionObservable;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.widget.CommenPopupWindow;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class  SportTestActivity extends MvcBaseActivity {
+public class SportTestActivity extends MvcBaseActivity implements View.OnClickListener {
 
     private final String tag1 = "com.yijian.workspace.sport.SportFragment1";
     private final String tag2 = "com.yijian.workspace.sport.SportFragment2";
@@ -25,15 +31,10 @@ public class  SportTestActivity extends MvcBaseActivity {
     private int currentIndex = 0;
 
     private TextView rightTv;
-    @BindView(R. id.btn_next)
     Button btn_next;
-    @BindView(R. id.view_mingjie_sel)
     View view_mingjie_sel;
-    @BindView(R. id.view_rouren_sel)
     View view_rouren_sel;
-    @BindView(R. id.iv_mingjie_sel)
     ImageView iv_mingjie_sel;
-    @BindView(R. id.iv_rouren_sel)
     ImageView iv_rouren_sel;
     private EditActionObservable editActionObservable = new EditActionObservable();
     private Map<String, String> observerMap = new HashMap<>();
@@ -56,19 +57,29 @@ public class  SportTestActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+
+
+        btn_next = findViewById(R.id.btn_next);
+        view_mingjie_sel = findViewById(R.id.view_mingjie_sel);
+        view_rouren_sel = findViewById(R.id.view_rouren_sel);
+        iv_mingjie_sel = findViewById(R.id.iv_mingjie_sel);
+        iv_rouren_sel = findViewById(R.id.iv_rouren_sel);
+
+        findViewById(R.id.right_tv).setOnClickListener(this);
+        findViewById(R.id.btn_next).setOnClickListener(this);
         initTitle();
         initData();
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("运动表现测试");
-        navigationBar2.hideLeftSecondIv();
-        rightTv = navigationBar2.getmRightTv();
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("运动表现测试");
+        navigationBar.hideLeftSecondIv();
+        rightTv = navigationBar.getmRightTv();
         rightTv.setText("上一步");
         rightTv.setTextColor(getResources().getColor(R.color.blue));
         rightTv.setVisibility(View.GONE);
-        navigationBar2.getBackLL().setOnClickListener(new View.OnClickListener() {
+        navigationBar.getBackLL().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (popupWindow == null) {
@@ -93,47 +104,6 @@ public class  SportTestActivity extends MvcBaseActivity {
         ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag1, editActionObservable, new String[]{tag1, tag2, tag3});
     }
 
-    @OnClick({R.id.right_tv, R.id.btn_next})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_next: //下一步
-                switch (currentIndex) {
-                    case 0:
-                        observerMap.put("type", STEP1);
-                        break;
-                    case 1:
-                        observerMap.put("type", STEP2);
-                        break;
-                    case 2:
-                        observerMap.put("type", STEP3);
-                        break;
-                    default:
-                }
-                editActionObservable.notifyObservers(observerMap);
-                break;
-
-            case R.id.right_tv: //上一步
-                if (currentIndex > 0) {
-                    currentIndex--;
-                }
-                if (currentIndex == 0) {
-                    view_mingjie_sel.setVisibility(View.GONE);
-                    iv_mingjie_sel.setVisibility(View.GONE);
-                    rightTv.setVisibility(View.GONE);
-                    btn_next.setText("下一步");
-                    ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag1, editActionObservable, new String[]{tag1, tag2, tag3});
-                } else if (currentIndex == 1) {
-                    view_rouren_sel.setVisibility(View.GONE);
-                    iv_rouren_sel.setVisibility(View.GONE);
-                    rightTv.setVisibility(View.VISIBLE);
-                    btn_next.setText("下一步");
-                    ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag2, editActionObservable, new String[]{tag1, tag2, tag3});
-                }
-                break;
-            default:
-
-        }
-    }
 
     /**
      * 判断是否能下一步
@@ -238,6 +208,46 @@ public class  SportTestActivity extends MvcBaseActivity {
                 showTransaction.remove(showFragment3);
                 editActionObservable.deleteObserver(showFragment3);
             }
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.btn_next) {
+            switch (currentIndex) {
+                case 0:
+                    observerMap.put("type", STEP1);
+                    break;
+                case 1:
+                    observerMap.put("type", STEP2);
+                    break;
+                case 2:
+                    observerMap.put("type", STEP3);
+                    break;
+                default:
+            }
+            editActionObservable.notifyObservers(observerMap);
+
+        } else if (i == R.id.right_tv) {
+            if (currentIndex > 0) {
+                currentIndex--;
+            }
+            if (currentIndex == 0) {
+                view_mingjie_sel.setVisibility(View.GONE);
+                iv_mingjie_sel.setVisibility(View.GONE);
+                rightTv.setVisibility(View.GONE);
+                btn_next.setText("下一步");
+                ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag1, editActionObservable, new String[]{tag1, tag2, tag3});
+            } else if (currentIndex == 1) {
+                view_rouren_sel.setVisibility(View.GONE);
+                iv_rouren_sel.setVisibility(View.GONE);
+                rightTv.setVisibility(View.VISIBLE);
+                btn_next.setText("下一步");
+                ActivityUtils.showFragment(getSupportFragmentManager(), R.id.fl_sport, tag2, editActionObservable, new String[]{tag1, tag2, tag3});
+            }
+
+        } else {
         }
     }
 }

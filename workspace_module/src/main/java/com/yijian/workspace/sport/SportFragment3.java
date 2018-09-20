@@ -2,9 +2,11 @@ package com.yijian.workspace.sport;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.yijian.workspace.R;
 import com.yijian.workspace.base.BaseSpaceFragment;
 import com.yijian.workspace.utils.ActivityUtils;
 
@@ -29,11 +31,13 @@ public class SportFragment3 extends BaseSpaceFragment {
 
     @Override
     public void initView() {
-        et_qianqu = findView(R.id.et_qianqu);
-        et_jian_num = findView(R.id.et_jian_num);
-        et_xiongtui_num = findView(R.id.et_xiongtui_num);
-        et_tuijiqun_num = findView(R.id.et_tuijiqun_num);
-        et_jiaohuai_num = findView(R.id.et_jiaohuai_num);
+        View rootView=getRootView();
+
+        et_qianqu = rootView.findViewById(R.id.et_qianqu);
+        et_jian_num = rootView.findViewById(R.id.et_jian_num);
+        et_xiongtui_num = rootView.findViewById(R.id.et_xiongtui_num);
+        et_tuijiqun_num = rootView.findViewById(R.id.et_tuijiqun_num);
+        et_jiaohuai_num = rootView.findViewById(R.id.et_jiaohuai_num);
     }
 
 

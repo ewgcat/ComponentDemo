@@ -19,6 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.widget.NavigationBar;
+import com.yijian.workspace.R;
+import com.yijian.workspace.face.BitmapFaceUtils;
 import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.utils.StreamUtils;
 import com.yijian.commonlib.util.DensityUtil;
@@ -27,25 +31,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class DynamicPhotoActivity extends MvcBaseActivity {
+public class DynamicPhotoActivity extends MvcBaseActivity implements View.OnClickListener {
 
     private SurfaceView surfaceView;
     private Camera mCamera;
     private SurfaceHolder mHolder;
     private static final int REQUEST_CAMERA_CODE = 0x100;
-    @BindView(R. id.fl_surfaceView)
     FrameLayout fl_surfaceView;
-    @BindView(R. id.iv_take)
     ImageView iv_take;
-    @BindView(R. id.iv_cancel)
     ImageView iv_cancel;
-    @BindView(R. id.iv_sure)
     ImageView iv_sure;
-    @BindView(R. id.space_view)
     Space space_view;
-    @BindView(R. id.fl_start)
     LinearLayout fl_start;
-    @BindView(R. id.tv_desc)
     TextView tv_desc;
     private byte[] imgData = null;
     private int surfaceWidth,surfaceHeight,fl_surfaceViewWidth, fl_surfaceViewHeight,screenWidth,screenHeight;
@@ -58,6 +55,19 @@ public class DynamicPhotoActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
 
+        fl_surfaceView=  findViewById(R.id.fl_surfaceView);
+        iv_take=  findViewById(R.id.iv_take);
+        iv_cancel=  findViewById(R.id.iv_cancel);
+        iv_sure=  findViewById(R.id.iv_sure);
+        space_view=  findViewById(R.id.space_view);
+        fl_start=  findViewById(R.id.fl_start);
+        tv_desc=  findViewById(R.id.tv_desc);
+
+
+                findViewById(R.id.right_tv).setOnClickListener(this);
+                findViewById(R.id.iv_take).setOnClickListener(this);
+                findViewById(R.id.iv_cancel).setOnClickListener(this);
+                findViewById(R.id.iv_sure).setOnClickListener(this);
         /*****************  *********************/
         ViewTreeObserver viewTreeObserver = fl_start.getViewTreeObserver();
         viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -78,10 +88,12 @@ public class DynamicPhotoActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        NavigationBar2 navigationBar2 = findViewById(R.id.navigation_bar);
-        navigationBar2.setTitle("盆骨图拍照");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackClickListener(this);
+
+
+        NavigationBar navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.setTitle("盆骨图拍照");
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this);
     }
 
     private void initUi() {
@@ -102,60 +114,6 @@ public class DynamicPhotoActivity extends MvcBaseActivity {
                 return;
             }
             openSurfaceView();
-        }
-    }
-
-    @OnClick({R.id.right_tv, R.id.iv_take, R.id.iv_cancel, R.id.iv_sure})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_take: //拍照
-                mCamera.takePicture(null, null, new Camera.PictureCallback() {
-                    @Override
-                    public void onPictureTaken(byte[] data, Camera camera) {
-
-                            iv_take.setVisibility(View.GONE);
-                            iv_cancel.setVisibility(View.VISIBLE);
-                            iv_sure.setVisibility(View.VISIBLE);
-                            space_view.setVisibility(View.VISIBLE);
-                            mCamera.stopPreview();
-                            imgData = data;
-                    }
-                });
-                break;
-            case R.id.iv_cancel: //取消
-                mCamera.startPreview();
-                iv_take.setVisibility(View.VISIBLE);
-                iv_cancel.setVisibility(View.GONE);
-                iv_sure.setVisibility(View.GONE);
-                space_view.setVisibility(View.GONE);
-                break;
-            case R.id.iv_sure: //确定
-//                showLoading();
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);
-                Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, 90);
-
-                double scaleHeight = fl_surfaceViewHeight;
-                double scaleWidth = fl_surfaceViewWidth;
-                double surfaceScale = scaleWidth/scaleHeight;
-                double bWidth = roateBitmap.getWidth();
-                double bHeight = roateBitmap.getHeight();
-                double bitmapScale = bWidth/bHeight;
-                Bitmap sizeBitmap = null;
-                if(bitmapScale < surfaceScale){
-                    int bitmapHeight = (int) (bWidth/surfaceScale);
-                    sizeBitmap = Bitmap.createBitmap(roateBitmap, 0, 0, (int) bWidth, bitmapHeight);
-                } else{
-                    int bitmapWidth = (int) (bHeight*surfaceScale);
-                    sizeBitmap = Bitmap.createBitmap(roateBitmap, 0, 0, (int) bitmapWidth, (int) bHeight);
-                }
-
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                sizeBitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-                byte[] datas = baos.toByteArray();
-                StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_dynamic.jpg");
-                ActivityUtils.startActivity(DynamicPhotoActivity.this, DynamicDragPointActivity.class);
-                break;
-            default:
         }
     }
 
@@ -310,5 +268,57 @@ public class DynamicPhotoActivity extends MvcBaseActivity {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.iv_take) {
+            mCamera.takePicture(null, null, new Camera.PictureCallback() {
+                @Override
+                public void onPictureTaken(byte[] data, Camera camera) {
+
+                    iv_take.setVisibility(View.GONE);
+                    iv_cancel.setVisibility(View.VISIBLE);
+                    iv_sure.setVisibility(View.VISIBLE);
+                    space_view.setVisibility(View.VISIBLE);
+                    mCamera.stopPreview();
+                    imgData = data;
+                }
+            });
+
+        } else if (i == R.id.iv_cancel) {
+            mCamera.startPreview();
+            iv_take.setVisibility(View.VISIBLE);
+            iv_cancel.setVisibility(View.GONE);
+            iv_sure.setVisibility(View.GONE);
+            space_view.setVisibility(View.GONE);
+
+        } else if (i == R.id.iv_sure) {//                showLoading();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);
+            Bitmap roateBitmap = BitmapFaceUtils.rotateBitmap(bitmap, 90);
+
+            double scaleHeight = fl_surfaceViewHeight;
+            double scaleWidth = fl_surfaceViewWidth;
+            double surfaceScale = scaleWidth / scaleHeight;
+            double bWidth = roateBitmap.getWidth();
+            double bHeight = roateBitmap.getHeight();
+            double bitmapScale = bWidth / bHeight;
+            Bitmap sizeBitmap = null;
+            if (bitmapScale < surfaceScale) {
+                int bitmapHeight = (int) (bWidth / surfaceScale);
+                sizeBitmap = Bitmap.createBitmap(roateBitmap, 0, 0, (int) bWidth, bitmapHeight);
+            } else {
+                int bitmapWidth = (int) (bHeight * surfaceScale);
+                sizeBitmap = Bitmap.createBitmap(roateBitmap, 0, 0, (int) bitmapWidth, (int) bHeight);
+            }
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            sizeBitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+            byte[] datas = baos.toByteArray();
+            StreamUtils.createFileWithByte(datas, getCacheDir() + "/img_dynamic.jpg");
+            ActivityUtils.startActivity(DynamicPhotoActivity.this, DynamicDragPointActivity.class);
+
+        } else {
+        }
+    }
 
 }

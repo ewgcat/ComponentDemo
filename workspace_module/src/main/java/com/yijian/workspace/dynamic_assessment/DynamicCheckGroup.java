@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.yijian.workspace.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -10,9 +10,14 @@ import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.yijian.commonlib.base.mvc.MvcBaseActivity;
+import com.yijian.commonlib.db.DBManager;
+import com.yijian.commonlib.db.bean.User;
 import com.yijian.commonlib.umeng.SharePopupWindow;
 import com.yijian.commonlib.widget.EmptyView;
+import com.yijian.commonlib.widget.NavigationBar;
 import com.yijian.workspace.dynamic_assessment.DynamicAssessmentActivity;
+import com.yijian.workspace.net.HttpManagerWorkSpace;
 import com.yijian.workspace.perfect.PerfectActivity;
 import com.yijian.workspace.sport.SportTestActivity;
 import com.yijian.workspace.static_assessment.StaticAssessmentActivity;
@@ -31,9 +36,7 @@ public class ShareTestActivity extends MvcBaseActivity {
 
     private SharePopupWindow sharePopupWindow;
     private CommenPopupWindow testPopupWindow;
-    @BindView(R. id.web_view)
     BaseWebView web_view;
-    @BindView(R. id.emptyView)
     EmptyView emptyView;
     Toast toast;
     String recordId;
@@ -41,7 +44,7 @@ public class ShareTestActivity extends MvcBaseActivity {
     String shareWorkSpaceTitle;
     String shareWorkSpaceImgUrl;
     String shareWorkSpaceDescr;
-    NavigationBar2 navigationBar2;
+    NavigationBar navigationBar;
     String webUrl;
 
 
@@ -60,13 +63,14 @@ public class ShareTestActivity extends MvcBaseActivity {
     }
 
     private void initTitle() {
-        navigationBar2 = findViewById(R.id.navigation_bar);
-//        navigationBar2.setTitle(ActivityUtils.name+"的测试记录");
-        navigationBar2.hideLeftSecondIv();
-        navigationBar2.setBackLLVisiable(View.GONE);
-//        navigationBar2.setmRightIv(R.mipmap.share);
-        navigationBar2.setBackClickListener(this);
-        navigationBar2.setmRightIvClickListener(new View.OnClickListener() {
+        web_view = findViewById(R.id.web_view);
+        emptyView = findViewById(R.id.emptyView);
+        navigationBar = findViewById(R.id.navigation_bar);
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackLLVisiable(View.GONE);
+
+        navigationBar.setBackClickListener(this);
+        navigationBar.setRightClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showShareDialog();
@@ -137,8 +141,8 @@ public class ShareTestActivity extends MvcBaseActivity {
                 hideLoading();
                 emptyView.setVisibility(View.GONE);
                 web_view.setVisibility(View.VISIBLE);
-                navigationBar2.setBackLLVisiable(View.VISIBLE);
-                navigationBar2.setmRightIv(R.mipmap.share);
+                navigationBar.setBackLLVisiable(View.VISIBLE);
+                navigationBar.setmRightIv(R.mipmap.share);
             }
 
             @Override
@@ -151,13 +155,13 @@ public class ShareTestActivity extends MvcBaseActivity {
         web_view.addWebChromeClientListener(new SafeWebChromeClient.CallWebChromeClientBackListener() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
-//                navigationBar2.setTitle(title);
+//                navigationBar.setTitle(title);
             }
 
             @Override
             public void onProgressChanged(String title, int newProgress) {
                 if(newProgress == 100){
-                    navigationBar2.setTitle(title);
+                    navigationBar.setTitle(title);
                 }
             }
         });
@@ -189,37 +193,35 @@ public class ShareTestActivity extends MvcBaseActivity {
                 @Override
                 public void onClick(View v) {
                     testPopupWindow.dismiss();
-                    switch (v.getId()) {
-                        case R.id.lin_perfect: //完美围度
-                            ActivityUtils.isShareJump = true;
-                            ActivityUtils.tempModule = ActivityUtils.moduleType;
-                            ActivityUtils.moduleType = ActivityUtils.MODULE_PERFECT;
-                            ShareTestActivity.this.startActivity(new Intent( ShareTestActivity.this, PerfectActivity.class));
-                            finish();
-                            break;
-                        case R.id.lin_sport: // 运动表现
-                            ActivityUtils.isShareJump = true;
-                            ActivityUtils.tempModule = ActivityUtils.moduleType;
-                            ActivityUtils.moduleType = ActivityUtils.MODULE_SPORT;
-                            ShareTestActivity.this.startActivity(new Intent( ShareTestActivity.this, SportTestActivity.class));
-                            finish();
-                            break;
-                        case R.id.lin_static: //静态评估
-//                            toast.show();
-                            ActivityUtils.isShareJump = true;
-                            ActivityUtils.tempModule = ActivityUtils.moduleType;
-                            ActivityUtils.moduleType = ActivityUtils.MODULE_STATIC_EVALUATE;
-                            ShareTestActivity.this.startActivity(new Intent( ShareTestActivity.this, StaticAssessmentActivity.class));
-                            finish();
-                            break;
-                        case R.id.lin_action: //动作评估
-//                            toast.show();
-                            ActivityUtils.isShareJump = true;
-                            ActivityUtils.tempModule = ActivityUtils.moduleType;
-                            ActivityUtils.moduleType = ActivityUtils.MODULE_DYNAMIC_EVALUATE;
-                            ShareTestActivity.this.startActivity(new Intent( ShareTestActivity.this, DynamicAssessmentActivity.class));
-                            break;
-                        default:
+                    int i = v.getId();
+                    if (i == R.id.lin_perfect) {
+                        ActivityUtils.isShareJump = true;
+                        ActivityUtils.tempModule = ActivityUtils.moduleType;
+                        ActivityUtils.moduleType = ActivityUtils.MODULE_PERFECT;
+                        ShareTestActivity.this.startActivity(new Intent(ShareTestActivity.this, PerfectActivity.class));
+                        finish();
+
+                    } else if (i == R.id.lin_sport) {
+                        ActivityUtils.isShareJump = true;
+                        ActivityUtils.tempModule = ActivityUtils.moduleType;
+                        ActivityUtils.moduleType = ActivityUtils.MODULE_SPORT;
+                        ShareTestActivity.this.startActivity(new Intent(ShareTestActivity.this, SportTestActivity.class));
+                        finish();
+
+                    } else if (i == R.id.lin_static) {//                            toast.show();
+                        ActivityUtils.isShareJump = true;
+                        ActivityUtils.tempModule = ActivityUtils.moduleType;
+                        ActivityUtils.moduleType = ActivityUtils.MODULE_STATIC_EVALUATE;
+                        ShareTestActivity.this.startActivity(new Intent(ShareTestActivity.this, StaticAssessmentActivity.class));
+                        finish();
+
+                    } else if (i == R.id.lin_action) {//                            toast.show();
+                        ActivityUtils.isShareJump = true;
+                        ActivityUtils.tempModule = ActivityUtils.moduleType;
+                        ActivityUtils.moduleType = ActivityUtils.MODULE_DYNAMIC_EVALUATE;
+                        ShareTestActivity.this.startActivity(new Intent(ShareTestActivity.this, DynamicAssessmentActivity.class));
+
+                    } else {
                     }
                 }
             }, R.layout.pop_test_result, new int[]{R.id.lin_perfect, R.id.lin_sport, R.id.lin_static, R.id.lin_action});

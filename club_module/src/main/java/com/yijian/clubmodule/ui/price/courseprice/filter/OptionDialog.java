@@ -51,7 +51,7 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
 
     private int price;
-    private int classJieShu;
+    private int classJieShu = -1;
     private int classLongTime;
     private int classYouXiaoQi;
 
@@ -93,15 +93,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.view_coach_class_filter, container, false);
-
-
-
-
-
-
-
-
-
         emptyView = view.findViewById(R.id.empty_view);
         tvPrice1 = view.findViewById(R.id.tv_price1);
         tvPrice2 = view.findViewById(R.id.tv_price2);
@@ -217,6 +208,38 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         super.onDismiss(dialog);
     }
 
+
+    private void resetCourse(){
+        classJieShu = -1;
+        tvClassJieshu1.setTextColor(Color.parseColor("#666666"));
+        tvClassJieshu2.setTextColor(Color.parseColor("#666666"));
+        tvClassJieshu3.setTextColor(Color.parseColor("#666666"));
+        tvClassJieshu1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvClassJieshu2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvClassJieshu3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+    }
+
+    private void resetPrice(){
+        price = -1;
+        tvPrice1.setTextColor(Color.parseColor("#666666"));
+        tvPrice2.setTextColor(Color.parseColor("#666666"));
+        tvPrice3.setTextColor(Color.parseColor("#666666"));
+        tvPrice4.setTextColor(Color.parseColor("#666666"));
+        tvPrice1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvPrice2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvPrice3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvPrice4.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+    }
+
+    private void resetValidity(){
+        classYouXiaoQi = -1;
+        tvYouxiaoqi1.setTextColor(Color.parseColor("#666666"));
+        tvYouxiaoqi2.setTextColor(Color.parseColor("#666666"));
+        tvYouxiaoqi3.setTextColor(Color.parseColor("#666666"));
+        tvYouxiaoqi1.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYouxiaoqi2.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+        tvYouxiaoqi3.setBackground(getActivity().getDrawable(R.drawable.gray_stroke_unselect_bg));
+    }
 
     private void resetView() {
 
@@ -421,22 +444,37 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
     private void selectClassJieShu(int i) {
         if (i == 1) {
-            classJieShu = 1;
-            setSelectStyle(tvClassJieshu1);
-            setUnSelectStyle(tvClassJieshu2);
-            setUnSelectStyle(tvClassJieshu3);
+            if(classJieShu == 1){
+                resetCourse();
+            }else{
+                classJieShu = 1;
+                setSelectStyle(tvClassJieshu1);
+                setUnSelectStyle(tvClassJieshu2);
+                setUnSelectStyle(tvClassJieshu3);
+            }
+
         } else if (i == 2) {
-            classJieShu = 2;
+            if(classJieShu == 2){
+                resetPrice();
+            }else{
+                classJieShu = 2;
 
-            setSelectStyle(tvClassJieshu2);
-            setUnSelectStyle(tvClassJieshu1);
-            setUnSelectStyle(tvClassJieshu3);
+                setSelectStyle(tvClassJieshu2);
+                setUnSelectStyle(tvClassJieshu1);
+                setUnSelectStyle(tvClassJieshu3);
+            }
+
         } else if (i == 3) {
-            classJieShu = 3;
+            if(classJieShu == 3){
+                resetValidity();
+            }else{
+                classJieShu = 3;
 
-            setSelectStyle(tvClassJieshu3);
-            setUnSelectStyle(tvClassJieshu1);
-            setUnSelectStyle(tvClassJieshu2);
+                setSelectStyle(tvClassJieshu3);
+                setUnSelectStyle(tvClassJieshu1);
+                setUnSelectStyle(tvClassJieshu2);
+            }
+
         }
     }
 

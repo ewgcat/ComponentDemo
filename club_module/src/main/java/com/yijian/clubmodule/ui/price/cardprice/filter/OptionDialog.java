@@ -58,6 +58,8 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
     private CardRequestBody conditionBody = new CardRequestBody();
 
+    private int priceFlag = -1;
+
     public OptionDialog(Lifecycle lifecycle) {
         this.lifecycle = lifecycle;
     }
@@ -196,14 +198,6 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
         tvConfirm.setOnClickListener(this);
         empty_view.setOnClickListener(this);
 
-
-//        conditionBody.setIsSortByPrice(bodyCondition.getIsSortByPrice());
-//        conditionBody.setVenueName(bodyCondition.getVenueName());
-//        conditionBody.setStartPrice(bodyCondition.getStartPrice());
-//        conditionBody.setEndPrice(bodyCondition.getEndPrice());
-//        conditionBody.setCardType(bodyCondition.getCardType());
-
-//        Log.e(TAG, "initView: " );
         String cardType = conditionBody.getCardType();
         if (!TextUtils.isEmpty(cardType)) {
             if ("0".equals(cardType.trim())) {
@@ -258,48 +252,108 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
     public void onClick(View v) {
         int i1 = v.getId();
         if (i1 == R.id.tv_time_card) {
-            resetCardType();
-            setSelectStyle(tvTimeCard);
-            conditionBody.setCardType("0");
+            if("0".equals(conditionBody.getCardType())){
+                resetCardType();
+                conditionBody.setCardType(null);
+            }else{
+                resetCardType();
+                setSelectStyle(tvTimeCard);
+                conditionBody.setCardType("0");
+            }
+
 
         } else if (i1 == R.id.tv_cishu_card) {
-            resetCardType();
-            setSelectStyle(tvCishuCard);
-            conditionBody.setCardType("1");
+
+            if("1".equals(conditionBody.getCardType())){
+                resetCardType();
+                conditionBody.setCardType(null);
+            }else{
+                resetCardType();
+                setSelectStyle(tvCishuCard);
+                conditionBody.setCardType("1");
+            }
+
+
 
         } else if (i1 == R.id.tv_chuzhi_card) {
-            resetCardType();
-            setSelectStyle(tvChuzhiCard);
-            conditionBody.setCardType("2");
+
+            if("1".equals(conditionBody.getCardType())){
+                resetCardType();
+                conditionBody.setCardType(null);
+            }else{
+                resetCardType();
+                setSelectStyle(tvChuzhiCard);
+                conditionBody.setCardType("2");
+            }
+
 
         } else if (i1 == R.id.tv_huiyuan_card) {
-            resetCardType();
-            setSelectStyle(tvHuiyuanCard);
-            conditionBody.setCardType("3");
+
+            if("1".equals(conditionBody.getCardType())){
+                resetCardType();
+                conditionBody.setCardType(null);
+            }else{
+                resetCardType();
+                setSelectStyle(tvHuiyuanCard);
+                conditionBody.setCardType("3");
+            }
+
 
         } else if (i1 == R.id.tv_price1) {
-            resetPriseStyle();
-            setSelectStyle(tvPrice1);
-            conditionBody.setStartPrice("0");
-            conditionBody.setEndPrice("1000");
+            if(priceFlag == 0){
+                resetPriseStyle();
+                conditionBody.setStartPrice(null);
+                conditionBody.setEndPrice(null);
+            }else{
+                priceFlag = 0;
+                resetPriseStyle();
+                setSelectStyle(tvPrice1);
+                conditionBody.setStartPrice("0");
+                conditionBody.setEndPrice("1000");
+            }
+
 
         } else if (i1 == R.id.tv_price2) {
-            resetPriseStyle();
-            setSelectStyle(tvPrice2);
-            conditionBody.setStartPrice("1000");
-            conditionBody.setEndPrice("2000");
+
+            if(priceFlag == 1){
+                resetPriseStyle();
+                conditionBody.setStartPrice(null);
+                conditionBody.setEndPrice(null);
+            }else{
+                priceFlag = 1;
+                resetPriseStyle();
+                setSelectStyle(tvPrice2);
+                conditionBody.setStartPrice("1000");
+                conditionBody.setEndPrice("2000");
+            }
 
         } else if (i1 == R.id.tv_price3) {
-            resetPriseStyle();
-            setSelectStyle(tvPrice3);
-            conditionBody.setStartPrice("2000");
-            conditionBody.setEndPrice("3000");
+
+            if(priceFlag == 2){
+                resetPriseStyle();
+                conditionBody.setStartPrice(null);
+                conditionBody.setEndPrice(null);
+            }else{
+                priceFlag = 2;
+                resetPriseStyle();
+                setSelectStyle(tvPrice3);
+                conditionBody.setStartPrice("2000");
+                conditionBody.setEndPrice("3000");
+            }
 
         } else if (i1 == R.id.tv_price4) {
-            resetPriseStyle();
-            setSelectStyle(tvPrice4);
-            conditionBody.setStartPrice("3000");
-            conditionBody.setEndPrice(null);
+
+            if(priceFlag == 3){
+                resetPriseStyle();
+                conditionBody.setStartPrice(null);
+                conditionBody.setEndPrice(null);
+            }else{
+                priceFlag = 3;
+                resetPriseStyle();
+                setSelectStyle(tvPrice4);
+                conditionBody.setStartPrice("3000");
+                conditionBody.setEndPrice(null);
+            }
 
         } else if (i1 == R.id.tv_reset) {
             resetCardType();
@@ -319,36 +373,11 @@ public class OptionDialog extends DialogFragment implements View.OnClickListener
 
         } else if (i1 == R.id.tv_confirm) {
             if (onDismissListener != null) {
-//                    String cardType = conditionBody.getCardType();
-//                    String endPrice = conditionBody.getEndPrice();
-//                    String startPrice = conditionBody.getStartPrice();
-//                    String venueId = conditionBody.getVenueId();
-//                    String cardName = conditionBody.getCardName();
-//                    if (TextUtils.isEmpty(cardType)
-//                            &&TextUtils.isEmpty(startPrice)
-//                            &&TextUtils.isEmpty(venueId)
-//                            &&TextUtils.isEmpty(endPrice)&&TextUtils.isEmpty(cardName)){
-//                        onDismissListener.onDismiss(null);
-//                    }else {
-//                        onDismissListener.onDismiss(conditionBody);
-//                    }
                 onDismissListener.onDismiss(conditionBody);
             }
             dismiss();
 
-        } else if (i1 == R.id.empty_view) {//                if (onDismissListener != null){
-//                    String cardType = conditionBody.getCardType();
-//                    String endPrice = conditionBody.getEndPrice();
-//                    String startPrice = conditionBody.getStartPrice();
-//                    String venueId = conditionBody.getVenueId();
-//                    String cardName = conditionBody.getCardName();
-//                    if (TextUtils.isEmpty(cardType)
-//                            &&TextUtils.isEmpty(startPrice)
-//                            &&TextUtils.isEmpty(venueId)
-//                            &&TextUtils.isEmpty(endPrice)&&TextUtils.isEmpty(cardName)){
-//                        onDismissListener.onDismiss(null);
-//                    }
-//                }
+        } else if (i1 == R.id.empty_view) {//
             dismiss();
 
         }

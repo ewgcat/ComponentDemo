@@ -26,28 +26,5 @@ public class HuiFangTypeBean {
         this.menu = JsonUtil.getInt(jsonObject, "menu");
         this.name = JsonUtil.getString(jsonObject, "name");
     }
-    @Generated(hash = 421963944)
-    public HuiFangTypeBean(int menu, String name) {
-        this.menu = menu;
-        this.name = name;
-    }
-    @Generated(hash = 1337111592)
-    public HuiFangTypeBean() {
-    }
-    public int getMenu() {
-        return this.menu;
-    }
-    public void setMenu(int menu) {
-        this.menu = menu;
-    }
-    public String getName() {
-        return this.name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-
 
 }

@@ -23,48 +23,6 @@ public  class PrivateCoachCourseModel {
     private Integer consumingMinute;
     private String memberCourseId;
     private String memberCourseName;
-    @Generated(hash = 2115229308)
-    public PrivateCoachCourseModel(Long idx, String id, Integer consumingMinute,
-            String memberCourseId, String memberCourseName) {
-        this.idx = idx;
-        this.id = id;
-        this.consumingMinute = consumingMinute;
-        this.memberCourseId = memberCourseId;
-        this.memberCourseName = memberCourseName;
-    }
-    @Generated(hash = 979390038)
-    public PrivateCoachCourseModel() {
-    }
-    public Long getIdx() {
-        return this.idx;
-    }
-    public void setIdx(Long idx) {
-        this.idx = idx;
-    }
-    public String getId() {
-        return this.id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
-    public Integer getConsumingMinute() {
-        return this.consumingMinute;
-    }
-    public void setConsumingMinute(Integer consumingMinute) {
-        this.consumingMinute = consumingMinute;
-    }
-    public String getMemberCourseId() {
-        return this.memberCourseId;
-    }
-    public void setMemberCourseId(String memberCourseId) {
-        this.memberCourseId = memberCourseId;
-    }
-    public String getMemberCourseName() {
-        return this.memberCourseName;
-    }
-    public void setMemberCourseName(String memberCourseName) {
-        this.memberCourseName = memberCourseName;
-    }
 
 
 }

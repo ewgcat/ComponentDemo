@@ -88,7 +88,4 @@ public  class RoleVoBean {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-
-
-
 }

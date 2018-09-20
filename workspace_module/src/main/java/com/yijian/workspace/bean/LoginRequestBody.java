@@ -1,4 +1,4 @@
-package module;
+package com.yijian.workspace.bean;
 
 /**
  * author：李帅华

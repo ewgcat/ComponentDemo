@@ -73,6 +73,4 @@ public class PrivateCourseMemberModel {
         this.memberSex = memberSex;
     }
 
-
-
 }

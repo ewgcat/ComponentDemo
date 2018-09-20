@@ -39,7 +39,7 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import module.LoginRequestBody;
+import com.yijian.clubmodule.net.requestbody.LoginRequestBody;
 
 public class HttpManager {
 

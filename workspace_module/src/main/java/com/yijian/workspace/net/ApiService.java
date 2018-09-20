@@ -2,6 +2,7 @@ package com.yijian.workspace.net;
 
 
 import com.yijian.workspace.bean.DynamicRequestBody;
+import com.yijian.workspace.bean.LoginRequestBody;
 import com.yijian.workspace.bean.PerfectRequestBody;
 import com.yijian.workspace.bean.SportStepRequedtBody;
 import com.yijian.workspace.bean.StaticRequestBody;
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
-import module.LoginRequestBody;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;

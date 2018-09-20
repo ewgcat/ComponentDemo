@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
-import module.LoginRequestBody;
+import com.yijian.clubmodule.net.requestbody.LoginRequestBody;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;

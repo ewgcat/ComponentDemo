@@ -75,7 +75,7 @@
 
 
         <activity android:name=".static_assessment.DragPointViewActivity" />
-        <activity android:name="module.LoginActivity"
+        <activity android:name="module.login.LoginActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

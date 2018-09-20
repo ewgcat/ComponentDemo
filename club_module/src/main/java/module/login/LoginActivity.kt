@@ -1,4 +1,4 @@
-package module
+package module.login
 
 
 import android.os.Build
@@ -17,16 +17,22 @@ import android.widget.*
 import com.alibaba.android.arouter.launcher.ARouter
 import com.alibaba.fastjson.JSONArray
 import com.jaeger.library.StatusBarUtil
-
+import com.yijian.clubmodule.BuildConfig
+import com.yijian.clubmodule.R
+import com.yijian.clubmodule.bean.PermissionBean
+import com.yijian.clubmodule.db.ClubDBManager
+import com.yijian.clubmodule.db.bean.OthermodelVo
+import com.yijian.clubmodule.db.bean.RoleVoBean
+import com.yijian.clubmodule.net.httpmanager.HttpManager
+import com.yijian.clubmodule.ui.forgetpassword.ForgetPasswordActivity
+import com.yijian.clubmodule.ui.permission.PermissionUtils
 import com.yijian.commonlib.base.mvc.MvcBaseActivity
 import com.yijian.commonlib.db.DBManager
 import com.yijian.commonlib.db.bean.User
 import com.yijian.commonlib.net.response.ResultJSONObjectObserver
 import com.yijian.commonlib.prefs.SharePreferenceUtil
 import com.yijian.commonlib.util.*
-import com.yijian.workspace.BuildConfig
-import com.yijian.workspace.R
-import com.yijian.workspace.net.HttpManagerWorkSpace
+import module.LoginRequestBody
 
 import org.json.JSONObject
 
@@ -77,14 +83,19 @@ class LoginActivity : MvcBaseActivity(), AndroidAdjustResizeBugFix.CallKeyBoardS
 
         etAccount.setText(SharePreferenceUtil.getUserName())
 
-        SharePreferenceUtil.setHostUrl(BuildConfig.WORKSPACE_HOST)
-        SharePreferenceUtil.setImageUrl(BuildConfig.WORKSPACE_FILE_HOST)
+        SharePreferenceUtil.setHostUrl(BuildConfig.HOST)
+        SharePreferenceUtil.setImageUrl(BuildConfig.FILE_HOST)
         SharePreferenceUtil.setH5Url(BuildConfig.H5_HOST)
 
     }
 
 
-
+    private fun jumpToForgetPassword() {
+        val account = etAccount.text.toString()
+        val intent = Intent(this@LoginActivity, ForgetPasswordActivity::class.java)
+        intent.putExtra("account", account)
+        startActivity(intent)
+    }
 
     private fun login() {
         val account = etAccount.text.toString()
@@ -95,7 +106,7 @@ class LoginActivity : MvcBaseActivity(), AndroidAdjustResizeBugFix.CallKeyBoardS
             if (CommonUtil.isPassWordFormat(password)) {
                 showLoading()
                 val loginRequest = LoginRequestBody(account, password)
-                HttpManagerWorkSpace.postLogin(loginRequest, object : ResultJSONObjectObserver(lifecycle) {
+                HttpManager.postLogin(loginRequest, object : ResultJSONObjectObserver(lifecycle) {
                     override fun onSuccess(result: JSONObject) {
                         hideLoading()
                         val user = User(result)
@@ -103,8 +114,22 @@ class LoginActivity : MvcBaseActivity(), AndroidAdjustResizeBugFix.CallKeyBoardS
                         SharePreferenceUtil.setUserId(user.userId)
                         SharePreferenceUtil.setUserRole(user.role)
                         DBManager.getInstance().insertOrReplaceUser(user)
+                        val roleVo = JsonUtil.getJsonObject(result, "roleVo")
+                        ClubDBManager.getInstance().insertOrReplaceRoleVoBean(RoleVoBean(roleVo))
+                        val homePageModelVO = JsonUtil.getJsonObject(result, "homePageModelVO")
+                        val othermodelVo = JsonUtil.getJsonObject(homePageModelVO, "othermodelVo")
 
-                        ARouter.getInstance().build("/workspace/workspace").navigation()
+                        ClubDBManager.getInstance().insertOrReplaceOthermodelVo(OthermodelVo(othermodelVo))
+
+                        try {
+                            //存储菜单子选项
+                            val permissionBeanList = JSONArray.parseArray(homePageModelVO.getJSONArray("menuModelList").toString(), PermissionBean::class.java)
+                            PermissionUtils.getInstance().savePermissionMenu(this@LoginActivity, permissionBeanList)
+                        } catch (e: Exception) {
+                            Logger.i(TAG, e.message)
+                        }
+
+                        ARouter.getInstance().build("/test/main").navigation()
 
                         finish()
                     }

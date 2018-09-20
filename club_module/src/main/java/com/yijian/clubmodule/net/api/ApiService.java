@@ -17,7 +17,6 @@ import com.yijian.clubmodule.net.requestbody.course.SaveCourseRequestBody;
 import com.yijian.clubmodule.net.requestbody.huifang.AddHuiFangResultBody;
 import com.yijian.clubmodule.net.requestbody.huifang.HuifangTaskRequestBody;
 import com.yijian.clubmodule.net.requestbody.invite.SaveInviteBody;
-import com.yijian.clubmodule.net.requestbody.login.LoginRequestBody;
 import com.yijian.clubmodule.net.requestbody.message.BusinessMessageRequestBody;
 import com.yijian.clubmodule.net.requestbody.privatecourse.CoachPrivateCourseRequestBody;
 import com.yijian.clubmodule.net.requestbody.questionnaire.QuestionnaireRequestBody;
@@ -30,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import module.LoginRequestBody;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
@@ -47,9 +47,7 @@ import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
-//import com.yijian.clubmodule.ui.workspace.bean.PerfectRequestBody;
-//import com.yijian.clubmodule.ui.workspace.bean.SportStepRequedtBody;
-//import com.yijian.clubmodule.ui.workspace.bean.StaticRequestBody;
+
 
 /**
  * 所有的接口定义在这里写

@@ -71,6 +71,7 @@ public class User {
         this.birthday = JsonUtil.getLong(jsonObject, "birthday");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");
         this.postName = JsonUtil.getString(jsonObject, "postName");
+
         this.chief = JsonUtil.getBoolean(jsonObject, "chief");
     }
 
@@ -234,5 +235,6 @@ public class User {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
 
 }

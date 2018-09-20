@@ -23,6 +23,8 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
     private Context context;
     private List<VenueBean> list = new ArrayList<>();
 
+    private int positionFlag = -1;
+
     public OptionAdapter(Context context) {
         this.context = context;
     }
@@ -69,9 +71,18 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.Holder> {
             tvName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    resetSelectState();
-                    venueBean.setSelect(true);
-                    if (lisenter != null) lisenter.onVenueClick(position, venueBean);
+                    if(positionFlag == position){
+                        resetSelectState();
+                        venueBean.setSelect(false);
+                        VenueBean tempVenueBean = new VenueBean();
+                        if (lisenter != null) lisenter.onVenueClick(position, tempVenueBean);
+                    }else{
+                        resetSelectState();
+                        venueBean.setSelect(true);
+                        if (lisenter != null) lisenter.onVenueClick(position, venueBean);
+                        positionFlag = position;
+                    }
+
 
                     notifyDataSetChanged();
                 }

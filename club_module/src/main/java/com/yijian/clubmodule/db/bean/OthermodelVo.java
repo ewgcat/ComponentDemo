@@ -26,14 +26,12 @@ public class OthermodelVo {
     private boolean sellerSchedule;
     private boolean reception;
 
-
     public OthermodelVo(JSONObject jsonObject) {
         this.faceRecognition = JsonUtil.getBoolean(jsonObject, "faceRecognition");
         this.coachSchedule = JsonUtil.getBoolean(jsonObject, "coachSchedule");
         this.sellerSchedule = JsonUtil.getBoolean(jsonObject, "sellerSchedule");
         this.reception = JsonUtil.getBoolean(jsonObject, "reception");
     }
-
 
     @Generated(hash = 1988909857)
     public OthermodelVo(boolean faceRecognition, boolean coachSchedule,
@@ -44,51 +42,40 @@ public class OthermodelVo {
         this.reception = reception;
     }
 
-
     @Generated(hash = 806863264)
     public OthermodelVo() {
     }
-
 
     public boolean getFaceRecognition() {
         return this.faceRecognition;
     }
 
-
     public void setFaceRecognition(boolean faceRecognition) {
         this.faceRecognition = faceRecognition;
     }
-
 
     public boolean getCoachSchedule() {
         return this.coachSchedule;
     }
 
-
     public void setCoachSchedule(boolean coachSchedule) {
         this.coachSchedule = coachSchedule;
     }
-
 
     public boolean getSellerSchedule() {
         return this.sellerSchedule;
     }
 
-
     public void setSellerSchedule(boolean sellerSchedule) {
         this.sellerSchedule = sellerSchedule;
     }
-
 
     public boolean getReception() {
         return this.reception;
     }
 
-
     public void setReception(boolean reception) {
         this.reception = reception;
     }
-
-
 
 }

@@ -44,5 +44,4 @@ public class SearchKey {
         this.userId = userId;
     }
 
-
 }

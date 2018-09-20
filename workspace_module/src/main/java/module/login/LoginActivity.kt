@@ -52,7 +52,7 @@ class LoginActivity : MvcBaseActivity(), AndroidAdjustResizeBugFix.CallKeyBoardS
         vto.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
 
             override fun onGlobalLayout() {
-                ll_content.viewTreeObserver.removeGlobalOnLayoutListener(this)
+                ll_content.viewTreeObserver.removeOnGlobalLayoutListener(this)
                 containerHeight = ll_content.measuredHeight.toFloat()
             }
         })
@@ -61,13 +61,12 @@ class LoginActivity : MvcBaseActivity(), AndroidAdjustResizeBugFix.CallKeyBoardS
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         }
-        //        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        rel_container.setOnTouchListener { v, event ->
+        rel_container.setOnTouchListener { v, _ ->
             if (v !is EditText) {
-                var imm: InputMethodManager? = null
+                var imm: InputMethodManager
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.CUPCAKE) {
                     imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm?.hideSoftInputFromWindow(v.windowToken, 0)
+                    imm.hideSoftInputFromWindow(v.windowToken, 0)
                 }
 
             }

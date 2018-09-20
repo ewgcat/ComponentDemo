@@ -1,5 +1,6 @@
 package com.yijian.clubmodule.ui.vipermanage.viper.detail.formatoroutdate;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ import com.yijian.clubmodule.ui.vipermanage.viper.detail.BaseVipperViewHolder;
  */
 
 public class VipTypeFourViewHolder extends BaseVipperViewHolder {
+    private final Context context;
     //    @BindView(R. id.tv_wechat_num)
     TextView tvWechatNum;
     //    @BindView(R. id.tv_email)
@@ -71,6 +73,8 @@ public class VipTypeFourViewHolder extends BaseVipperViewHolder {
 
     public VipTypeFourViewHolder(View itemView) {
         super(itemView);
+        context = itemView.getContext();
+
         tvWechatNum = itemView.findViewById(R.id.tv_wechat_num);
         tvEmail = itemView.findViewById(R.id.tv_email);
         tvShengao = itemView.findViewById(R.id.tv_shengao);
@@ -196,7 +200,7 @@ public class VipTypeFourViewHolder extends BaseVipperViewHolder {
             tvCompanyLocation.setText(cAddress.toString());
         }
 
-        boolean allEditable = PermissionUtils.getInstance().isEdit(ClubModuleApplication.instance, "app_workbench", PermissionUtils.getInstance().getmenuKey());
+        boolean allEditable = PermissionUtils.getInstance().isEdit(context, "app_workbench", PermissionUtils.getInstance().getmenuKey());
         if (allEditable) {
             llEdit.setVisibility(viperDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);
         } else {

@@ -1,5 +1,6 @@
 package com.yijian.clubmodule.ui.vipermanage.viper.detail.protentialorintent;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.yijian.clubmodule.ui.permission.PermissionUtils;
  */
 
 class ProtentialOrIntentViperTypeThreeViewHolder extends BaseVipperViewHolder {
+    private final Context context;
     //详细信息
 //    @BindView(R. id.tv_wechat_num)
     TextView tvWechatNum;
@@ -75,6 +77,7 @@ class ProtentialOrIntentViperTypeThreeViewHolder extends BaseVipperViewHolder {
 
     public ProtentialOrIntentViperTypeThreeViewHolder(View itemView) {
         super(itemView);
+        context = itemView.getContext();
         tvWechatNum = itemView.findViewById(R.id.tv_wechat_num);
         tvEmail = itemView.findViewById(R.id.tv_email);
         tvShengao = itemView.findViewById(R.id.tv_shengao);
@@ -147,7 +150,7 @@ class ProtentialOrIntentViperTypeThreeViewHolder extends BaseVipperViewHolder {
         tvLianXiPhone.setText(judgeNull(detailBean.getContactPhone()));
         ViperDetailBean.CustomerServiceInfoBean customerServiceInfoBean = viperDetailBean.getCustomerServiceInfo();
         tvHuoquQudao.setText(judgeNull(customerServiceInfoBean.getUserChannel()));
-        boolean allEditable = PermissionUtils.getInstance().isEdit(ClubModuleApplication.instance, "app_workbench", PermissionUtils.getInstance().getmenuKey());
+        boolean allEditable = PermissionUtils.getInstance().isEdit(context, "app_workbench", PermissionUtils.getInstance().getmenuKey());
         if (allEditable) {
             llEdit.setVisibility(viperDetailBean.isEditEnable() ? View.VISIBLE : View.GONE);
         } else {

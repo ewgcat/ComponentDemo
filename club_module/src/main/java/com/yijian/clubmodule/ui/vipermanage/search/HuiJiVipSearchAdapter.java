@@ -149,26 +149,21 @@ public class HuiJiVipSearchAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         intent.putExtra("dictItemKey", huiJiViperBean.getDictItemKey());
                         context.startActivity(intent);
                     } else {
-                        //0 正式学员 （有会籍信息）3、 过期学员;、1、意向学员  2、 潜在学员（无会籍信息）
                         Intent intent = new Intent(context, CoachViperDetailActivity.class);
                         if (subclassName.equals("CoachInfoVO")) {//正式学员
                             PermissionUtils.getInstance().setMenuKey("app_formal_student");
-                            intent.putExtra("vipType", 0);
                             intent.putExtra("memberId", huiJiViperBean.getMemberId());
                             context.startActivity(intent);
                         } else if (subclassName.equals("CoachIntentionVO")) {//意向学员
                             PermissionUtils.getInstance().setMenuKey("app_intention_student");
-                            intent.putExtra("vipType", 1);
                             intent.putExtra("memberId", huiJiViperBean.getMemberId());
                             context.startActivity(intent);
                         } else if (subclassName.equals("CoachExpireVO")) {//过期学员
                             PermissionUtils.getInstance().setMenuKey("app_expire_student");
-                            intent.putExtra("vipType", 3);
                             intent.putExtra("memberId", huiJiViperBean.getMemberId());
                             context.startActivity(intent);
                         } else if (subclassName.equals("CoachPotentialStudentVO")) {//潜在学员
                             PermissionUtils.getInstance().setMenuKey("app_potential_student");
-                            intent.putExtra("vipType", 2);
                             intent.putExtra("memberId", huiJiViperBean.getMemberId());
                             context.startActivity(intent);
                         }

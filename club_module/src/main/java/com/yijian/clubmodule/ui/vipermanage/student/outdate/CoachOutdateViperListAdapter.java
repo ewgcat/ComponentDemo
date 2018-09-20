@@ -98,7 +98,6 @@ public class CoachOutdateViperListAdapter extends RecyclerView.Adapter<CoachOutd
             public void onClick(View v) {
                 PermissionUtils.getInstance().setMenuKey("app_expire_student");
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                intent.putExtra("vipType", 3);
                 intent.putExtra("memberId", coachViperBean.getMemberId());
 
                 context.startActivity(intent);

@@ -103,7 +103,6 @@ public class CoachViperListAdapter extends RecyclerView.Adapter<CoachViperListAd
             public void onClick(View v) {
                 PermissionUtils.getInstance().setMenuKey("app_formal_student");
                 Intent intent = new Intent(context, CoachViperDetailActivity.class);
-                intent.putExtra("vipType", 0);
                 intent.putExtra("memberId", coachViperBean.getMemberId());
                 context.startActivity(intent);
             }

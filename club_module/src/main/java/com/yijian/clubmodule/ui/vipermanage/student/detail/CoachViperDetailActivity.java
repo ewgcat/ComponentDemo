@@ -44,8 +44,6 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
     private ViperDetailBean viperDetailBean;
     private RecyclerView recyclerView;
 
-    private int vipType = 0;//0 正式会员 （有会籍信息）3、 过期会员;、1、意向会员  2、 潜在会员（无会籍信息）
-    //    private String memberName;
     private String memberId;
     private NavigationBar navigation2;
 
@@ -59,8 +57,6 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
     protected void initView(Bundle savedInstanceState) {
 
         memberId = getIntent().getStringExtra("memberId");
-//        memberName = getIntent().getStringExtra("memberName");
-        vipType = getIntent().getIntExtra("vipType", 0);
 
         navigation2 = findViewById(R.id.navigation_bar);
         navigation2.setTitle("会员详情");
@@ -91,14 +87,10 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
         rlItem1.setOnClickListener(this);
         rlItem2.setOnClickListener(this);
 
-        if (vipType == 2 || vipType == 1) {
-            rlItem1.setVisibility(View.GONE);
-            adapter = new AdapterCoachViper_2(this);
-        } else {
+
             rlItem1.setVisibility(View.VISIBLE);
             adapter = new AdapterCoachViper(this);
 
-        }
 
 
         recyclerView = findViewById(R.id.recycler_view);
@@ -151,19 +143,13 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
                             }
                         } else if (firstVisibleItemPosition == 1 && headHeight != 0) {
                             if (viewByPosition.getBottom() - headHeight < 0) {
-                                if (vipType == 2) {
-                                    if (!tvItem2.isSelected()) itemSelecte(2);
-                                } else {
+
                                     if (!tvItem1.isSelected()) itemSelecte(1);
-                                }
                             }
                         } else if (firstVisibleItemPosition == 2 && headHeight != 0) {
                             if (viewByPosition.getBottom() - headHeight < 0) {
-                                if (vipType == 2) {
 
-                                } else {
                                     if (!tvItem2.isSelected()) itemSelecte(2);
-                                }
                             }
                         }
                     } else {//向下滚动
@@ -172,17 +158,11 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
                         } else if (firstVisibleItemPosition == 1) {
                             if (!tvItem0.isSelected()) itemSelecte(0);
                         } else if (firstVisibleItemPosition == 2) {
-                            if (vipType == 2) {
-                                if (!tvItem2.isSelected()) itemSelecte(2);
-                            } else {
-                                if (!tvItem1.isSelected()) itemSelecte(1);
-                            }
-                        } else if (firstVisibleItemPosition == 3) {
-                            if (vipType == 2) {
 
-                            } else {
+                                if (!tvItem1.isSelected()) itemSelecte(1);
+                        } else if (firstVisibleItemPosition == 3) {
+
                                 if (!tvItem2.isSelected()) itemSelecte(2);
-                            }
 
                         }
                     }
@@ -284,22 +264,15 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
             itemSelecte(0);
 
         } else if (i == R.id.rl_item1) {
-            if (vipType == 2) {
 
-            } else {
                 moveToPosition(2);
                 itemSelecte(1);
-            }
 
 
         } else if (i == R.id.rl_item2) {
-            if (vipType == 2) {
-                moveToPosition(2);
-                itemSelecte(2);
-            } else {
+
                 moveToPosition(3);
                 itemSelecte(2);
-            }
 
 
         }

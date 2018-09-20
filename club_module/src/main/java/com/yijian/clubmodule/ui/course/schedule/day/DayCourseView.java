@@ -432,7 +432,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                     popuwindow.setFlagColor(WHITE_FLAG);
                     break;
             }
-            ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl() + privateCourseMemberVO.getHeadPath(), view.getContext(), iv_header);
+            ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + privateCourseMemberVO.getHeadPath(), view.getContext(), iv_header);
             tv_name.setText(privateCourseMemberVO.getMemberName());
             tv_course_name.setText("私教课："+memberCourseName);
             view.setBackgroundColor(Color.parseColor("#f5f5f5"));

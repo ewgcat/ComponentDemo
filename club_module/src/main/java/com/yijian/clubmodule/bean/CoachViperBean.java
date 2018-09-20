@@ -60,7 +60,7 @@ public class CoachViperBean implements Serializable {
         this.medalType = JsonUtil.getInt(jsonObject, "medalType");
 
         this.memberId = JsonUtil.getString(jsonObject, "memberId");
-        this.headImg = SharePreferenceUtil.getHostUrl() + JsonUtil.getString(jsonObject, "headImg");
+        this.headImg = SharePreferenceUtil.getImageUrl() + JsonUtil.getString(jsonObject, "headImg");
         this.subclassName = JsonUtil.getString(jsonObject, "subclassName");
         this.underProtected = JsonUtil.getBoolean(jsonObject, "underProtected");
         this.mobile = JsonUtil.getString(jsonObject, "mobile");

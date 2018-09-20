@@ -91,16 +91,12 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         int i = view.getId();
         if (i == R.id.ll_password) {
             startActivityForResult(new Intent(SettingActivity.this, EditPasswordActivity.class), 1124);
-
         } else if (i == R.id.ll_about) {
             startActivity(new Intent(SettingActivity.this, AboutUsActivity.class));
-
         } else if (i == R.id.ll_version) {
             Beta.checkUpgrade();
-
         } else if (i == R.id.tv_exit_login) {
             exitLogin();
-
         }
     }
 }

@@ -171,8 +171,8 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
         })
 
         huiFangInfo = intent.getSerializableExtra("huiFangInfo") as HuiFangInfo
-        ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl()+ huiFangInfo.headUrl, this, iv_nav_header)
-        ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl() + huiFangInfo.headUrl, this, iv_sure_header)
+        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl()+ huiFangInfo.headUrl, this, iv_nav_header)
+        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + huiFangInfo.headUrl, this, iv_sure_header)
         tv_nav_name.text = huiFangInfo.name
         tv_sure_name.text = huiFangInfo.name
         val resId = if (huiFangInfo.gender == 0) R.mipmap.lg_man else R.mipmap.lg_women

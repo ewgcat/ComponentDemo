@@ -66,7 +66,7 @@ public class StudentCourseListAdapter extends BaseRecyclerViewAdapter<GroupedStu
         boolean expand = datas.get(groupPos).getGroupItem().isExpand();
         int resId = expand ? R.mipmap.select : R.mipmap.circle_normal;
         ImageLoader.setImageResource(resId, context, holder.ivselect);
-        ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl() + groupData.getHeadPath(), context, holder.ivHeader);
+        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + groupData.getHeadPath(), context, holder.ivHeader);
     }
 
     @Override

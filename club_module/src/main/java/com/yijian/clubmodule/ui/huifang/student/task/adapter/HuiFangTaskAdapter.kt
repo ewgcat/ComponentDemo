@@ -167,7 +167,7 @@ class HuiFangTaskAdapter(private val context: Context, private var mHuiFangInfoL
 
         fun bindView(context: Context, huiFangInfo: HuiFangInfo) {
             //公共部分
-            ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl() + huiFangInfo.headUrl, context, ivHead)
+            ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + huiFangInfo.headUrl, context, ivHead)
             tvViperName.text = huiFangInfo.name
             val resId = if (huiFangInfo.gender == 1) R.mipmap.lg_man else R.mipmap.lg_women
             Glide.with(context).load(resId).into(ivSex)

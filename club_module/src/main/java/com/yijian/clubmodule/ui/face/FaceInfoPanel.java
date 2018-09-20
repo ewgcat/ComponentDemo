@@ -105,7 +105,7 @@ public class FaceInfoPanel extends PopupWindow {
     }
 
     private void updateUi(FaceDetail faceDetail) {
-        ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl() + faceDetail.getHeadPath(), context, iv_detail_header);
+        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + faceDetail.getHeadPath(), context, iv_detail_header);
         tv_detail_name.setText(emptyNull(faceDetail.getMemberName(),""));
         tv_detail_cardname.setText(emptyNull(faceDetail.getCardName(),""));
         tv_detail_birthday.setText(emptyNull(faceDetail.getBirthDate(),""));
@@ -198,7 +198,7 @@ public class FaceInfoPanel extends PopupWindow {
             }
 
             public void bind(FaceDetail faceDetail, Context context) {
-                ImageLoader.setHeadImageResource(SharePreferenceUtil.getHostUrl() + faceDetail.getHeadPath(), context, iv_header);
+                ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + faceDetail.getHeadPath(), context, iv_header);
                 tv_memberName.setText(TextUtils.isEmpty(faceDetail.getMemberName())?"暂未录入":faceDetail.getMemberName());
                 tv_cardName.setText(TextUtils.isEmpty(faceDetail.getCardName())?"暂未录入" : faceDetail.getCardName());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

@@ -42,6 +42,12 @@ public static java.lang.String TABLENAME;
 -dontwarn org.greenrobot.greendao.database.**
 # If you do not use Rx:
 -dontwarn rx.**
+#微信
+-keep class com.tencent.mm.opensdk.** {
+   *;
+}
+#腾讯混淆
+-keep class com.tencent.* { *; }
 
 #-dontobfuscate
 -dontoptimize

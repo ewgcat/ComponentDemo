@@ -1,4 +1,4 @@
-package com.yijian.clubmodule.net.requestbody.login;
+package module;
 
 /**
  * author：李帅华

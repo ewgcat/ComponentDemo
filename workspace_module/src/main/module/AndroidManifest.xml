@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.yijian.workspace">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,10 +31,13 @@
         android:name=".application.WorkSpaceApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        tools:replace="android:name"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <meta-data
+            android:name="com.yijian.workspace"
+            android:value="0633251c7577933569229449"/>
         <activity
             android:name=".static_assessment.StaticPhotoActivity"
             android:screenOrientation="portrait" />
@@ -57,7 +61,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".WorkSpaceActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity android:name=".commen.WorkSpaceRecordActivity" />
         <activity android:name=".sport.SportTestActivity" />
         <activity
@@ -69,6 +75,14 @@
 
 
         <activity android:name=".static_assessment.DragPointViewActivity" />
+        <activity android:name="module.login.LoginActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

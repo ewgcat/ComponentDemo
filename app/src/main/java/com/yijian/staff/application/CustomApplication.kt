@@ -16,7 +16,6 @@ class CustomApplication : BaseApplication() {
         super.onCreate()
         instance = this
         RetrofitClient.init(this)
-
         ClubDBManager.init(this)
         //初始化屏幕宽高
         getScreenSize()

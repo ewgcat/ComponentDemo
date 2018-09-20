@@ -10,7 +10,6 @@ import com.yijian.workspace.bean.DynamicRequestBody;
 import com.yijian.workspace.bean.PerfectRequestBody;
 import com.yijian.workspace.bean.SportStepRequedtBody;
 import com.yijian.workspace.bean.StaticRequestBody;
-import com.yijian.workspace.net.ApiService;
 
 import org.json.JSONObject;
 
@@ -24,6 +23,7 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import module.LoginRequestBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -32,6 +32,9 @@ public class HttpManagerWorkSpace {
 
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
     private static String HOST;
+
+    //登录
+    public static String LOGIN_URL = "user/login";
 
     public static void setWorkSpaceHost(boolean isWorkspace) {
         HOST = SharePreferenceUtil.getHostUrl();
@@ -51,6 +54,11 @@ public class HttpManagerWorkSpace {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
+    }
+    //登陆
+    public static void postLogin(LoginRequestBody loginRequestBody, Observer<JSONObject> observer) {
+        Observable<JSONObject> loginObservable = apiService.login(SharePreferenceUtil.getHostUrl() + LOGIN_URL, loginRequestBody);
+        execute(loginObservable, observer);
     }
 
     /************* 工作室 ****************/

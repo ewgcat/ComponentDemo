@@ -39,6 +39,7 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import module.LoginRequestBody;
 
 public class HttpManager {
 
@@ -214,7 +215,11 @@ public class HttpManager {
 
 
 
-  
+    //登陆
+    public static void postLogin(LoginRequestBody loginRequestBody, Observer<JSONObject> observer) {
+        Observable<JSONObject> loginObservable = apiService.login(SharePreferenceUtil.getHostUrl() + LOGIN_URL, loginRequestBody);
+        execute(loginObservable, observer);
+    }
 
     //访问
     public static void postAccessStatistics(AccessStatisticsRequestBody accessStatisticsRequestBody, Observer<JSONObject> observer) {

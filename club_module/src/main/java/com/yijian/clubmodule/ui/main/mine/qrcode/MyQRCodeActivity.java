@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jaeger.library.StatusBarUtil;
@@ -102,7 +103,12 @@ public class MyQRCodeActivity extends MvcBaseActivity {
             tvName.setText(user.getName());
             // 1 会籍客服 2教练  3会籍总监 4教练总监 5操课教练 6行政  7店长
             RoleVoBean roleVoBean = ClubDBManager.getInstance().queryRoleVoBean();
-            tvRole.setText(roleVoBean.getRoleName());
+            if (roleVoBean!=null){
+                tvRole.setText(roleVoBean.getRoleName());
+            }else {
+                Toast.makeText(this,"请退出应用,重新登录！",Toast.LENGTH_LONG).show();
+            }
+
 
             ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl()+user.getHeadImg(), this, ivHeader);
             String sex = user.getSex();

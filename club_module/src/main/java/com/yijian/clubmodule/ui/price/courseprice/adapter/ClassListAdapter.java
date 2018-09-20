@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.bean.ClassInfo;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.util.ImageLoader;
 import com.yijian.commonlib.util.Logger;
 import com.yijian.commonlib.widget.AlwaysMarqueeTextView;
 
@@ -41,18 +43,9 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Logger.i("ClassListAdapter", "position: " + position);
-//        if (clickIndex==position){
-//            holder.item_view.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
-//
-//        }else {
         holder.item_view.setBackgroundResource(R.drawable.white_bg);
-//        }
-
         ClassInfo classInfo = mClassInfoList.get(position);
-
-
-        Glide.with(context).load(classInfo.getImg()).into(holder.iv_img);
+        ImageLoader.setImageResource(SharePreferenceUtil.getImageUrl()+classInfo.getImg(),context,holder.iv_img);
         holder.tv_class_name.setText(classInfo.getName());
         holder.tv_class_long_time.setText(classInfo.getLessonTime());
         holder.tv_class_num.setText(classInfo.getCleassNum());

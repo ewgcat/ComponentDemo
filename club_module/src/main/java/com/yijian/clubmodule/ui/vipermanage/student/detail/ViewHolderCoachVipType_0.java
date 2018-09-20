@@ -38,7 +38,7 @@ public class ViewHolderCoachVipType_0 extends ViewHolderCoachVipper {
 
     @Override
     public void bindView(ViperDetailBean viperDetailBean) {
-        ImageLoader.setHeadImageResource((viperDetailBean.getHeadImg() == null) ? "" : SharePreferenceUtil.getHostUrl() + viperDetailBean.getHeadImg(), itemView.getContext(), ivHead);
+        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + viperDetailBean.getHeadImg(), itemView.getContext(), ivHead);
         tvName.setText(judgeNull(viperDetailBean.getName()));
 
         if (TextUtils.isEmpty(viperDetailBean.getMemberCardNo())){

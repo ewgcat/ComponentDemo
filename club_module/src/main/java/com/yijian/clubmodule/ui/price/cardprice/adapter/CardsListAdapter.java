@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.bean.CardInfo;
+import com.yijian.commonlib.prefs.SharePreferenceUtil;
+import com.yijian.commonlib.util.ImageLoader;
 import com.yijian.commonlib.widget.AlwaysMarqueeTextView;
 
 import java.util.ArrayList;
@@ -77,7 +79,6 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
             itemView = view.findViewById(R.id.item_view);
             iv = view.findViewById(R.id.iv);
             tvGoodsName = view.findViewById(R.id.tv_goods_name);
-//            tvJianshenplace = view.findViewById(R.id.tv_jianshenplace);
             tvYuEr = view.findViewById(R.id.tv_yu_er);
             tvChuzhiyouhui = view.findViewById(R.id.tv_chuzhiyouhui);
             tvPrice = view.findViewById(R.id.tv_price);
@@ -86,17 +87,9 @@ public class CardsListAdapter extends RecyclerView.Adapter<CardsListAdapter.View
         }
 
         public void bindView(int position) {
-//            //        Logger.i("ClassListAdapter", "position: " + position);
-//            if (clickIndex == position) {
-//                itemView.setBackgroundResource(R.drawable.goods_blue_stroke_bg);
-//
-//            } else {
             itemView.setBackgroundResource(R.drawable.white_bg);
-//            }
-
             CardInfo goodsInfo = mGoodsInfoList.get(position);
             tvGoodsName.setText(goodsInfo.getCardName());
-//            tvJianshenplace.setText(goodsInfo.getVenusNames()!=null?""+goodsInfo.getVenusNames():"");
             //:0:时间卡 1:次卡 2:储值卡 3:会员制卡 4:员工卡 ,
             if (goodsInfo.getCardType() != null && goodsInfo.getCardType() == 0) {//时间卡
                 tvYuEr.setText(goodsInfo.getValidDay() != null ? "" + goodsInfo.getValidDay() : "");

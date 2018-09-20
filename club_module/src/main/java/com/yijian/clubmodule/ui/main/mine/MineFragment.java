@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
@@ -53,22 +54,26 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
-        ivUserHead= view.findViewById(R.id.iv_user_head);
-        tvUserName= view.findViewById(R.id.tv_user_name);
-        tvUserJobPostion= view.findViewById(R.id.tv_user_job_postion);
+        ivUserHead = view.findViewById(R.id.iv_user_head);
+        tvUserName = view.findViewById(R.id.tv_user_name);
+        tvUserJobPostion = view.findViewById(R.id.tv_user_job_postion);
         user = DBManager.getInstance().queryUser();
         if (user != null) {
             tvUserName.setText(user.getName());
             RoleVoBean roleVoBean = ClubDBManager.getInstance().queryRoleVoBean();
-            tvUserJobPostion.setText(roleVoBean.getRoleName());
+            if (roleVoBean!=null){
+                tvUserJobPostion.setText(roleVoBean.getRoleName());
+            }else {
+                Toast.makeText(getContext(),"请退出应用,重新登录！",Toast.LENGTH_LONG).show();
+            }
             setImageResource(SharePreferenceUtil.getImageUrl() + user.getHeadImg(), ivUserHead);
         }
-                view.findViewById(R.id.ll_more).setOnClickListener(this);
-                view.findViewById(R.id.ll_club).setOnClickListener(this);
-                view.findViewById(R.id.ll_erweima).setOnClickListener(this);
-                view.findViewById(R.id.ll_coach).setOnClickListener(this);
-                view.findViewById(R.id.ll_system_set).setOnClickListener(this);
-                view.findViewById(R.id.ll_suggestion).setOnClickListener(this);
+        view.findViewById(R.id.ll_more).setOnClickListener(this);
+        view.findViewById(R.id.ll_club).setOnClickListener(this);
+        view.findViewById(R.id.ll_erweima).setOnClickListener(this);
+        view.findViewById(R.id.ll_coach).setOnClickListener(this);
+        view.findViewById(R.id.ll_system_set).setOnClickListener(this);
+        view.findViewById(R.id.ll_suggestion).setOnClickListener(this);
         return view;
     }
 

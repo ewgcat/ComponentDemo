@@ -54,9 +54,8 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
     LinearLayout lin_search_container; //搜索面板的容器
 
     EditText etSearch;
-    RecyclerView rcl;
     EmptyView empty_view;
-    RecyclerView rcl_search;
+    RecyclerView rv;
     SmartRefreshLayout refreshLayout;
 
     private int pageNum = 1;
@@ -76,9 +75,10 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         etSearch = findViewById(R.id.et_search);
-        rcl_search = findViewById(R.id.rv);
+        rv = findViewById(R.id.rv);
         refreshLayout = findViewById(R.id.refreshLayout);
         empty_view = findViewById(R.id.empty_view);
+        lin_search_container = findViewById(R.id.lin_search_container);
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +93,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
             }
         });
         showKeyBoard(etSearch);
-        rcl_search.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new LinearLayoutManager(this));
         searchKeyAdapter = new SearchKeyAdapter(this, searchList);
         searchKeyAdapter.setClickKeyListener(new SearchKeyAdapter.ClickKeyListener() {
             @Override
@@ -118,7 +118,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
                 initSearchData();
             }
         });
-        rcl_search.setAdapter(searchKeyAdapter);
+        rv.setAdapter(searchKeyAdapter);
         lin_search_container.setVisibility(View.GONE);
 
         empty_view.setButton(new View.OnClickListener() {
@@ -168,11 +168,11 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
     public void initComponent() {
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         //设置RecyclerView 布局
-        rcl.setLayoutManager(layoutmanager);
+        rv.setLayoutManager(layoutmanager);
 
         //TODO 设置适配器
         adapter = new HuiJiVipSearchAdapter(this, viperBeanList);
-        rcl.setAdapter(adapter);
+        rv.setAdapter(adapter);
 
         //设置 Header 为 BezierRadar 样式
         BezierRadarHeader header = new BezierRadarHeader(this).setEnableHorizontalDrag(true);
@@ -346,7 +346,7 @@ public class HuiJiSearchActivity extends MvcBaseActivity {
     public void clearEditTextFocus() {
         lin_search_container.setVisibility(View.GONE);
         etSearch.clearFocus();
-        rcl.requestFocus();
+        rv.requestFocus();
         SystemUtil.hideKeyBoard(etSearch, this);
     }
 

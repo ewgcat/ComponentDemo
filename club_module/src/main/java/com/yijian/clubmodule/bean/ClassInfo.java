@@ -14,17 +14,7 @@ import org.json.JSONObject;
  */
 public class ClassInfo implements Comparable<ClassInfo> {
 
-    @Override
-    public String toString() {
-        return "ClassInfo{" +
-                "lessonId='" + lessonId + '\'' +
-                ", name='" + name + '\'' +
-                ", img='" + img + '\'' +
-                ", cleassNum='" + cleassNum + '\'' +
-                ", lessonTime='" + lessonTime + '\'' +
-                ", baseTotalPrice='" + baseTotalPrice + '\'' +
-                '}';
-    }
+
 
     /**
      * lessonId : 1
@@ -48,7 +38,7 @@ public class ClassInfo implements Comparable<ClassInfo> {
         this.cleassNum = JsonUtil.getString(jsonObject, "cleassNum");
         this.lessonTime = JsonUtil.getString(jsonObject, "lessonTime");
         this.lessonId = JsonUtil.getString(jsonObject, "lessonId");
-        this.img = SharePreferenceUtil.getHostUrl() + JsonUtil.getString(jsonObject, "img");
+        this.img = JsonUtil.getString(jsonObject, "img");
         this.baseTotalPrice = JsonUtil.getInt(jsonObject, "baseTotalPrice") + "";
     }
 

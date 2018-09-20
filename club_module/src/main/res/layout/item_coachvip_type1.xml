@@ -214,7 +214,7 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="22dp"
@@ -242,7 +242,7 @@
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -303,7 +303,9 @@
             android:textSize="14sp" />
 
     </RelativeLayout>
-    <LinearLayout
+
+
+    <RelativeLayout
         android:id="@+id/rl_sijiao_class"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -313,7 +315,7 @@
         android:paddingRight="22dp">
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/rv_sijiao_class_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -321,15 +323,26 @@
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_sijiao_class"
             android:layout_marginLeft="10dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/rv_sijiao_class_label"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tv_sijiao_class"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/rv_sijiao_class_label"
+            android:text="暂未录入"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/text_black1"
+            android:textSize="14sp"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
 
 
 

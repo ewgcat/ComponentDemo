@@ -232,7 +232,7 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -261,7 +261,7 @@
             android:textColor="#333333"
             android:textSize="14sp"
             tools:text="已请求群群群群1已请求群群群群1" />
-    </LinearLayout>
+    </LinearLayout>-->
 
 
     <LinearLayout
@@ -328,35 +328,44 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/ll_sijiao_class"
+    <RelativeLayout
+        android:id="@+id/rl_sijiao_class"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:paddingTop="15dp">
-
-
-
+        android:paddingRight="22dp">
 
         <TextView
+            android:id="@+id/rv_sijiao_class_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:id="@+id/tv1"
             android:text="私教课程:"
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_sijiao_class"
             android:layout_marginLeft="10dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/rv_sijiao_class_label"/>
+
+        <TextView
+            android:id="@+id/tv_sijiao_class"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/rv_sijiao_class_label"
+            android:text="暂未录入"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/text_black1"
+            android:textSize="14sp"
+            android:visibility="gone"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <LinearLayout

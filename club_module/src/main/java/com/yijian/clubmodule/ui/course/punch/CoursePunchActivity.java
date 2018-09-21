@@ -37,9 +37,6 @@ import java.util.TimerTask;
 
 
 
-
-
-
 public class CoursePunchActivity extends MvcBaseActivity implements View.OnClickListener {
 
 
@@ -48,12 +45,10 @@ public class CoursePunchActivity extends MvcBaseActivity implements View.OnClick
     TextView tv_shangke_time;
     TextView tv_xiake_time;
     TextView tv_shangke_statu;
-    RelativeLayout rel_punch_card;
     IndicatorSeekBar seekBar1;
     IndicatorSeekBar seekBar2;
     IndicatorSeekBar seekBar3;
     LinearLayout ll_pingjia;
-    TextView tv_xiake_label;
     TextView tv_pingjia;
     TextView tv_jiao_cha;
     TextView tv_he_ge;
@@ -97,6 +92,26 @@ public class CoursePunchActivity extends MvcBaseActivity implements View.OnClick
         findViewById(R.id.rel_punch_card).setOnClickListener(this);
         findViewById(R.id.iv_finish).setOnClickListener(this);
         findViewById(R.id.tv_pingjia).setOnClickListener(this);
+
+
+        chronometer=   findViewById(R.id.chronometer);
+        tv_today=   findViewById(R.id.tv_today);
+        tv_shangke_time=   findViewById(R.id.tv_shangke_time);
+        tv_xiake_time=   findViewById(R.id.tv_xiake_time);
+        tv_shangke_statu=   findViewById(R.id.tv_shangke_statu);
+        tv_jiao_cha=   findViewById(R.id.tv_jiao_cha);
+        tv_pingjia=   findViewById(R.id.tv_pingjia);
+        ll_pingjia=   findViewById(R.id.ll_pingjia);
+        tv_he_ge=   findViewById(R.id.tv_he_ge);
+        tv_jiao_hao=   findViewById(R.id.tv_jiao_hao);
+        tv_hen_hao=   findViewById(R.id.tv_hen_hao);
+        tv_you_xiu=   findViewById(R.id.tv_you_xiu);
+        tv_di=   findViewById(R.id.tv_di);
+        tv_zhong=   findViewById(R.id.tv_zhong);
+        tv_gao=   findViewById(R.id.tv_gao);
+        seekBar1=   findViewById(R.id.seek_bar1);
+        seekBar2=   findViewById(R.id.seek_bar2);
+        seekBar3=   findViewById(R.id.seek_bar3);
         seekBar2.setOnSeekChangeListener(new OnSeekChangeListener() {
             @Override
             public void onSeeking(SeekParams seekParams) {

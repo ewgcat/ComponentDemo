@@ -76,6 +76,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity implements 
     private List<CoursePlanBean> coursePlanBeanList = new ArrayList<>();
     private NewCourseListAdapter newCourseListAdapter;
     private String memberId;
+    private int courseNumSurplus;
 
 
     @Override
@@ -87,19 +88,19 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity implements 
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        rv=findViewById(R.id.rv);
-        tvCourseTimeStatus=findViewById(R.id.tv_course_time_status);
-        ivHeader=findViewById(R.id.iv_header);
-        tvName=findViewById(R.id.tv_name);
-        ivSex=findViewById(R.id.iv_sex);
-        tvCourse=findViewById(R.id.tv_course);
-        wheelView1=findViewById(R.id.wheelview1);
-        wheelView2=findViewById(R.id.wheelview2);
-        dateSelectWheelView=findViewById(R.id.date_select_wheel_view);
+        rv = findViewById(R.id.rv);
+        tvCourseTimeStatus = findViewById(R.id.tv_course_time_status);
+        ivHeader = findViewById(R.id.iv_header);
+        tvName = findViewById(R.id.tv_name);
+        ivSex = findViewById(R.id.iv_sex);
+        tvCourse = findViewById(R.id.tv_course);
+        wheelView1 = findViewById(R.id.wheelview1);
+        wheelView2 = findViewById(R.id.wheelview2);
+        dateSelectWheelView = findViewById(R.id.date_select_wheel_view);
         findViewById(R.id.add_time).setOnClickListener(this);
         NavigationBar navigationBar = findViewById(R.id.navigation_bar);
-        navigationBar .hideLeftSecondIv();
-        navigationBar .setBackClickListener(this);
+        navigationBar.hideLeftSecondIv();
+        navigationBar.setBackClickListener(this);
         navigationBar.setTitle("选择时间");
         navigationBar.setmRightTvColor(Color.parseColor("#1997f8"));
         navigationBar.setmRightTvText("确定");
@@ -125,7 +126,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity implements 
                 checkoutScheduleTime();
             }
         });
-        weekday = getIntent().getIntExtra("weekday",0);
+        weekday = getIntent().getIntExtra("weekday", 0);
         dateSelectWheelView.setSelectedPosition(weekday);
 
         init();
@@ -144,7 +145,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity implements 
         if (course != null) {
             consumingMinute = course.getConsumingMinute();
             tvCourse.setText(course.getMemberCourseName() + "（" + consumingMinute + "分钟)");
-
+            courseNumSurplus = course.getCourseNumSurplus();
         }
         initSetTime();
 
@@ -203,10 +204,20 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity implements 
     }
 
 
-
-
     private void addTime() {
+        int num=0;
+        for (int i = 0; i < coursePlanBeanList.size(); i++) {
+            CoursePlanBean coursePlanBean = coursePlanBeanList.get(i);
+            List<CourseTimeBean> courseTimeBeanList = coursePlanBean.getCourseTimeBeanList();
+            if (courseTimeBeanList!=null){
+                num+= courseTimeBeanList.size();
+            }
 
+        }
+        if (num >= courseNumSurplus) {
+            showToast("排课计划数量已超过该课程剩余数（该课程剩余"+courseNumSurplus+"节），不能继续添加！");
+            return;
+        }
         int visibility = tvCourseTimeStatus.getVisibility();
         if (visibility == View.VISIBLE) {
             showToast("选中时间段已有安排,请选择其他时间！");
@@ -233,7 +244,7 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity implements 
                 endTime = endTime + i5;
             }
 
-            CourseTimeBean courseTimeBean = new CourseTimeBean(startTime,endTime);
+            CourseTimeBean courseTimeBean = new CourseTimeBean(startTime, endTime);
 
 
             if (coursePlanBeanList.size() == 0) {
@@ -382,9 +393,9 @@ public class AddStudentCourseStepTwoActivity extends MvcBaseActivity implements 
                             public void onSuccess(JSONObject jsonObject) {
                                 hideLoading();
                                 String msg = JsonUtil.getString(jsonObject, "msg");
-                                if (TextUtils.isEmpty(msg)){
+                                if (TextUtils.isEmpty(msg)) {
                                     showToast("新增成功！");
-                                }else {
+                                } else {
                                     showToast(msg);
                                 }
                                 JSONArray data = JsonUtil.getJsonArray(jsonObject, "data");

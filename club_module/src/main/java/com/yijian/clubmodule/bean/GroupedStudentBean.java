@@ -75,6 +75,15 @@ public class GroupedStudentBean implements Serializable{
         private String memberCourseId;
         private String memberCourseName;
         private int consumingMinute;
+        private int courseNumSurplus;
+
+        public int getCourseNumSurplus() {
+            return courseNumSurplus;
+        }
+
+        public void setCourseNumSurplus(int courseNumSurplus) {
+            this.courseNumSurplus = courseNumSurplus;
+        }
 
         public String getMemberCourseId() {
             return memberCourseId;

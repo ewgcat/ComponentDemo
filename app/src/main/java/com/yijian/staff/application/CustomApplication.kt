@@ -1,8 +1,5 @@
 package com.yijian.staff.application
 
-import android.content.Context
-import android.util.DisplayMetrics
-import android.view.WindowManager
 
 
 import com.yijian.commonlib.application.BaseApplication

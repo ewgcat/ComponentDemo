@@ -25,16 +25,12 @@ public  class RoleVoBean {
     private String roleCode;
     private String roleId;
     private String roleName;
-
-
     public RoleVoBean(JSONObject jsonObject) {
         this.classification = JsonUtil.getInt(jsonObject, "classification");
         this.roleCode = JsonUtil.getString(jsonObject, "roleCode");
         this.roleId = JsonUtil.getString(jsonObject, "roleId");
         this.roleName = JsonUtil.getString(jsonObject, "roleName");
     }
-
-
     @Generated(hash = 1607978983)
     public RoleVoBean(int classification, String roleCode, String roleId,
             String roleName) {
@@ -43,51 +39,32 @@ public  class RoleVoBean {
         this.roleId = roleId;
         this.roleName = roleName;
     }
-
-
     @Generated(hash = 1692024802)
     public RoleVoBean() {
     }
-
-
     public int getClassification() {
         return this.classification;
     }
-
-
     public void setClassification(int classification) {
         this.classification = classification;
     }
-
-
     public String getRoleCode() {
         return this.roleCode;
     }
-
-
     public void setRoleCode(String roleCode) {
         this.roleCode = roleCode;
     }
-
-
     public String getRoleId() {
         return this.roleId;
     }
-
-
     public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
-
-
     public String getRoleName() {
         return this.roleName;
     }
-
-
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-
 
 }

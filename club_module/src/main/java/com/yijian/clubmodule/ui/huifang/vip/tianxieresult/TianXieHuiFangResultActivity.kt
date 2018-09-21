@@ -37,9 +37,9 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
     private var huiFangReasonBeanList: MutableList<HuiFangReasonBean> = ArrayList()
     private var needReview = false
     lateinit var huiFangInfo: HuiFangInfo
-    lateinit var fufangTime: String
-    lateinit var laifangTime: String
-    lateinit var dictItemId: String
+     var fufangTime: String =""
+     var laifangTime: String =""
+     var dictItemId: String =""
 
 
     override fun getLayoutID(): Int {

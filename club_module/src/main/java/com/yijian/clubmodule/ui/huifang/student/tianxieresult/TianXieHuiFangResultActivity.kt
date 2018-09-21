@@ -38,9 +38,9 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
     private var huiFangReasonBeanList: MutableList<HuiFangReasonBean> = ArrayList()
     private var needReview = false
     lateinit var huiFangInfo: HuiFangInfo
-    lateinit var fufangTime: String
-    lateinit var laifangTime: String
-    lateinit var dictItemId: String
+    var fufangTime: String = ""
+    var laifangTime: String = ""
+    var dictItemId: String = ""
 
 
     override fun getLayoutID(): Int {
@@ -94,9 +94,10 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
             }
         })
 
-        rel_huifan_time.setOnClickListener { _ ->      val c = Calendar.getInstance()
+        rel_huifan_time.setOnClickListener { _ ->
+            val c = Calendar.getInstance()
             val dialog = DatePickerDialog(this,
-                    DatePickerDialog.OnDateSetListener {_, year, month, dayOfMonth ->
+                    DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                         var time = ""
                         if (month < 9 && dayOfMonth < 10) {
                             time += year.toString() + "-0" + (month + 1) + "-0" + dayOfMonth
@@ -123,7 +124,8 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
                     c.get(Calendar.DAY_OF_MONTH))
             dialog.show()
         }
-        rel_laifan_time.setOnClickListener { _ ->         val c1 = Calendar.getInstance()
+        rel_laifan_time.setOnClickListener { _ ->
+            val c1 = Calendar.getInstance()
             DatePickerDialog(this,
                     DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                         var time = ""
@@ -148,8 +150,9 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
                             showToast("来访时间不得小于当前时间")
                         }
                     }, c1.get(Calendar.YEAR), c1.get(Calendar.MONTH),
-                    c1.get(Calendar.DAY_OF_MONTH)).show() }
-        rel_huifan_reason.setOnClickListener { _ ->      showPickerReasonView() }
+                    c1.get(Calendar.DAY_OF_MONTH)).show()
+        }
+        rel_huifan_reason.setOnClickListener { _ -> showPickerReasonView() }
 
 
     }
@@ -171,7 +174,7 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
         })
 
         huiFangInfo = intent.getSerializableExtra("huiFangInfo") as HuiFangInfo
-        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl()+ huiFangInfo.headUrl, this, iv_nav_header)
+        ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + huiFangInfo.headUrl, this, iv_nav_header)
         ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + huiFangInfo.headUrl, this, iv_sure_header)
         tv_nav_name.text = huiFangInfo.name
         tv_sure_name.text = huiFangInfo.name
@@ -183,7 +186,6 @@ class TianXieHuiFangResultActivity : MvcBaseActivity() {
         tv_huifan_type.text = huiFangInfo.interviewName
         tv_vip_type.text = huiFangInfo.memberTypeName
     }
-
 
 
     private fun sendResult() {

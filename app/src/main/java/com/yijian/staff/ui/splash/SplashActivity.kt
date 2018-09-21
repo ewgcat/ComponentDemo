@@ -3,19 +3,28 @@ package com.yijian.staff.ui.splash
 import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Message
 import android.provider.Settings
+import android.support.v4.app.NotificationManagerCompat
 import android.text.TextUtils
 import android.view.ContextThemeWrapper
+import android.view.Gravity
 import android.view.KeyEvent
+import android.view.View
+import android.widget.PopupWindow
 import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
 import com.tbruyelle.rxpermissions2.Permission
 
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.yijian.clubmodule.ui.course.schedule.day.LockTimePopuwindow
+import com.yijian.clubmodule.ui.face.FaceDetail
 import com.yijian.commonlib.application.BaseApplication
 
 import com.yijian.staff.application.CustomApplication
@@ -25,6 +34,7 @@ import com.yijian.staff.ui.login.LoginActivity
 import com.yijian.staff.net.httpmanager.HttpManager
 import com.yijian.commonlib.net.response.ResultStringObserver
 import com.yijian.commonlib.rx.RxUtil
+import com.yijian.commonlib.util.LoadingProgressDialog
 import com.yijian.commonlib.util.NotificationsUtil
 import com.yijian.staff.R
 
@@ -33,6 +43,7 @@ import java.util.concurrent.TimeUnit
 import io.reactivex.Observable
 
 import com.yijian.staff.net.httpmanager.HttpManager.GET_NEW_TOKEN_URL
+import com.yijian.staff.ui.widget.NotificationPopuwindow
 
 
 class SplashActivity : MvcBaseActivity() {
@@ -40,17 +51,39 @@ class SplashActivity : MvcBaseActivity() {
     internal var permissions = arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.CALL_PHONE, Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CHANGE_NETWORK_STATE, Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
 
     private var index = 0
-
     protected var mExitTime: Long = 0
-
+    lateinit var iv: View;
+    lateinit var notificationPopuwindow: NotificationPopuwindow;
 
 
     override fun getLayoutID(): Int {
         return R.layout.activity_splash
     }
 
+
     override fun initView(savedInstanceState: Bundle?) {
         setImmersionBar()
+        iv = findViewById<View>(R.id.iv)
+
+
+        notificationPopuwindow = NotificationPopuwindow(this)
+        notificationPopuwindow.setAnimationStyle(com.yijian.clubmodule.R.style.locktime_popwin_anim_style)
+        notificationPopuwindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        notificationPopuwindow.setOnSelectLisener(object : NotificationPopuwindow.OnSelectLisener {
+            override fun onConfirm() {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", packageName, null)
+                intent.data = uri
+                startActivityForResult(intent, 100)
+            }
+            override fun onCancel() {
+                jumpToNext()
+            }
+        })
+        notificationPopuwindow.setOnDismissListener(PopupWindow.OnDismissListener { notificationPopuwindow.setBackgroundAlpha(this, 1f) })
+    }
+
+    override fun lazzyLoad() {
         initRxPermissions(index, permissions)
     }
 
@@ -113,11 +146,12 @@ class SplashActivity : MvcBaseActivity() {
                     if (permissions.size > index) {
                         initRxPermissions(index, permissions)
                     } else {
-                        val msg = checkPermissions()
-                        if (!TextUtils.isEmpty(msg) && msg.contains("【通知与状态栏权限】")) {
-                            requestPermissions("    【通知与状态栏权限】\n")
-                        } else {
+                        val manager = NotificationManagerCompat.from(applicationContext);
+                        val isOpened = manager.areNotificationsEnabled();
+                        if (isOpened) {
                             jumpToNext()
+                        } else {
+                            requestNotificationPermission();
                         }
                     }
                 }
@@ -126,30 +160,9 @@ class SplashActivity : MvcBaseActivity() {
     /**
      * 请求通知权限  100
      */
-    private fun requestPermissions(msg: String) {
-        val alertDialog = AlertDialog.Builder(ContextThemeWrapper(this@SplashActivity, R.style.AlertDialogCustom))
-
-                .setTitle("获取必要权限")
-                .setMessage(msg)
-                .setPositiveButton("立即获取") { _, _ ->
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    val uri = Uri.fromParts("package", packageName, null)
-                    intent.data = uri
-                    startActivityForResult(intent, 100)
-                }
-                .setNegativeButton("拒绝") { _, _ -> jumpToNext() }.create()
-
-        alertDialog.setCancelable(false)
-        alertDialog.show()
-    }
-
-
-    private fun checkPermissions(): String {
-        var msg = ""
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !NotificationsUtil.isNotificationEnabled(this)) {
-            msg = "    【通知与状态栏权限】\n"
-        }
-        return msg
+    private fun requestNotificationPermission() {
+        notificationPopuwindow.setBackgroundAlpha(this, 0.3f)
+        notificationPopuwindow.showAtLocation(iv, Gravity.CENTER, 0, 0)
     }
 
 
@@ -160,12 +173,11 @@ class SplashActivity : MvcBaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             100 -> {
-                val msg = checkPermissions()
-                if (!TextUtils.isEmpty(msg)) {
-                   showToast( "缺少$msg")
+                val msg = NotificationsUtil.isNotificationEnabled(this)
+                if (msg) {
+                    showToast("缺少$msg")
                 }
-                ARouter.getInstance().build("/test/main").navigation()
-
+                jumpToNext()
             }
         }
     }
@@ -181,7 +193,9 @@ class SplashActivity : MvcBaseActivity() {
                 mExitTime = secondTime
                 return true
             } else {
+                notificationPopuwindow.dismiss()
                 BaseApplication.instance.exitApp()
+
             }
         }
         return true

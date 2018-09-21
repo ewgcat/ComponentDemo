@@ -335,7 +335,8 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
 
 
             Map<String, String> map = new HashMap<>();
-            map.put("memberId", privateCourseMemberVO.getMemberId());
+            String memberId = privateCourseMemberVO.getMemberId();
+            map.put("memberId", memberId);
             map.put("coachId", courseBean.getCoachId());
             map.put("colorCode", color);
             showLoading();
@@ -343,11 +344,8 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
             HttpManager.postUpdateFlag(map, new Response2Observer(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject jsonObject) {
-                    String msg = JsonUtil.getString(jsonObject, "msg");
-                    if (TextUtils.isEmpty(msg)) {
-                    } else {
-                        showToast(msg);
-                    }
+
+                        showToast("修改成功！");
                     JSONArray data = JsonUtil.getJsonArray(jsonObject, "data");
                     ;
                     dayCourseView.dismiss();

@@ -274,8 +274,7 @@ public interface ApiService {
     @POST
     Observable<JSONObject> postLockTime(@Url String url, @HeaderMap HashMap<String, String> headers, @Body SaveCourseRequestBody.PrivateCoachCAPDTOsBean body);
 
-    @FormUrlEncoded
     @Headers({"Content-type: application/json", "Accept: */*"})
     @POST
-    Observable<JSONObject> postUpdateFlag(@Url String url, @HeaderMap Map<String, String> headers, @FieldMap Map<String, String> param);
+    Observable<JSONObject> postUpdateFlag(@Url String url, @HeaderMap Map<String, String> headers,  @QueryMap Map<String, String> param);
 }

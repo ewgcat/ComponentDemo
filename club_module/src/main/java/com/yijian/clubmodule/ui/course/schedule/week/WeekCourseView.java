@@ -35,10 +35,6 @@ import com.yijian.commonlib.util.Logger;
 public class WeekCourseView extends FrameLayout {
 
 
-
-
-
-
     private View mDragView;  //被拖动的子元素
 
     private static final long DRAGDURATION = 300;   //长按的时间
@@ -200,7 +196,13 @@ public class WeekCourseView extends FrameLayout {
             if (privateCourseMemberVO != null) {
                 tv_member_name.setText(privateCourseMemberVO.getMemberName());
             }
-            ll_week_course.setBackgroundColor(Color.parseColor(colour));
+            if (CommonUtil.isColor(colour)) {
+                int color = Color.parseColor(colour);
+                ll_week_course.setBackgroundColor(color);
+            } else {
+                tv_member_name.setTextColor(Color.parseColor("#333333"));
+                ll_week_course.setBackgroundColor(Color.parseColor("#f3f3f3"));
+            }
 
         } else {
             tv_member_name.setVisibility(GONE);
@@ -441,11 +443,11 @@ public class WeekCourseView extends FrameLayout {
             if (mDragView != null) {
                 CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) mDragView.getTag();
 
-                if (courseBean!=null){
+                if (courseBean != null) {
                     playStartAnimation(mDragView);
                     invalidate();
-                }else {
-                    mDragView=null;
+                } else {
+                    mDragView = null;
                 }
 
             }
@@ -459,19 +461,19 @@ public class WeekCourseView extends FrameLayout {
 
             if (mDragView != null) {
                 CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean = (CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean) mDragView.getTag();
-                    if (courseBean!=null){
-                        if (getHeight() + getScrollY() < mDragView.getBottom() && getScrollY() < maxHeight) {
-                            scrollBy(0, vDragScroll);
-                            ViewCompat.offsetTopAndBottom(mDragView, vDragScroll);
-                            post(mDragScrollRun);
-                        } else if (mDragView.getTop() < getScrollY() && getScrollY() > 0) {
-                            scrollBy(0, -vDragScroll);
-                            ViewCompat.offsetTopAndBottom(mDragView, -vDragScroll);
-                            post(mDragScrollRun);
-                        }
-                    }else {
-                        mDragView=null;
+                if (courseBean != null) {
+                    if (getHeight() + getScrollY() < mDragView.getBottom() && getScrollY() < maxHeight) {
+                        scrollBy(0, vDragScroll);
+                        ViewCompat.offsetTopAndBottom(mDragView, vDragScroll);
+                        post(mDragScrollRun);
+                    } else if (mDragView.getTop() < getScrollY() && getScrollY() > 0) {
+                        scrollBy(0, -vDragScroll);
+                        ViewCompat.offsetTopAndBottom(mDragView, -vDragScroll);
+                        post(mDragScrollRun);
                     }
+                } else {
+                    mDragView = null;
+                }
 
 
             }

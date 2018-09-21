@@ -8,12 +8,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:text="设置锁住时间"
         android:textColor="#333333"
         android:textSize="16sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="4dp"
+        android:text="锁定时间后，该时段学员不可约课"
+        android:textColor="#999999"
+        android:textSize="12sp" />
     <View
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
@@ -72,15 +79,12 @@
 
         </LinearLayout>
     </LinearLayout>
-    <View
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/gray" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:orientation="horizontal">

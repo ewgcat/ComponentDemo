@@ -87,7 +87,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
 
                 isReleased = false;
                 isMoved = false;
-                postDelayed(mLongPressRunnable, ViewConfiguration.getLongPressTimeout());
+                postDelayed(mLongPressRunnable, 200);
                 break;
             case MotionEvent.ACTION_MOVE:
 
@@ -442,19 +442,15 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                     String color = "";
                     switch (position) {
                         case GREEN_FLAG:
-                            ImageLoader.setImageResource(R.mipmap.sign_green, view.getContext(), iv_flag);
                             color = "#3ad0a7";
                             break;
                         case RED_FLAG:
-                            ImageLoader.setImageResource(R.mipmap.sign_red, view.getContext(), iv_flag);
                             color = "#ef6666";
                             break;
                         case BLUE_FLAG:
-                            ImageLoader.setImageResource(R.mipmap.sign_blue, view.getContext(), iv_flag);
                             color = "#43a2fb";
                             break;
                         case WHITE_FLAG:
-                            ImageLoader.setImageResource(R.mipmap.sign_white, view.getContext(), iv_flag);
                             color = "#f3f3f3";
                             break;
                     }

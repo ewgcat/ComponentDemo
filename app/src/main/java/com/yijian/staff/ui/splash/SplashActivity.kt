@@ -175,7 +175,7 @@ class SplashActivity : MvcBaseActivity() {
             100 -> {
                 val msg = NotificationsUtil.isNotificationEnabled(this)
                 if (msg) {
-                    showToast("缺少$msg")
+                    showToast("缺少通知权限,推送消息接收不到哦！")
                 }
                 jumpToNext()
             }

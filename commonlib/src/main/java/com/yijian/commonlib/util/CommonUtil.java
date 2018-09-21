@@ -66,15 +66,15 @@ public class CommonUtil {
     }
 
     public static boolean intersects(Rect a, Rect b) {
-        boolean f=false;
-        if (a.left==b.left){
-            if (a.top>b.top&&a.top<b.bottom){
-                f=true;
-            }else if (a.top<b.top&&a.bottom>b.top){
-                f=true;
+        boolean f = false;
+        if (a.left == b.left) {
+            if (a.top > b.top && a.top < b.bottom) {
+                f = true;
+            } else if (a.top < b.top && a.bottom > b.top) {
+                f = true;
             }
-        }else {
-            f=a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+        } else {
+            f = a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
         }
         return f;
     }
@@ -87,6 +87,16 @@ public class CommonUtil {
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher isNum = pattern.matcher(str);
         return isNum.matches();
+    }
+
+    /**
+     * 判断字符串是否为整数
+     */
+    public static boolean isColor(String str) {
+        if (str == null) return false;
+        Pattern pattern = Pattern.compile("^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$");
+        Matcher isColor = pattern.matcher(str);
+        return isColor.matches();
     }
 
     /**

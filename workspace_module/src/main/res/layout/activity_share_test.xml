@@ -18,7 +18,7 @@
         android:layout_below="@id/navigation_bar"
         android:visibility="invisible"/>
 
-    <com.yijan.commonlib.widget.EmptyView
+    <com.yijian.commonlib.widget.EmptyView
         android:id="@+id/emptyView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

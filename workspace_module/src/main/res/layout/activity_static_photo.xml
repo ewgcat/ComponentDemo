@@ -89,7 +89,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"/>
 
-                <com.yijan.commonlib.workspace.static_assessment.GyroscopeView
+                <com.yijian.workspace.static_assessment.GyroscopeView
                     android:id="@+id/gyroscopeView"
                     android:layout_width="match_parent"
                     android:layout_height="188dp"

@@ -77,7 +77,6 @@ android {
             minifyEnabled true
             shrinkResources true
             zipAlignEnabled true
-            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseKey
         }
@@ -102,7 +101,7 @@ android {
             buildConfigField "String", "FILE_HOST", "\"$train_file_host\""
             buildConfigField "String", "WORKSPACE_HOST", "\"$workspace_train_host\""
             buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_train_file_host\""
-            buildConfigField "String", "H5_HOST", "\"$train_file_host\""
+            buildConfigField "String", "H5_HOST", "\"$h5_train_host\""
         }
         sittest {
             buildConfigField "String", "HOST", "\"$test_host\""
@@ -137,17 +136,9 @@ android {
 
 
 dependencies {
-
+    api project(':indicatorseekbar')
     api project(':commonlib')
-    if (!isModule.toBoolean()) {
-        api project(':club_module')
-        api project(':workspace_module')
-    }
-
-
-    kapt 'com.github.bumptech.glide:compiler:4.7.1'
     kapt 'com.alibaba:arouter-compiler:1.1.4'
-
-
-
+    compile project(path: ':club_module')
+    compile project(path: ':workspace_module')
 }

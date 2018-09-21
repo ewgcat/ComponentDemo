@@ -156,7 +156,7 @@ class SplashActivity : MvcBaseActivity() {
     /**
      * 请求权限回调
      */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             100 -> {

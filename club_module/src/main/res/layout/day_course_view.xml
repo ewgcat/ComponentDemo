@@ -26,7 +26,6 @@
 
             <LinearLayout
                 android:paddingTop="4dp"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -70,7 +69,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/sign_white"
-            android:visibility="gone"
             android:layout_gravity="center"
             android:layout_marginRight="10dp" />
     </LinearLayout>

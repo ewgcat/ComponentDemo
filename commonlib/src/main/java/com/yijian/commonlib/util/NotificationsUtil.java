@@ -34,18 +34,23 @@ public class NotificationsUtil {
             Field opPostNotificationValue = appOpsClass.getDeclaredField(OP_POST_NOTIFICATION);
 
             int value = (Integer) opPostNotificationValue.get(Integer.class);
-            return ((Integer) checkOpNoThrowMethod.invoke(mAppOps, value, uid, pkg) == AppOpsManager.MODE_ALLOWED);
+            int modeAllowed = AppOpsManager.MODE_ALLOWED;
+            int invoke = (Integer) checkOpNoThrowMethod.invoke(mAppOps, value, uid, pkg);
+            Logger.i("NotificationsUtil","modeAllowed="+modeAllowed);
+            Logger.i("NotificationsUtil","invoke="+invoke);
+
+            return invoke == modeAllowed;
 
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger.i("NotificationsUtil",e.getMessage());
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            Logger.i("NotificationsUtil",e.getMessage());
         } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+            Logger.i("NotificationsUtil",e.getMessage());
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            Logger.i("NotificationsUtil",e.getMessage());
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            Logger.i("NotificationsUtil",e.getMessage());
         }
         return false;
     }

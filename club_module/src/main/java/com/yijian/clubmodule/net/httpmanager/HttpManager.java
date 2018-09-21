@@ -266,6 +266,20 @@ public class HttpManager {
         }
 
     }
+    //保存排课计划
+    public static void postUpdateFlag(Map<String,String> params, Observer<JSONObject> observer) {
+        HashMap<String, String> headers = new HashMap<>();
+        User user = DBManager.getInstance().queryUser();
+        if (user == null || TextUtils.isEmpty(user.getToken())) {
+            ARouter.getInstance().build("/app/login").navigation();
+        } else {
+            headers.put("token", user.getToken());
+            headers.put("version","1.3");
+            Observable<JSONObject> observable = apiService.postUpdateFlag(SharePreferenceUtil.getHostUrl() + CourseUrls.UPDATE_FLAG_URL, headers, params);
+            execute(observable, observer);
+        }
+
+    }
     public static void postLockTime(SaveCourseRequestBody.PrivateCoachCAPDTOsBean body, Observer<JSONObject> observer) {
         HashMap<String, String> headers = new HashMap<>();
         User user = DBManager.getInstance().queryUser();

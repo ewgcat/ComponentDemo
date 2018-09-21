@@ -42,9 +42,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-
-
+import java.util.Map;
 
 
 public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClickListener {
@@ -68,9 +66,9 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
     public void initView() {
         View rootView = getRootView();
 
-        rv =  rootView.findViewById(R.id.rv);
+        rv = rootView.findViewById(R.id.rv);
         dayCourseView = rootView.findViewById(R.id.course_view);
-        scollView =  rootView.findViewById(R.id.scoll_view);
+        scollView = rootView.findViewById(R.id.scoll_view);
         rootView.findViewById(R.id.iv_edit).setOnClickListener(this);
 
         height = CommonUtil.dp2px(getContext(), 44);
@@ -80,7 +78,7 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
         dayCourseView.setOnSelectFlagListener(new DayCourseView.OnSelectFlagListener() {
             @Override
             public void OnSelectFlag(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color) {
-                postSaveCourse(courseBean, color);
+                postUpdateFlag(courseBean, color);
             }
         });
         dayCourseView.setActivity(getActivity());
@@ -181,7 +179,7 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
             dateBean.setWeekDay(weekOfDate);
             dateBeanList.add(dateBean);
         }
-        LeftDateListAdapter adapter = new LeftDateListAdapter(getContext(),ScreenUtil.getScreenHeight(getContext()) / 9, dateBeanList);
+        LeftDateListAdapter adapter = new LeftDateListAdapter(getContext(), ScreenUtil.getScreenHeight(getContext()) / 9, dateBeanList);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);
@@ -330,29 +328,19 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
     }
 
 
-    public void postSaveCourse(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color) {
+    public void postUpdateFlag(CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean courseBean, String color) {
         List<SaveCourseRequestBody.PrivateCoachCAPDTOsBean> privateCoachCAPDTOs = new ArrayList<>();
         if (courseBean != null) {
-            CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCoachCourseVOBean privateCoachCourseVO = courseBean.getPrivateCoachCourseVO();
             CourseStudentBean.PrivateCoachCurriculumArrangementPlanVOSBean.PrivateCourseMemberVOBean privateCourseMemberVO = courseBean.getPrivateCourseMemberVO();
-            SaveCourseRequestBody.PrivateCoachCAPDTOsBean privateCoachCAPDTOsBean = new SaveCourseRequestBody.PrivateCoachCAPDTOsBean();
-            privateCoachCAPDTOsBean.setDataType(1);
-            privateCoachCAPDTOsBean.setMemberId(privateCourseMemberVO.getMemberId());
-            privateCoachCAPDTOsBean.setMemberCourseId(privateCoachCourseVO.getMemberCourseId());
-            privateCoachCAPDTOsBean.setCoachId(SharePreferenceUtil.getUserId());
-            privateCoachCAPDTOsBean.setCapId(courseBean.getId());
-            privateCoachCAPDTOsBean.setWeek(getWeek());
-            privateCoachCAPDTOsBean.setColour(color);
-            privateCoachCAPDTOsBean.setSTime(courseBean.getSTime());
-            privateCoachCAPDTOsBean.setETime(courseBean.getETime());
-            privateCoachCAPDTOs.add(privateCoachCAPDTOsBean);
 
-            SaveCourseRequestBody saveCourseRequestBody = new SaveCourseRequestBody();
-            saveCourseRequestBody.setPrivateCoachCAPDTOs(privateCoachCAPDTOs);
+
+            Map<String, String> map = new HashMap<>();
+            map.put("memberId", privateCourseMemberVO.getMemberId());
+            map.put("coachId", courseBean.getCoachId());
+            map.put("colorCode", color);
             showLoading();
 
-
-            HttpManager.postSaveCourse(saveCourseRequestBody, new Response2Observer(getLifecycle()) {
+            HttpManager.postUpdateFlag(map, new Response2Observer(getLifecycle()) {
                 @Override
                 public void onSuccess(JSONObject jsonObject) {
                     String msg = JsonUtil.getString(jsonObject, "msg");
@@ -451,7 +439,6 @@ public class ScheduleDayFragment extends MvcBaseFragment implements View.OnClick
             });
         }
     }
-
 
 
     @Override

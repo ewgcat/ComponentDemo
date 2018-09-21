@@ -17,6 +17,9 @@ import com.tencent.bugly.beta.Beta
 import com.yijian.commonlib.BuildConfig
 import com.yijian.commonlib.R
 import com.yijian.commonlib.widget.LoadingDialog
+import android.view.ViewTreeObserver
+
+
 
 
 /**
@@ -93,6 +96,15 @@ abstract class MvcBaseActivity : AppCompatActivity() {
                 Beta.checkUpgrade(false, false)
             }
         }
+        window.decorView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                window.decorView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                lazzyLoad()
+            }
+        })
+    }
+
+    protected open fun lazzyLoad() {
 
     }
 

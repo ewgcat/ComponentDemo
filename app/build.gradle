@@ -139,6 +139,9 @@ dependencies {
     api project(':indicatorseekbar')
     api project(':commonlib')
     kapt 'com.alibaba:arouter-compiler:1.1.4'
-    compile project(path: ':club_module')
-    compile project(path: ':workspace_module')
+    if (!isModule.toBoolean()) {
+        api project( ':club_module')
+        api project(':workspace_module')
+    }
+
 }

@@ -104,5 +104,4 @@ public  class PrivateCoachCurriculumArrangementPlanModel {
         this.week = week;
     }
 
-
 }

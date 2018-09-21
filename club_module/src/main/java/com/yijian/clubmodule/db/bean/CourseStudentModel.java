@@ -75,5 +75,4 @@ public class CourseStudentModel {
         this.weekName = weekName;
     }
 
-
 }

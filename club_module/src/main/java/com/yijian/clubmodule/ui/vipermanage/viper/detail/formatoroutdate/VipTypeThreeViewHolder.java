@@ -29,6 +29,7 @@ public class VipTypeThreeViewHolder extends BaseVipperViewHolder {
     TextView tv_card_consumenum;
     TextView tv_card_remaindermoney;
     TextView tv_card_remaindernum;
+    TextView tv_card_amount;
 
     public VipTypeThreeViewHolder(View itemView) {
         super(itemView);
@@ -44,6 +45,7 @@ public class VipTypeThreeViewHolder extends BaseVipperViewHolder {
         tv_card_consumenum = itemView.findViewById(R.id.tv_card_consumenum);
         tv_card_remaindermoney = itemView.findViewById(R.id.tv_card_remaindermoney);
         tv_card_remaindernum = itemView.findViewById(R.id.tv_card_remaindernum);
+        tv_card_amount = itemView.findViewById(R.id.tv_card_amount);
     }
 
     @Override

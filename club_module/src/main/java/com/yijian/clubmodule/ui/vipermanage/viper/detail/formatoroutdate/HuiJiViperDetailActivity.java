@@ -372,6 +372,8 @@ public class HuiJiViperDetailActivity extends MvcBaseActivity implements View.On
         intent.putExtra("memberId", viperDetailBean.getMemberId());
         intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());
         intent.putExtra("name", viperDetailBean.getName());
+        intent.putExtra("memberMark", viperDetailBean.getMemberMark());
+        intent.putExtra("name", viperDetailBean.getName());
         startActivityForResult(intent, 0);
     }
 

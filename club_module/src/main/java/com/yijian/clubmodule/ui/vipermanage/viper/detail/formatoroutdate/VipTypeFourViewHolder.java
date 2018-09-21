@@ -69,6 +69,7 @@ public class VipTypeFourViewHolder extends BaseVipperViewHolder {
 
     TextView tvLianXiPhone;
     TextView tvHuoquQudao;
+    TextView tvMemberMark;
     private final LinearLayout llEdit;
 
     public VipTypeFourViewHolder(View itemView) {
@@ -105,6 +106,7 @@ public class VipTypeFourViewHolder extends BaseVipperViewHolder {
         tvJinJiLianxiren = itemView.findViewById(R.id.tv_jin_ji_lianxiren);
         tvLianXiPhone = itemView.findViewById(R.id.tv_lianxiren_phone);
         tvHuoquQudao = itemView.findViewById(R.id.tv_huoqu_qudao);
+        tvMemberMark = itemView.findViewById(R.id.tv_memberMark);
 
         llEdit = itemView.findViewById(R.id.ll_edit);
     }
@@ -199,6 +201,8 @@ public class VipTypeFourViewHolder extends BaseVipperViewHolder {
             }
             tvCompanyLocation.setText(cAddress.toString());
         }
+
+        tvMemberMark.setText(judgeNull(viperDetailBean.getMemberMark()));
 
         boolean allEditable = PermissionUtils.getInstance().isEdit(context, "app_workbench", PermissionUtils.getInstance().getmenuKey());
         if (allEditable) {

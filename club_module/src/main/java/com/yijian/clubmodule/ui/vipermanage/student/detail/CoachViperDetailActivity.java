@@ -298,6 +298,7 @@ public class CoachViperDetailActivity extends MvcBaseActivity implements Adapter
         intent.putExtra("detail", viperDetailBean.getDetail());
         intent.putExtra("memberId", viperDetailBean.getMemberId());
         intent.putExtra("source", viperDetailBean.getCustomerServiceInfo().getUserChannel());
+        intent.putExtra("memberMark", viperDetailBean.getMemberMark());
         intent.putExtra("name", viperDetailBean.getName());
         startActivityForResult(intent, 0);
     }

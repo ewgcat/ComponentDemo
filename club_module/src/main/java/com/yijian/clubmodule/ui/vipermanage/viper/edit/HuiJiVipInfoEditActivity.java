@@ -55,12 +55,14 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity implements View.
     TextView tv_homeaddress;
     EditText et_relationname;
     EditText et_relationmobile;
+    EditText et_membermark;
 
 
     com.alibaba.fastjson.JSONObject detailJsonObj = new com.alibaba.fastjson.JSONObject();
     ViperDetailBean.DetailBean detailBean;
     String memberId = "";
     String resource;
+    String memberMark;
     List<String> resuorceList = new ArrayList<String>(); //用户获取渠道集合
     List<String> onceJoinedClubList = new ArrayList<String>();  //是否参加过俱乐部集合
     List<String> yearIncomeList = new ArrayList<String>();  //年收入集合
@@ -106,6 +108,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity implements View.
         tv_homeaddress = findViewById(R.id.tv_homeaddress);
         et_relationname = findViewById(R.id.et_relationname);
         et_relationmobile = findViewById(R.id.et_relationmobile);
+        et_membermark = findViewById(R.id.et_membermark);
 
 
         findViewById(R.id.right_tv).setOnClickListener(this);
@@ -125,6 +128,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity implements View.
         findViewById(R.id.rl_weight).setOnClickListener(this);
         findViewById(R.id.rl_workdress).setOnClickListener(this);
         findViewById(R.id.rl_homeaddress).setOnClickListener(this);
+        findViewById(R.id.rl_position).setOnClickListener(this);
         initTitle();
         initData();
 
@@ -132,6 +136,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity implements View.
 
     private void initData() {
         memberId = getIntent().getStringExtra("memberId");
+        memberMark = getIntent().getStringExtra("memberMark");
 
         detailBean = (ViperDetailBean.DetailBean) getIntent().getSerializableExtra("detail");
         resource = getIntent().getStringExtra("source");
@@ -222,20 +227,25 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity implements View.
 
         ViperDetailBean.DetailBean.CompanyRegion companyRegion = detailBean.getCompanyRegion();
         if (companyRegion != null) {
-            EditHuiJiVipBody.CompanyAddressIdsBean companyAddressIdsBean = new EditHuiJiVipBody.CompanyAddressIdsBean();
-            companyAddressIdsBean.setProvinceId(companyRegion.getProvinceId());
-            companyAddressIdsBean.setCityId(companyRegion.getCityId());
-            companyAddressIdsBean.setDistrictId(companyRegion.getDistrictId());
-            editHuiJiVipBody.setCompanyAddressIds(companyAddressIdsBean);
+            if (companyRegion.getProvinceId() != null && companyRegion.getCityId() != null && companyRegion.getDistrictId() != null) {
+                EditHuiJiVipBody.CompanyAddressIdsBean companyAddressIdsBean = new EditHuiJiVipBody.CompanyAddressIdsBean();
+                companyAddressIdsBean.setProvinceId(companyRegion.getProvinceId());
+                companyAddressIdsBean.setCityId(companyRegion.getCityId());
+                companyAddressIdsBean.setDistrictId(companyRegion.getDistrictId());
+                editHuiJiVipBody.setCompanyAddressIds(companyAddressIdsBean);
+            }
+
         }
 
         ViperDetailBean.DetailBean.HomeRegion homeRegion = detailBean.getHomeRegion();
         if (companyRegion != null) {
-            EditHuiJiVipBody.HomeAddressIdsBean homeAddressIdsBean = new EditHuiJiVipBody.HomeAddressIdsBean();
-            homeAddressIdsBean.setProvinceId(homeRegion.getProvinceId());
-            homeAddressIdsBean.setCityId(homeRegion.getCityId());
-            homeAddressIdsBean.setDistrictId(homeRegion.getDistrictId());
-            editHuiJiVipBody.setHomeAddressIds(homeAddressIdsBean);
+            if (homeRegion.getProvinceId() != null && homeRegion.getCityId() != null && homeRegion.getDistrictId() != null) {
+                EditHuiJiVipBody.HomeAddressIdsBean homeAddressIdsBean = new EditHuiJiVipBody.HomeAddressIdsBean();
+                homeAddressIdsBean.setProvinceId(homeRegion.getProvinceId());
+                homeAddressIdsBean.setCityId(homeRegion.getCityId());
+                homeAddressIdsBean.setDistrictId(homeRegion.getDistrictId());
+                editHuiJiVipBody.setHomeAddressIds(homeAddressIdsBean);
+            }
         }
 
         editHuiJiVipBody.setAddress(detailBean.getNewestAddress());
@@ -259,7 +269,9 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity implements View.
         if (!TextUtils.isEmpty(tv_weight.getText().toString())) {
             editHuiJiVipBody.setWeight(tv_weight.getText().toString());
         }
-
+        if (!TextUtils.isEmpty(et_membermark.getText().toString())) {
+            editHuiJiVipBody.setRemark(et_membermark.getText().toString());
+        }
 
         HttpManager.postEditHuiJiVipInfo(HttpManager.GET_HUIJI_VIPER_EDIT_URL, editHuiJiVipBody, new ResultJSONObjectObserver(getLifecycle()) {
             @Override
@@ -324,7 +336,7 @@ public class HuiJiVipInfoEditActivity extends AppCompatActivity implements View.
         tv_position.setText(strEmpty(detailBean.getPosition()));
         et_relationname.setText(strEmpty(detailBean.getUrgentContact()));
         et_relationmobile.setText(strEmpty(detailBean.getContactPhone()));
-
+        et_membermark.setText(strEmpty(memberMark));
 
         ViperDetailBean.DetailBean.HomeRegion homeRegion = detailBean.getHomeRegion();
         String homeAddress = detailBean.getNewestAddress();

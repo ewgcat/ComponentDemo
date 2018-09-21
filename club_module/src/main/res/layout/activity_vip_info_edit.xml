@@ -550,22 +550,6 @@
                     android:background="@color/gray"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp" />
-                <!--<RelativeLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:paddingLeft="22dp"-->
-                <!--android:paddingRight="22dp"-->
-                <!--android:paddingTop="15dp">-->
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1px"-->
-                <!--android:background="@color/gray"-->
-                <!--android:paddingLeft="22dp"-->
-                <!--android:paddingRight="22dp"-->
-                <!--android:paddingTop="15dp" />-->
-
-                <!--</RelativeLayout>-->
 
                 <RelativeLayout
                     android:id="@+id/rl_yearIncome"
@@ -994,6 +978,43 @@
                         android:textSize="14sp" />
 
                 </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp"
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:id="@+id/tv_membermark_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="备注:"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_membermark"
+                        android:layout_width="134dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/tv_membermark_label"
+                        android:gravity="center_vertical|right"
+                        android:singleLine="false"
+                        android:paddingLeft="20dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/white"
+                        android:text="未录入"
+                        android:textColor="#333333"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+
 
             </LinearLayout>
 

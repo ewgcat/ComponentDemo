@@ -60,6 +60,7 @@ public class EditHuiJiVipBody {
     private String wechatNo;
     private String weight;
     private String yearIncome;
+    private String remark;
 
     public String getAddress() {
         return address;
@@ -259,6 +260,14 @@ public class EditHuiJiVipBody {
 
     public void setYearIncome(String yearIncome) {
         this.yearIncome = yearIncome;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public static class CompanyAddressIdsBean {

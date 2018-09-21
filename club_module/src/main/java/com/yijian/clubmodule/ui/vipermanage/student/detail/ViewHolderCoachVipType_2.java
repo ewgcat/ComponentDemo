@@ -27,6 +27,7 @@ public class ViewHolderCoachVipType_2 extends ViewHolderCoachVipper {
     TextView tv_card_consumenum;
     TextView tv_card_remaindermoney;
     TextView tv_card_remaindernum;
+    TextView tv_card_amount; //卡总金额
 
 
     public ViewHolderCoachVipType_2(View itemView) {
@@ -45,6 +46,7 @@ public class ViewHolderCoachVipType_2 extends ViewHolderCoachVipper {
         tv_card_consumenum = itemView.findViewById(R.id.tv_card_consumenum);
         tv_card_remaindermoney = itemView.findViewById(R.id.tv_card_remaindermoney);
         tv_card_remaindernum = itemView.findViewById(R.id.tv_card_remaindernum);
+        tv_card_amount = itemView.findViewById(R.id.tv_card_amount);
     }
 
     @Override

@@ -11,7 +11,7 @@
         android:id="@+id/navigation_bar"
         layout="@layout/view_navigation_bar" />
 
-    <com.yijan.commonlib.workspace.base.BaseWebView
+    <com.yijian.workspace.base.BaseWebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

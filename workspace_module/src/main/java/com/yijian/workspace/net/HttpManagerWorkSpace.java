@@ -31,14 +31,11 @@ import okhttp3.RequestBody;
 public class HttpManagerWorkSpace {
 
     private static ApiService apiService = RetrofitClient.mRetrofit.create(ApiService.class);
-    private static String HOST;
 
     //登录
     public static String LOGIN_URL = "user/login";
 
-    public static void setWorkSpaceHost(boolean isWorkspace) {
-        HOST = SharePreferenceUtil.getHostUrl();
-    }
+    
 
     public static String getH5Host() {
         return SharePreferenceUtil.getH5Url();
@@ -93,7 +90,7 @@ public class HttpManagerWorkSpace {
             ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.getHasHeaderHasParam(HOST + url, headers, param);
+            Observable<JSONObject> observable = apiService.getHasHeaderHasParam(SharePreferenceUtil.getHostUrl() + url, headers, param);
             execute(observable, observer);
         }
     }
@@ -106,7 +103,7 @@ public class HttpManagerWorkSpace {
             ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postPerfectInfo(HOST + WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
+            Observable<JSONObject> observable = apiService.postPerfectInfo(SharePreferenceUtil.getHostUrl()  + WORKSPACE_ADD_PERFECT__URL, headers, perfectRequestBody);
             execute(observable, observer);
         }
     }
@@ -119,7 +116,7 @@ public class HttpManagerWorkSpace {
             ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postSportInfo(HOST + WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
+            Observable<JSONObject> observable = apiService.postSportInfo(SharePreferenceUtil.getHostUrl() + WORKSPACE_SAVE_SPORT_URL, headers, sportStepRequedtBody);
             execute(observable, observer);
         }
     }
@@ -132,7 +129,7 @@ public class HttpManagerWorkSpace {
             ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postStaticInfo(HOST + WORKSPACE_SAVE_STATIC_URL, headers, staticRequestBody);
+            Observable<JSONObject> observable = apiService.postStaticInfo(SharePreferenceUtil.getHostUrl() +WORKSPACE_SAVE_STATIC_URL, headers, staticRequestBody);
             execute(observable, observer);
         }
     }
@@ -145,7 +142,7 @@ public class HttpManagerWorkSpace {
             ARouter.getInstance().build("/app/login").navigation();
         } else {
             headers.put("token", user.getToken());
-            Observable<JSONObject> observable = apiService.postDynamicInfo(HOST + WORKSPACE_SAVE_DYNAMIC_URL, headers, dynamicRequestBody);
+            Observable<JSONObject> observable = apiService.postDynamicInfo(SharePreferenceUtil.getHostUrl() +WORKSPACE_SAVE_DYNAMIC_URL, headers, dynamicRequestBody);
             execute(observable, observer);
         }
     }

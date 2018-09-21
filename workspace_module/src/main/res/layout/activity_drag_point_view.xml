@@ -27,13 +27,13 @@
                 android:layout_height="match_parent"
                 />
 
-            <com.yijian.staff.static_assessment.DragPointView
+            <com.yijian.workspace.static_assessment.DragPointView
                 android:id="@+id/pointView_positive"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"/>
 
-            <com.yijian.staff.static_assessment.SideDragPointView
+            <com.yijian.workspace.static_assessment.SideDragPointView
                 android:id="@+id/pointView_side"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -81,7 +81,7 @@
 
     </LinearLayout>
 
-    <com.yijian.staff.widget.ControlView
+    <com.yijian.workspace.widget.ControlView
         android:id="@+id/controlview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

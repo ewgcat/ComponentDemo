@@ -67,7 +67,7 @@
                 android:textColor="@color/text_black1"
                 android:textSize="@dimen/text_size_17"/>
 
-            <com.yijian.staff.dynamic_assessment.DynamicCheckGroup
+            <com.yijian.workspace.dynamic_assessment.DynamicCheckGroup
                 android:id="@+id/dynamic_positive_leftknee"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:textColor="@color/text_black1"
                 android:textSize="@dimen/text_size_17"/>
 
-            <com.yijian.staff.dynamic_assessment.DynamicCheckGroup
+            <com.yijian.workspace.dynamic_assessment.DynamicCheckGroup
                 android:id="@+id/dynamic_positive_rightknee"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 android:textColor="@color/text_black1"
                 android:textSize="@dimen/text_size_17"/>
 
-            <com.yijian.staff.dynamic_assessment.DynamicCheckGroup
+            <com.yijian.workspace.dynamic_assessment.DynamicCheckGroup
                 android:id="@+id/dynamic_positive_jian"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
                 android:textColor="@color/text_black1"
                 android:textSize="@dimen/text_size_17"/>
 
-            <com.yijian.staff.dynamic_assessment.DynamicCheckGroup
+            <com.yijian.workspace.dynamic_assessment.DynamicCheckGroup
                 android:id="@+id/dynamic_side_yao_pg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -212,7 +212,7 @@
                 android:textColor="@color/text_black1"
                 android:textSize="@dimen/text_size_17"/>
 
-            <com.yijian.staff.dynamic_assessment.DynamicCheckGroup
+            <com.yijian.workspace.dynamic_assessment.DynamicCheckGroup
                 android:id="@+id/dynamic_side_yao_fb"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -270,7 +270,7 @@
                 android:textColor="@color/text_black1"
                 android:textSize="@dimen/text_size_17"/>
 
-            <com.yijian.staff.dynamic_assessment.DynamicCheckGroup
+            <com.yijian.workspace.dynamic_assessment.DynamicCheckGroup
                 android:id="@+id/dynamic_bg_translate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -299,7 +299,7 @@
                 android:textColor="@color/text_black1"
                 android:textSize="@dimen/text_size_17"/>
 
-            <com.yijian.staff.dynamic_assessment.DynamicCheckGroup
+            <com.yijian.workspace.dynamic_assessment.DynamicCheckGroup
                 android:id="@+id/dynamic_bg_yb"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

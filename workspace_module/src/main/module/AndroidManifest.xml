@@ -38,43 +38,8 @@
         <meta-data
             android:name="com.yijian.workspace"
             android:value="0633251c7577933569229449"/>
-        <activity
-            android:name=".static_assessment.StaticPhotoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".static_assessment.StaticAssessmentActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".dynamic_assessment.DynamicAssessmentActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".dynamic_assessment.DynamicPhotoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".dynamic_assessment.DynamicDragPointActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".commen.WorkSpaceSearchActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".WorkSpaceActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".commen.WorkSpaceRecordActivity" />
-        <activity android:name=".sport.SportTestActivity" />
-        <activity
-            android:name=".perfect.PerfectActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".perfect.PerfectTestActivity" />
-        <activity android:name=".commen.SearchOprationActivity" />
-        <activity android:name=".commen.ShareTestActivity" />
 
 
-        <activity android:name=".static_assessment.DragPointViewActivity" />
         <activity android:name="module.workspace.login.LoginActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -83,6 +48,69 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".static_assessment.StaticPhotoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".static_assessment.StaticAssessmentActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".dynamic_assessment.DynamicAssessmentActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".dynamic_assessment.DynamicPhotoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".dynamic_assessment.DynamicDragPointActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".commen.WorkSpaceSearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".WorkSpaceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".commen.WorkSpaceRecordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".sport.SportTestActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".perfect.PerfectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".perfect.PerfectTestActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".commen.SearchOprationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".commen.ShareTestActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+
+        <activity
+            android:name=".static_assessment.DragPointViewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

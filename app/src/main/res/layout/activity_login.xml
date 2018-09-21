@@ -2,6 +2,7 @@
 <RelativeLayout
     android:id="@+id/rel_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/login_bg"
@@ -30,6 +31,16 @@
         </LinearLayout>
 
 
+        <com.yijian.commonlib.widget.TableView
+            android:id="@+id/tab_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:textSelectColor="#FFFFFF"
+            app:textNormalColor="#95D0FC"
+            app:curssorColor="#FFFFFF"
+            app:paddingLeft="20"
+            app:paddingRight="20"
+            app:textTabSize="20"/>
 
 
         <LinearLayout

@@ -3,6 +3,9 @@ package com.yijian.clubmodule.ui.main.mine.qualification;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+
+import com.SuperKotlin.pictureviewer.ImagePagerActivity;
+import com.SuperKotlin.pictureviewer.PictureConfig;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +33,8 @@ import com.yijian.commonlib.util.CommonUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerClickListener;
+import com.youth.banner.listener.OnBannerListener;
 
 import org.json.JSONObject;
 
@@ -102,6 +107,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
         banner.setDelayTime(1500);
         //设置指示器位置（当banner模式中有指示器时）
         banner.setIndicatorGravity(BannerConfig.RIGHT);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +189,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
 
                 setBanner(coach2picList);
 
+
             }
 
             @Override
@@ -199,10 +206,25 @@ public class MyQualificationActivity extends MvcBaseActivity {
         bannerImageList.clear();
         if (coach2picList != null && coach2picList.size() > 0) {
             for (int i = 0; i < coach2picList.size(); i++) {
-                bannerImageList.add(SharePreferenceUtil.getHostUrl() + coach2picList.get(i));
+                bannerImageList.add(SharePreferenceUtil.getImageUrl() + coach2picList.get(i));
             }
             banner.setImages(bannerImageList);
             banner.start();
+            banner.setOnBannerListener(new OnBannerListener() {
+                @Override
+                public void OnBannerClick(int position) {
+
+                    PictureConfig config = new PictureConfig.Builder()
+                            .setListData((ArrayList<String>) bannerImageList)//图片数据List<String> list
+                            .setPosition(position)//图片下标（从第position张图片开始浏览）
+                            .setDownloadPath("pictureviewer")//图片下载文件夹地址
+                            .setIsShowNumber(true)//是否显示数字下标
+                            .needDownload(true)//是否支持图片下载
+                            .setPlaceHolder(R.mipmap.placeholder)//占位符图片（图片加载完成前显示的资源图片，来源drawable或者mipmap）
+                            .build();
+                    ImagePagerActivity.startActivity(MyQualificationActivity.this, config);
+                }
+            });
         }
 
     }
@@ -211,7 +233,7 @@ public class MyQualificationActivity extends MvcBaseActivity {
     public void setImageList(List<String> certList) {
         list.clear();
         for (int i = 0; i < certList.size(); i++) {
-            list.add(new ImageBean(SharePreferenceUtil.getHostUrl() + certList.get(i), 1));
+            list.add(new ImageBean(SharePreferenceUtil.getImageUrl() + certList.get(i), 1));
         }
         choosePhotoView.setmPhotoPathList(list);
 

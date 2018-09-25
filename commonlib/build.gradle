@@ -54,8 +54,9 @@ greendao {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api(name: 'photo_picker', ext: 'aar')
-    api(name: 'photoview', ext: 'aar')
+    api(name: 'picture_viewer', ext: 'aar')
     api(name: 'retrofit2', ext: 'aar')
+    api(name: 'banner', ext: 'aar')
     //ui
     api "com.android.support:support-core-utils:$supportLibVersion"
     api "com.android.support:support-annotations:${rootProject.supportLibVersion}"
@@ -72,7 +73,6 @@ dependencies {
     api('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar') {
         transitive = true
     }
-    api 'com.youth.banner:banner:1.4.10'
     api 'com.drawthink:expandable-recyclerview:0.0.3'
 
     //字体

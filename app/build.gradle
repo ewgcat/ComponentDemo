@@ -3,7 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply from: 'tinker-support.gradle'
-
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 android {
     dexOptions {
         javaMaxHeapSize "6g"

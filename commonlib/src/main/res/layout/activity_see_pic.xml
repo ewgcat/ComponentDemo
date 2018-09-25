@@ -6,7 +6,7 @@
 
     <include layout="@layout/view_navigation_bar"></include>
 
-    <com.github.chrisbanes.photoview.PhotoView
+    <com.SuperKotlin.pictureviewer.PhotoView
             android:id="@+id/photo_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

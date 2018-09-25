@@ -1,17 +1,20 @@
-package com.yijian.commonlib.mvp.base.seepic
+package com.yijian.commonlib.base.seepic
 
 import android.os.Bundle
 import android.view.View
+import com.SuperKotlin.pictureviewer.PhotoView
 
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.github.chrisbanes.photoview.PhotoView
 import com.yijian.commonlib.R
 import com.yijian.commonlib.base.mvc.MvcBaseActivity
 import com.yijian.commonlib.constant.Constant
 import com.yijian.commonlib.widget.NavigationBar
+
+
+
 
 
 class SeePicActivity : MvcBaseActivity() {
@@ -35,6 +38,7 @@ class SeePicActivity : MvcBaseActivity() {
                 .error(R.mipmap.placeholder)
                 .priority(Priority.HIGH).diskCacheStrategy(DiskCacheStrategy.RESOURCE)
         Glide.with(this@SeePicActivity).load(path).apply(options).into(photoView)
+
     }
 
 

@@ -9,8 +9,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao'
 
 repositories {
-    maven { url "http://dl.bintray.com/fotoapparat/fotoapparat" }
-    mavenCentral()
+
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 android {
@@ -113,7 +115,8 @@ greendao {
     targetGenDir 'src/main/java'
 }
 dependencies {
-    api project(':indicatorseekbar')
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api(name: 'indicatorseekbar', ext: 'aar')
     api project(':commonlib')
     api 'io.fotoapparat:facedetector:1.0.0'
     api 'io.fotoapparat.fotoapparat:library:1.2.0'

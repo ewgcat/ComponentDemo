@@ -9,13 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/PhotoPicker" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/club_module" />
             <option value="$PROJECT_DIR$/commonlib" />
-            <option value="$PROJECT_DIR$/indicatorseekbar" />
-            <option value="$PROJECT_DIR$/photoview" />
-            <option value="$PROJECT_DIR$/retrofit2" />
             <option value="$PROJECT_DIR$/workspace_module" />
           </set>
         </option>

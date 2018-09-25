@@ -32,3 +32,13 @@ dependencies {
 }
 
 
+task makeJar(type:Copy){
+    delete 'build/libs/indicatorseekbar.jar'
+    from('build/intermediates/intermediate-jars/debug/')
+    into('build/libs/')
+    include('classes.jar','res.jar')
+    rename('classes.jar','indicatorseekbar.jar')
+}
+makeJar.dependsOn(build)
+
+

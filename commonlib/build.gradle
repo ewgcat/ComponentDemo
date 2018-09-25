@@ -3,6 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao'
+
+repositories {
+
+    flatDir {
+        dirs 'libs'
+    }
+}
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -53,9 +60,10 @@ greendao {
 }
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':retrofit2')
-    api project(':PhotoPicker')
-    api project(':photoview')
+
+    api(name: 'photo_picker', ext: 'aar')
+    api(name: 'photoview', ext: 'aar')
+    api(name: 'retrofit2', ext: 'aar')
 
     //ui
     api "com.android.support:support-core-utils:$supportLibVersion"

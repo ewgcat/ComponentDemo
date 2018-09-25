@@ -24,3 +24,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
 }
 
+task makeJar(type:Copy){
+    delete 'build/libs/photoview.jar'
+    from('build/intermediates/intermediate-jars/debug/')
+    into('build/libs/')
+    include('classes.jar')
+    rename('classes.jar','photoview.jar')
+}
+makeJar.dependsOn(build)

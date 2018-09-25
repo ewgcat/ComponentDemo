@@ -43,3 +43,11 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.google.code.gson:gson:2.8.2'
 }
+task makeJar(type:Copy){
+    delete 'build/libs/retrofit2.jar'
+    from('build/intermediates/intermediate-jars/debug/')
+    into('build/libs/')
+    include('classes.jar')
+    rename('classes.jar','retrofit2.jar')
+}
+makeJar.dependsOn(build)

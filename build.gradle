@@ -7,10 +7,13 @@ buildscript {
         jcenter()
         google()
         maven { url 'https://jitpack.io' }
-
         flatDir {
-            dirs 'libs'
+            dirs 'libs', '../club_module/libs'
+            dirs 'libs', '../commonlib/libs'
+
         }
+
+
 
 
     }
@@ -32,7 +35,8 @@ allprojects {
 
         maven { url 'https://jitpack.io' }
         flatDir {
-            dirs 'libs'
+            dirs 'libs', '../club_module/libs'
+            dirs 'libs', '../commonlib/libs'
         }
     }
 }

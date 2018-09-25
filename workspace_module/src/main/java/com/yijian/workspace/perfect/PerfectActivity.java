@@ -271,6 +271,7 @@ public class PerfectActivity extends MvcBaseActivity implements View.OnClickList
                 iv_cancel.setVisibility(View.GONE);
                 iv_sure.setVisibility(View.GONE);
                 space_view.setVisibility(View.GONE);
+                iv_take.setEnabled(true);
                 mCamera.setPreviewDisplay(mHolder);
                 int measuredWidth = surfaceView.getMeasuredWidth();
                 int measuredHeight = surfaceView.getMeasuredHeight();
@@ -289,13 +290,14 @@ public class PerfectActivity extends MvcBaseActivity implements View.OnClickList
             ActivityUtils.startActivity(this, PerfectTestActivity.class);
 
         } else if (i == R.id.iv_take) {
+            iv_take.setVisibility(View.GONE);
+            iv_cancel.setVisibility(View.VISIBLE);
+            iv_sure.setVisibility(View.VISIBLE);
+            space_view.setVisibility(View.VISIBLE);
+            iv_take.setEnabled(false);
             mCamera.takePicture(null, null, new Camera.PictureCallback() {
                 @Override
                 public void onPictureTaken(byte[] data, Camera camera) {
-                    iv_take.setVisibility(View.GONE);
-                    iv_cancel.setVisibility(View.VISIBLE);
-                    iv_sure.setVisibility(View.VISIBLE);
-                    space_view.setVisibility(View.VISIBLE);
                     mCamera.stopPreview();
                     imgData = data;
 
@@ -308,6 +310,7 @@ public class PerfectActivity extends MvcBaseActivity implements View.OnClickList
             iv_cancel.setVisibility(View.GONE);
             iv_sure.setVisibility(View.GONE);
             space_view.setVisibility(View.GONE);
+            iv_take.setEnabled(true);
 
         } else if (i == R.id.iv_sure) {
             showLoading();

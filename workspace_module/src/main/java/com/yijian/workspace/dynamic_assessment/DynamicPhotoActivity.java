@@ -258,6 +258,7 @@ public class DynamicPhotoActivity extends MvcBaseActivity implements View.OnClic
                 iv_cancel.setVisibility(View.GONE);
                 iv_sure.setVisibility(View.GONE);
                 space_view.setVisibility(View.GONE);
+                iv_take.setEnabled(true);
                 mCamera.setPreviewDisplay(mHolder);
                 setCameraParms(mCamera, surfaceWidth, surfaceHeight);
                 mCamera.startPreview();
@@ -272,14 +273,14 @@ public class DynamicPhotoActivity extends MvcBaseActivity implements View.OnClic
     public void onClick(View view) {
         int i = view.getId();
         if (i == R.id.iv_take) {
+            iv_take.setVisibility(View.GONE);
+            iv_cancel.setVisibility(View.VISIBLE);
+            iv_sure.setVisibility(View.VISIBLE);
+            space_view.setVisibility(View.VISIBLE);
+            iv_take.setEnabled(false);
             mCamera.takePicture(null, null, new Camera.PictureCallback() {
                 @Override
                 public void onPictureTaken(byte[] data, Camera camera) {
-
-                    iv_take.setVisibility(View.GONE);
-                    iv_cancel.setVisibility(View.VISIBLE);
-                    iv_sure.setVisibility(View.VISIBLE);
-                    space_view.setVisibility(View.VISIBLE);
                     mCamera.stopPreview();
                     imgData = data;
                 }
@@ -291,6 +292,7 @@ public class DynamicPhotoActivity extends MvcBaseActivity implements View.OnClic
             iv_cancel.setVisibility(View.GONE);
             iv_sure.setVisibility(View.GONE);
             space_view.setVisibility(View.GONE);
+            iv_take.setEnabled(true);
 
         } else if (i == R.id.iv_sure) {//                showLoading();
             Bitmap bitmap = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);

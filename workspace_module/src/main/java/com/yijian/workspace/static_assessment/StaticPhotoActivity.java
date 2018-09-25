@@ -307,6 +307,7 @@ public class StaticPhotoActivity extends MvcBaseActivity implements View.OnClick
         if (mCamera == null) {
             mCamera = Camera.open(0);
             try {
+                iv_take.setEnabled(true);
                 iv_take.setVisibility(View.VISIBLE);
                 iv_cancel.setVisibility(View.GONE);
                 iv_sure.setVisibility(View.GONE);
@@ -327,29 +328,30 @@ public class StaticPhotoActivity extends MvcBaseActivity implements View.OnClick
         if (i == R.id.iv_take) {
             isStopOrientation = true;
             mOrientationListener.disable();
-            mCamera.takePicture(null, null, new Camera.PictureCallback() {
-                @Override
-                public void onPictureTaken(byte[] data, Camera camera) {
-
-                    if (gyrosOrientation > 359 || gyrosOrientation < 2) {
-                        iv_take.setVisibility(View.GONE);
-                        iv_cancel.setVisibility(View.VISIBLE);
-                        iv_sure.setVisibility(View.VISIBLE);
-                        space_view.setVisibility(View.VISIBLE);
+            if (gyrosOrientation > 359 || gyrosOrientation < 2) {
+                iv_take.setVisibility(View.GONE);
+                iv_cancel.setVisibility(View.VISIBLE);
+                iv_sure.setVisibility(View.VISIBLE);
+                space_view.setVisibility(View.VISIBLE);
+                iv_take.setEnabled(false);
+                mCamera.takePicture(null, null, new Camera.PictureCallback() {
+                    @Override
+                    public void onPictureTaken(byte[] data, Camera camera) {
                         mCamera.stopPreview();
                         imgData = data;
-                    } else {
-                        Toast.makeText(StaticPhotoActivity.this, "请调整至水平面", Toast.LENGTH_SHORT).show();
-                        mOrientationListener.enable();
-                        isStopOrientation = false;
                     }
+                });
 
-                }
-            });
+            } else {
+                Toast.makeText(StaticPhotoActivity.this, "请调整至水平面", Toast.LENGTH_SHORT).show();
+                mOrientationListener.enable();
+                isStopOrientation = false;
+            }
 
         } else if (i == R.id.iv_cancel) {
             mCamera.startPreview();
             iv_take.setVisibility(View.VISIBLE);
+            iv_take.setEnabled(true);
             iv_cancel.setVisibility(View.GONE);
             iv_sure.setVisibility(View.GONE);
             space_view.setVisibility(View.GONE);

@@ -9,7 +9,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao'
 
 repositories {
-
     flatDir {
         dirs 'libs'
     }
@@ -19,11 +18,8 @@ android {
     dexOptions {
         javaMaxHeapSize "6g"
     }
-
-
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
-
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
         if (isModule.toBoolean()) {
             applicationId "com.yijian.clubmodule"
@@ -37,7 +33,6 @@ android {
         ndk {
             abiFilters "arm64-v8a";
         }
-
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode rootProject.versionCode
@@ -49,10 +44,7 @@ android {
         //使用renderscript 兼容包
         renderscriptTargetApi 25
         renderscriptSupportModeEnabled true
-
-        vectorDrawables.useSupportLibrary true
         javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
-
         sourceSets {
             main {
                 if (isModule.toBoolean()) {
@@ -72,10 +64,7 @@ android {
                 arg("moduleName", project.getName())
             }
         }
-
-
     }
-
 
     productFlavors {
         dev {
@@ -99,14 +88,10 @@ android {
             buildConfigField "String", "H5_HOST", "\"$h5_test_host\""
         }
     }
-
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-
 }
 
 greendao {
@@ -114,6 +99,7 @@ greendao {
     daoPackage 'com.yijian.clubmodule.greendao.gen'
     targetGenDir 'src/main/java'
 }
+
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api(name: 'indicatorseekbar', ext: 'aar')

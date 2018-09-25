@@ -12,7 +12,8 @@ repositories {
     mavenCentral()
 }
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
         if (isModule.toBoolean()) {
             applicationId "com.yijian.workspace"
@@ -29,14 +30,10 @@ android {
         flavorDimensions '' + rootProject.versionCode
         resConfigs "zh"
         multiDexEnabled true
-
         //使用renderscript 兼容包
         renderscriptTargetApi 25
         renderscriptSupportModeEnabled true
-
-        vectorDrawables.useSupportLibrary true
         javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
-
         sourceSets {
             main {
                 if (isModule.toBoolean()) {
@@ -84,9 +81,6 @@ android {
             buildConfigField "String", "WORKSPACE_FILE_HOST", "\"$workspace_test_file_host\""
             buildConfigField "String", "H5_HOST", "\"$h5_test_host\""
         }
-    }
-    buildToolsVersion '28.0.3'
-    dexOptions {
     }
 }
 

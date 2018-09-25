@@ -18,6 +18,8 @@ import com.yijian.clubmodule.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 
 /**
  * author：李帅华
@@ -39,11 +41,11 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
         this(context, null);
     }
 
-    public LockTimePopuwindow(Context context, AttributeSet attrs) {
+    public LockTimePopuwindow(Context context, @NonNull AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LockTimePopuwindow(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LockTimePopuwindow(@NonNull Context context, @NonNull AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         init();
@@ -174,7 +176,7 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         int i = v.getId();
         if (i == R.id.cancel) {
             dismiss();
@@ -198,17 +200,16 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
 
 
     public interface OnSelectLockTimeListener {
-        void onSelectLockTime(String startTime, String endTime);
+        void onSelectLockTime(@NonNull String startTime, @NonNull String endTime);
     }
 
     private OnSelectLockTimeListener onSelectLockTimeListener;
 
-    public void setOnSelectLockTimeListener(OnSelectLockTimeListener onSelectLockTimeListener) {
+    public void setOnSelectLockTimeListener(@NonNull OnSelectLockTimeListener onSelectLockTimeListener) {
         this.onSelectLockTimeListener = onSelectLockTimeListener;
     }
 
-    public void setBackgroundAlpha(Activity activity, float bgAlpha) {
-        this.activity = activity;
+    public void setBackgroundAlpha(@NonNull Activity activity, float bgAlpha) {
 
         WindowManager.LayoutParams layoutParams = activity.getWindow().getAttributes();
         layoutParams.alpha = bgAlpha;
@@ -216,7 +217,6 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
         activity.getWindow().setAttributes(layoutParams);
     }
 
-    private Activity activity;
 
 
 }

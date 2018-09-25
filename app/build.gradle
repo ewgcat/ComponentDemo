@@ -29,7 +29,7 @@ android {
         vectorDrawables.useSupportLibrary true
         javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
         ndk {
-            abiFilters "arm64-v8a";
+            abiFilters "arm64-v8a"
         }
 
         kapt {
@@ -103,10 +103,10 @@ android {
         }
     }
     variantFilter { variant ->
-        if (variant.buildType.name.equals('release')) {
-            variant.flavors.each { flavor ->
-                if (!flavor.name.equals("prod")) {
-                    variant.setIgnore(true);
+        if (variant.buildType.name == 'release') {
+            for (flavor in variant.flavors) {
+                if (flavor.name != "prod") {
+                    variant.setIgnore(true)
                 }
             }
         }

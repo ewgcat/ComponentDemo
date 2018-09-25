@@ -66,5 +66,4 @@ public  class PrivateCoachCourseModel {
         this.memberCourseName = memberCourseName;
     }
 
-
 }

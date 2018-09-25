@@ -1,8 +1,8 @@
 package com.yijian.clubmodule.ui.vipermanage.viper.detail.formatoroutdate;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +11,6 @@ import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.bean.ViperDetailBean;
 import com.yijian.clubmodule.ui.vipermanage.viper.detail.BaseVipperViewHolder;
 import com.yijian.clubmodule.ui.vipermanage.viper.detail.HuijiVipInterface;
-import com.yijian.clubmodule.ui.vipermanage.viper.detail.formatoroutdate.VipTypeFourViewHolder;
-import com.yijian.clubmodule.ui.vipermanage.viper.detail.formatoroutdate.VipTypeOneViewHolder;
-import com.yijian.clubmodule.ui.vipermanage.viper.detail.formatoroutdate.VipTypeThreeViewHolder;
-import com.yijian.clubmodule.ui.vipermanage.viper.detail.formatoroutdate.VipTypeTwoViewHolder;
 
 /**
  * Created by The_P on 2018/5/15.

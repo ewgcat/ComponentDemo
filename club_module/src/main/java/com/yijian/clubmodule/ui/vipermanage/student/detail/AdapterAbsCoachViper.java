@@ -1,6 +1,6 @@
 package com.yijian.clubmodule.ui.vipermanage.student.detail;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yijian.clubmodule.bean.ViperDetailBean;
 import com.yijian.clubmodule.ui.vipermanage.viper.detail.HuijiVipInterface;

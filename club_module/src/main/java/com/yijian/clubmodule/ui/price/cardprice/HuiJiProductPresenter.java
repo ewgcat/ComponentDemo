@@ -1,6 +1,6 @@
 package com.yijian.clubmodule.ui.price.cardprice;
 
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 import android.content.Context;
 import android.widget.Toast;
 

@@ -1,8 +1,8 @@
 package com.yijian.clubmodule.ui.taskcenter;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.yijian.clubmodule.ui.taskcenter.add.AddViperTaskCenterFragment;
 import com.yijian.clubmodule.ui.taskcenter.invite.InviteTaskCenterFragment;

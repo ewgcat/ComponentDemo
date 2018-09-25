@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <include layout="@layout/view_navigation_bar"/>
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_fillet_white_8"/>

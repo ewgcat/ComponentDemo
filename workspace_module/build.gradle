@@ -7,11 +7,12 @@ if (isModule.toBoolean()) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-
+repositories {
+    maven { url "http://dl.bintray.com/fotoapparat/fotoapparat" }
+    mavenCentral()
+}
 android {
-    compileSdkVersion 27
-
-
+    compileSdkVersion 28
     defaultConfig {
         if (isModule.toBoolean()) {
             applicationId "com.yijian.workspace"
@@ -58,9 +59,6 @@ android {
 
 
     }
-
-
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -87,10 +85,12 @@ android {
             buildConfigField "String", "H5_HOST", "\"$h5_test_host\""
         }
     }
+    buildToolsVersion '28.0.3'
+    dexOptions {
+    }
 }
 
 dependencies {
     api project(':commonlib')
     kapt 'com.alibaba:arouter-compiler:1.1.4'
-
 }

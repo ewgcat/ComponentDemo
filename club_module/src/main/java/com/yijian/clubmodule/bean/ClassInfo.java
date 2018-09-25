@@ -1,8 +1,7 @@
 package com.yijian.clubmodule.bean;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import com.yijian.commonlib.prefs.SharePreferenceUtil;
 import com.yijian.commonlib.util.JsonUtil;
 
 import org.json.JSONObject;

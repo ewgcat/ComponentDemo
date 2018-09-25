@@ -323,7 +323,7 @@
             android:textColor="@color/text_black1"
             android:textSize="14sp" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_sijiao_class"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"

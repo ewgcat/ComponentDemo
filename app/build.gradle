@@ -5,10 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 apply from: 'tinker-support.gradle'
 
 
-repositories {
-    maven { url "http://dl.bintray.com/fotoapparat/fotoapparat" }
-    mavenCentral()
-}
+
 
 android {
     dexOptions {
@@ -16,8 +13,8 @@ android {
     }
 
 
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId rootProject.applicationId
@@ -122,6 +119,7 @@ android {
     }
     lintOptions {
         abortOnError false
+        check 'Interoperability'
         checkReleaseBuilds false
         disable 'MissingTranslation'
     }
@@ -140,8 +138,7 @@ dependencies {
     api project(':commonlib')
     kapt 'com.alibaba:arouter-compiler:1.1.4'
     if (!isModule.toBoolean()) {
-        api project( ':club_module')
+        api project(':club_module')
         api project(':workspace_module')
     }
-
 }

@@ -19,8 +19,8 @@ android {
     }
 
 
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         if (isModule.toBoolean()) {
@@ -113,12 +113,10 @@ greendao {
     targetGenDir 'src/main/java'
 }
 dependencies {
-
     api project(':indicatorseekbar')
     api project(':commonlib')
     api 'io.fotoapparat:facedetector:1.0.0'
     api 'io.fotoapparat.fotoapparat:library:1.2.0'
-
     kapt 'com.alibaba:arouter-compiler:1.1.4'
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
     kapt 'com.alibaba:arouter-compiler:1.1.4'

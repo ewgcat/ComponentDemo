@@ -1,7 +1,7 @@
 package com.yijian.clubmodule.ui.vipermanage.viper.edit;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;

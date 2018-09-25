@@ -3,8 +3,8 @@ apply plugin: 'com.android.library'
 android {
 
 
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
@@ -12,9 +12,15 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dexOptions {
+    }
 }
 
 dependencies {
-    implementation "com.android.support:support-core-utils:$supportLibVersion"
+    implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
 }
 

@@ -13,9 +13,11 @@ import com.yijian.workspace.utils.ActivityUtils;
 import com.yijian.workspace.R;
 import com.yijian.workspace.observe.EditActionObservable;
 
+import androidx.fragment.app.FragmentManager;
+
 public class WorkSpaceSearchActivity extends MvcBaseActivity implements View.OnClickListener {
 
-    android.support.v4.app.FragmentManager fm;
+    FragmentManager fm;
     TextView tv_cancel;
     EditText et_search;
     LinearLayout ll_back;

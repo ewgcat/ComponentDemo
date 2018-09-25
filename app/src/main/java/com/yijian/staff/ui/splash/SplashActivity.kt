@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.provider.Settings
-import android.support.v4.app.NotificationManagerCompat
 import android.text.TextUtils
 import android.view.ContextThemeWrapper
 import android.view.Gravity
@@ -19,6 +18,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.Toast
+import androidx.core.app.NotificationManagerCompat
 import com.alibaba.android.arouter.launcher.ARouter
 import com.tbruyelle.rxpermissions2.Permission
 

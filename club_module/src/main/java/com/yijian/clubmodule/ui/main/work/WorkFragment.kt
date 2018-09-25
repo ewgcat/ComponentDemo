@@ -2,8 +2,8 @@ package com.yijian.clubmodule.ui.main.work
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.support.v7.widget.GridLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 
 import com.yijian.clubmodule.R
 import com.yijian.clubmodule.bean.IndexDataInfo

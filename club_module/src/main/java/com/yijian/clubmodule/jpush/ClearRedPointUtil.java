@@ -1,6 +1,6 @@
 package com.yijian.clubmodule.jpush;
 
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 
 import com.yijian.clubmodule.net.httpmanager.HttpManager;
 import com.yijian.commonlib.net.response.ResponseObserver;

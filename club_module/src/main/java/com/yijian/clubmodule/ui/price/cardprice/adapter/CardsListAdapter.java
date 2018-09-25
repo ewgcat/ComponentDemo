@@ -1,7 +1,7 @@
 package com.yijian.clubmodule.ui.price.cardprice.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.yijian.clubmodule.R;
 import com.yijian.clubmodule.bean.CardInfo;
-import com.yijian.commonlib.prefs.SharePreferenceUtil;
-import com.yijian.commonlib.util.ImageLoader;
 import com.yijian.commonlib.widget.AlwaysMarqueeTextView;
 
 import java.util.ArrayList;

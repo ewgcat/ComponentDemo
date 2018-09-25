@@ -1,6 +1,6 @@
 package com.yijian.clubmodule.widget;
 
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;

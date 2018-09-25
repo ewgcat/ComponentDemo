@@ -3,7 +3,7 @@ package com.yijian.clubmodule.ui.huifang.vip.history
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout

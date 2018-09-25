@@ -5,8 +5,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.graphics.ColorUtils
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -18,8 +16,8 @@ import com.yijian.commonlib.BuildConfig
 import com.yijian.commonlib.R
 import com.yijian.commonlib.widget.LoadingDialog
 import android.view.ViewTreeObserver
-
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.ColorUtils
 
 
 /**

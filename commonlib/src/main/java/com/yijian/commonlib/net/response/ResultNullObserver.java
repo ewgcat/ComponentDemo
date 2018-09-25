@@ -1,7 +1,7 @@
 package com.yijian.commonlib.net.response;
 
 
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 
 import org.json.JSONObject;
 

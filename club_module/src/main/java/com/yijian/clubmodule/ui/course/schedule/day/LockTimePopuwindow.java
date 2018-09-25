@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.adapter.ArrayWheelAdapter;
 import com.contrarywind.listener.OnItemSelectedListener;
@@ -72,10 +73,10 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
         start_hours.setText(hourString);
         selectedStartHours = hourString;
         final List<String> mOptionsItems1 = new ArrayList<>();
-        for (int i = hour + 1; i <= 24; i++) {
+        for (int i = hour ; i <= 24; i++) {
             if (i < 10) {
                 mOptionsItems1.add("0" + i);
-            } else if (10 <= i && i < 24) {
+            } else if ( i < 24) {
                 mOptionsItems1.add("" + i);
             }
         }
@@ -180,6 +181,14 @@ public class LockTimePopuwindow extends PopupWindow implements View.OnClickListe
 
         } else if (i == R.id.confirm) {
             if (onSelectLockTimeListener != null) {
+                if (selectedStartHours.equals(selectedEndHours)){
+                    int i1 = Integer.parseInt(selectedStartMinutes);
+                    int i2 = Integer.parseInt(selectedEndMinutes);
+                    if (i1>=i2){
+                        Toast.makeText(mContext,"结束时间必须大于开始时间！",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
                 onSelectLockTimeListener.onSelectLockTime(selectedStartHours + ":" + selectedStartMinutes, selectedEndHours + ":" + selectedEndMinutes);
             }
             dismiss();

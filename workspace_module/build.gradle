@@ -2,7 +2,6 @@ if (isModule.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
-
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -47,14 +46,11 @@ android {
                 }
             }
         }
-
         kapt {
             arguments {
                 arg("moduleName", project.getName())
             }
         }
-
-
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

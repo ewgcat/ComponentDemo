@@ -2,21 +2,8 @@ package com.yijian.clubmodule.bean;
 
 import java.util.List;
 
-/**
- * Created by The_P on 2018/4/11.
- */
+public class CardInfoResponse {
 
-public class RecptionCards {
-//    "offset": 0,integer
-//            "limit": 2147483647,integer
-//            "total": 9,integer
-//            "size": 10,integer
-//            "pages": 1,integer
-//            "current": 1,integer
-//            "searchCount": true,boolean
-//            "openSort": true,boolean
-//            "orderByField": null,string
-//            "records":
 
 
     public Integer offset;

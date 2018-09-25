@@ -7,7 +7,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import com.yijian.clubmodule.bean.CardInfo;
-import com.yijian.clubmodule.bean.RecptionCards;
+import com.yijian.clubmodule.bean.CardInfoResponse;
 import com.yijian.clubmodule.net.requestbody.CardRequestBody;
 import com.yijian.clubmodule.net.httpmanager.HttpManager;
 import com.yijian.commonlib.net.response.ResultJSONObjectObserver;
@@ -40,7 +40,7 @@ public class HuiJiProductPresenter implements HuiJiProductContract.Presenter {
         HttpManager.getHuiJiCardGoodsList(bodyCondition, new ResultJSONObjectObserver(lifecycle) {
             @Override
             public void onSuccess(JSONObject result) {
-                RecptionCards recptionCards = new Gson().fromJson(result.toString(), RecptionCards.class);
+                CardInfoResponse recptionCards = new Gson().fromJson(result.toString(), CardInfoResponse.class);
 
                 List<CardInfo> records = recptionCards.getRecords();
                 if (records == null || records.size() == 0) {

@@ -9,11 +9,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -44,7 +47,7 @@ import static com.yijian.clubmodule.ui.course.schedule.day.FlagPopuwindow.WHITE_
  * email：850716183@qq.com
  * time: 2018/8/21 15:15:00
  */
-public class DayCourseView extends FrameLayout implements View.OnLongClickListener {
+public class DayCourseView extends FrameLayout {
     private static String TAG = DayCourseView.class.getSimpleName();
 
     private int itemHeight = 200;
@@ -55,7 +58,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
 
     private Paint mRedPaint; //分割线高度
     private TextPaint mRedTextPaint;
-    private List<FlagPopuwindow> popuwindowList=new ArrayList<>();
+    private List<FlagPopuwindow> popuwindowList = new ArrayList<>();
 
     private int mLastMotionX, mLastMotionY;
     //是否移动了
@@ -69,6 +72,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     private int maxHeight;
     private LockTimePopuwindow lockTimePopuwindow;
     private AlertDialog dialog;
+    private GestureDetector gestureDetector;
 
 
     @Override
@@ -86,7 +90,6 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
 
                 isReleased = false;
                 isMoved = false;
-                postDelayed(mLongPressRunnable, 200);
                 break;
             case MotionEvent.ACTION_MOVE:
 
@@ -97,7 +100,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                 if (Math.abs(mLastMotionY - y1) > TOUCH_SLOP) {
                     //移动超过阈值，则表示移动了
                     isMoved = true;
-                    removeCallbacks(mLongPressRunnable);
+//                    removeCallbacks(mLongPressRunnable);
                 }
 
                 break;
@@ -106,7 +109,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                 isReleased = true;
 
                 Logger.i(TAG, "ACTION_UP");
-                removeCallbacks(mLongPressRunnable);
+//                removeCallbacks(mLongPressRunnable);
                 break;
         }
         int childCount = getChildCount();
@@ -121,7 +124,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                 Logger.i(TAG, "mLastMotionY=" + mLastMotionY);
                 Logger.i(TAG, "rectF.bottom=" + rectF.bottom);
                 isReleased = true;
-                removeCallbacks(mLongPressRunnable);
+//                removeCallbacks(mLongPressRunnable);
                 View view = views.get(i);
                 String tag = (String) view.getTag();
                 if (tag.equals("锁住")) {
@@ -142,11 +145,10 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
         }
 
 
+        //将触摸事件传递给手势识别器处理
+        gestureDetector.onTouchEvent(event);
         return true;
     }
-
-
-
 
 
     public DayCourseView(@NonNull Context context) {
@@ -161,30 +163,50 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     public DayCourseView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
-        mLongPressRunnable = new Runnable() {
-
-            @Override
-            public void run() {
-                if (isReleased || isMoved) return;
-                performLongClick();
-            }
-        };
+        gestureDetector = new GestureDetector(getContext(), new MyGestureDetectorListener());
         init();
 
 
     }
 
-    private Activity activity;
 
-    public void setActivity(Activity activity) {
-        this.activity = activity;
+    class MyGestureDetectorListener implements GestureDetector.OnGestureListener {
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return false;
+        }
+
+        @Override
+        public void onShowPress(MotionEvent e) {
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            click();
+            return true;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            return false;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            return false;
+        }
     }
 
-    @Override
-    public boolean onLongClick(View v) {
+    private void click() {
         boolean isShowLockTimePopuwindow = true;
         int childCount = getChildCount();
-        synchronized (views){
+        synchronized (views) {
             for (int i = 0; i < childCount; i++) {
                 View childAt = getChildAt(i);
                 RectF rectF = new RectF(childAt.getLeft() + getLeft(), childAt.getTop() + getTop(), childAt.getLeft() + getLeft() + childAt.getWidth(), childAt.getTop() + getTop() + childAt.getHeight());
@@ -213,7 +235,6 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                             isShowLockTimePopuwindow = false;
                         }
                     }
-                    return isShowLockTimePopuwindow;
                 }
             }
         }
@@ -224,9 +245,8 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             int hour = i / 60;
             int minute = i % 60;
             lockTimePopuwindow = new LockTimePopuwindow(mContext);
-            if (hour>23){
-                return false;
-            }else {
+            if (hour > 23) {
+            } else {
                 lockTimePopuwindow.setStartTime(hour, minute);
                 lockTimePopuwindow.setBackgroundAlpha(activity, 0.3f);
                 lockTimePopuwindow.setAnimationStyle(R.style.locktime_popwin_anim_style);
@@ -246,16 +266,20 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
                         lockTimePopuwindow.setBackgroundAlpha(activity, 1f);
                     }
                 });
-                lockTimePopuwindow.showAtLocation(this, Gravity.CENTER, 0, 0);
+                lockTimePopuwindow.showAtLocation(DayCourseView.this, Gravity.CENTER, 0, 0);
             }
 
 
-
-
         }
-        return isShowLockTimePopuwindow;
-
     }
+
+    private Activity activity;
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+
 
     public void addLockView(String startTime, String endTime, String id) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.lock_view, null, false);
@@ -268,7 +292,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             public void onClick(View v) {
                 dismiss();
 
-                dialog = new AlertDialog.Builder(mContext).setMessage("释放的锁住时间为 " + startTime + " - " + endTime+", 是否确定？").setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                dialog = new AlertDialog.Builder(mContext).setMessage("释放的锁住时间为 " + startTime + " - " + endTime + ", 是否确定？").setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -355,7 +379,6 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
         mRedTextPaint.setColor(Color.parseColor("#ff0000"));
         mRedTextPaint.setAntiAlias(true);
         mRedTextPaint.setTextSize(30);
-        setOnLongClickListener(this);
     }
 
     @Override
@@ -407,7 +430,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             TextView tv_course_name = view.findViewById(R.id.tv_course_name);
             ImageView iv_flag = view.findViewById(R.id.iv_flag);
             String colour = courseBean.getColour();
-            FlagPopuwindow     popuwindow = new FlagPopuwindow(mContext);
+            FlagPopuwindow popuwindow = new FlagPopuwindow(mContext);
             popuwindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             popuwindow.setOutsideTouchable(true);
             if (TextUtils.isEmpty(colour)) {
@@ -433,7 +456,7 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
             }
             ImageLoader.setHeadImageResource(SharePreferenceUtil.getImageUrl() + privateCourseMemberVO.getHeadPath(), view.getContext(), iv_header);
             tv_name.setText(privateCourseMemberVO.getMemberName());
-            tv_course_name.setText("私教课："+memberCourseName);
+            tv_course_name.setText("私教课：" + memberCourseName);
             view.setBackgroundColor(Color.parseColor("#f5f5f5"));
             popuwindow.setOnSelectFlagListener(new FlagPopuwindow.OnSelectFlagListener() {
                 @Override
@@ -522,20 +545,20 @@ public class DayCourseView extends FrameLayout implements View.OnLongClickListen
     public void clearView() {
         removeAllViews();
         popuwindowList.clear();
-        synchronized (views){
+        synchronized (views) {
             views.clear();
         }
     }
 
     public void removeLockView(View view) {
         removeView(view);
-        synchronized (views){
+        synchronized (views) {
             views.remove(view);
         }
     }
 
     public void dismiss() {
-        if (popuwindowList!=null&&popuwindowList.size()>0){
+        if (popuwindowList != null && popuwindowList.size() > 0) {
             for (int i = 0; i < popuwindowList.size(); i++) {
                 FlagPopuwindow flagPopuwindow = popuwindowList.get(i);
                 boolean showing = flagPopuwindow.isShowing();

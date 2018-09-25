@@ -115,37 +115,44 @@ public class PerfectTestActivity extends MvcBaseActivity implements View.OnClick
             perfectRequestBody.setGender(Integer.parseInt(ActivityUtils.workSpaceVipBean.getGender()));
             if (TextUtils.isEmpty(tv_height.getText().toString())) {
                 Toast.makeText(PerfectTestActivity.this, "身高不能为空", Toast.LENGTH_SHORT).show();
+                return;
             } else {
                 perfectRequestBody.setHeight(Integer.parseInt(tv_height.getText().toString()));
             }
             if (TextUtils.isEmpty(et_jianwei.getText().toString())) {
                 Toast.makeText(PerfectTestActivity.this, "肩围不能为空", Toast.LENGTH_SHORT).show();
+                return;
             } else {
                 perfectRequestBody.setJw(Double.parseDouble(et_jianwei.getText().toString()));
             }
 
             if (TextUtils.isEmpty(et_xiongwei.getText().toString())) {
                 Toast.makeText(PerfectTestActivity.this, "胸围不能为空", Toast.LENGTH_SHORT).show();
+                return;
             } else {
                 perfectRequestBody.setXw(Double.parseDouble(et_xiongwei.getText().toString()));
             }
             if (TextUtils.isEmpty(et_yaowei.getText().toString())) {
                 Toast.makeText(PerfectTestActivity.this, "腰围不能为空", Toast.LENGTH_SHORT).show();
+                return;
             } else {
                 perfectRequestBody.setWaist(Double.parseDouble(et_yaowei.getText().toString()));
             }
             if (TextUtils.isEmpty(et_tuiwei.getText().toString())) {
                 Toast.makeText(PerfectTestActivity.this, "腿围不能为空", Toast.LENGTH_SHORT).show();
+                return;
             } else {
                 perfectRequestBody.setDtw(TextUtils.isEmpty(et_tuiwei.getText().toString()) ? 0 : Double.parseDouble(et_tuiwei.getText().toString()));
             }
             if (TextUtils.isEmpty(et_tunwei.getText().toString())) {
                 Toast.makeText(PerfectTestActivity.this, "臀围不能为空", Toast.LENGTH_SHORT).show();
+                return;
             } else {
                 perfectRequestBody.setHipline(TextUtils.isEmpty(et_tunwei.getText().toString()) ? 0 : Double.parseDouble(et_tunwei.getText().toString()));
             }
             if (TextUtils.isEmpty(et_biwei.getText().toString())) {
                 Toast.makeText(PerfectTestActivity.this, "臂围不能为空", Toast.LENGTH_SHORT).show();
+                return;
             } else {
                 perfectRequestBody.setDtunw(TextUtils.isEmpty(et_biwei.getText().toString()) ? 0 : Double.parseDouble(et_biwei.getText().toString()));
             }

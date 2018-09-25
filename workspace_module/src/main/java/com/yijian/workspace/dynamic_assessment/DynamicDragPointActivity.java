@@ -35,10 +35,10 @@ public class DynamicDragPointActivity extends MvcBaseActivity implements View.On
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        initTitle();
         File file = new File(getCacheDir() + "/img_dynamic.jpg");
         RequestOptions options = centerCropTransform().priority(Priority.HIGH).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE);
         Glide.with(this).load(file).apply(options).into(iv_pendding);
-        initTitle();
     }
 
     private void initTitle() {

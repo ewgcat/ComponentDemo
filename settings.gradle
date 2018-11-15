@@ -1,1 +1,1 @@
-include ':app', ':commonlib', ':workspace_module', ':club_module', ':picture_viewer'//, ':retrofit2', ':PhotoPicker', ':photoview',':indicatorseekbar'
+include ':app', ':commonlib', ':workspace_module', ':club_module', ':pos_module', ':single_coach_module'

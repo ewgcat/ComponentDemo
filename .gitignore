@@ -7,3 +7,12 @@
 /captures
 .externalNativeBuild
 .idea
+/.gradle/
+/.idea/
+/gradle/
+.properties
+/app/app.iml
+/club_module/club_module.iml
+/commonlib/commonlib.iml
+/pos_module/pos_module.iml
+/workspace_module/workspace_module.iml

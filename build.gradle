@@ -11,9 +11,9 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // add plugin
-        classpath "com.tencent.bugly:tinker-support:1.1.2"
+        classpath "com.tencent.bugly:tinker-support:1.1.5"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
@@ -27,6 +27,7 @@ allprojects {
         flatDir {
             dirs 'libs', '../club_module/libs'
             dirs 'libs', '../commonlib/libs'
+            dirs 'libs', '../pos_module/libs'
         }
     }
 }
@@ -37,11 +38,11 @@ ext {
     compileSdkVersion = 28
     buildToolsVersion = '28.0.3'
     applicationId = "com.yijian.staff"
-    versionCode = 30
-    versionName = "1.4.1"
+    versionCode = 40
+    versionName = "1.4.8"
     supportLibVersion = "27.1.1"
     designVersion = "27.1.1"
-    dbVersion = 7
+    dbVersion = 20
 }
 
 task clean(type: Delete) {
